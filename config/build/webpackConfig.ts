@@ -10,14 +10,14 @@ import {BuildOptions} from "./types/config";
 export const webpackConfig = (options: BuildOptions): webpack.Configuration => {
   const {mode, paths, isDev} = options;
   return {
-    mode: mode,
+    mode,
     entry: paths.entry,
     module: {
       rules: loaders(),
     },
     resolve: resolves(),
     output: {
-      filename: '[name].[contenthash].js',
+      filename: './js/[name].[contenthash].js',
       path: paths.output,
       clean: true,
     },
