@@ -1,7 +1,9 @@
 import {render} from "react-dom";
-import React from "react";
+import {Counter} from "./component/Counter/Counter";
 
 render (
-  <div>Test</div>,
+  <div>
+    <Counter />
+  </div>,
   document.getElementById("root")
 )
