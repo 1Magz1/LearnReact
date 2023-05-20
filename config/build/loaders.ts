@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export const loaders = (): webpack.RuleSetRule[] => {
 
@@ -8,7 +9,17 @@ export const loaders = (): webpack.RuleSetRule[] => {
     exclude: /node_modules/,
   }
 
+  const cssLoader = {
+      test: /\.s[ac]ss$/i,
+      use: [
+        MiniCssExtractPlugin.loader,
+        "css-loader",
+        "sass-loader",
+      ],
+    }
+
   return [
-    typescriptLoader
+    typescriptLoader,
+    cssLoader
   ]
 }
