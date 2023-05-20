@@ -8,5 +8,8 @@ export const plugins = ({paths}: BuildOptions): webpack.WebpackPluginInstance[] 
   new HtmlWebpackPlugin({
     template: paths.html,
   }),
-  new MiniCssExtractPlugin()
+  new MiniCssExtractPlugin({
+    filename: './css/[name].[contenthash:8].css',
+    chunkFilename: './css/[name].[contenthash:8].chunk.css',
+  })
 ]
