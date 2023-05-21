@@ -1,7 +1,8 @@
 import webpack from 'webpack'
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from "./types/config";
 
-export const loaders = (): webpack.RuleSetRule[] => {
+export const loaders = ({isDev}: BuildOptions): webpack.RuleSetRule[] => {
 
   const typescriptLoader = {
     test: /\.tsx?$/,
@@ -16,7 +17,12 @@ export const loaders = (): webpack.RuleSetRule[] => {
         {
           loader: "css-loader",
           options: {
-            modules: true
+            modules: {
+              auto: (resourcePath: string) => resourcePath.endsWith('.module.scss'),
+              localIdentName: isDev
+                ? "[path]module--[hash:base64:8]"
+                : "[hash:base64:8]",
+            },
           }
         },
         "sass-loader",
