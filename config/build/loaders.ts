@@ -1,8 +1,7 @@
 import webpack from 'webpack'
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {BuildOptions} from "./types/config";
 
-export const loaders = (options: BuildOptions): webpack.RuleSetRule[] => {
+export const loaders = (): webpack.RuleSetRule[] => {
 
   const typescriptLoader = {
     test: /\.tsx?$/,
@@ -13,7 +12,7 @@ export const loaders = (options: BuildOptions): webpack.RuleSetRule[] => {
   const cssLoader = {
       test: /\.s[ac]ss$/i,
       use: [
-        options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+        MiniCssExtractPlugin.loader,
         {
           loader: "css-loader",
           options: {

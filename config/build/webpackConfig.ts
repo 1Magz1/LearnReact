@@ -13,7 +13,7 @@ export const webpackConfig = (options: BuildOptions): webpack.Configuration => {
     mode,
     entry: paths.entry,
     module: {
-      rules: loaders(options),
+      rules: loaders(),
     },
     resolve: resolves(),
     output: {
