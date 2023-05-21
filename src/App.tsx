@@ -5,18 +5,21 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {MainPage} from "./pages/MainPage/MainPage";
-import {AboutPage} from "./pages/AboutPage/AboutPage";
+import {MainPageAsync} from "./pages/MainPage/MainPage.async";
+import {AboutPageAsync} from "./pages/AboutPage/AboutPage.async";
+import {Suspense} from "react";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Link to="/">Main</Link>
       <Link to="/about">About</Link>
-      <Routes>
-        <Route path="/" Component={MainPage}/>
-        <Route path="/about" Component={AboutPage}/>
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" Component={MainPageAsync}/>
+          <Route path="/about" Component={AboutPageAsync}/>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
