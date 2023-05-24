@@ -11,16 +11,18 @@ import {Suspense} from "react";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Link to="/">Main</Link>
-      <Link to="/about">About</Link>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" Component={MainPageAsync}/>
-          <Route path="/about" Component={AboutPageAsync}/>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <div className={"app light"}>
+      <BrowserRouter>
+        <Link to="/">Main</Link>
+        <Link to="/about">About</Link>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" Component={MainPageAsync}/>
+            <Route path="/about" Component={AboutPageAsync}/>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </div>
   );
 };
 
