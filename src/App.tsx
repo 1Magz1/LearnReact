@@ -1,8 +1,9 @@
-import './common/style/index.scss'
+import './styles/index.scss'
 import {
   BrowserRouter,
   Routes,
-  Route, Link
+  Route,
+  Link
 } from "react-router-dom";
 import {MainPageAsync} from "./pages/MainPage/MainPage.async";
 import {AboutPageAsync} from "./pages/AboutPage/AboutPage.async";
