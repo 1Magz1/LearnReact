@@ -1,8 +1,9 @@
-import './common/style/index.scss'
+import './styles/index.scss'
 import {
   BrowserRouter,
   Routes,
-  Route, Link
+  Route,
+  Link
 } from "react-router-dom";
 import {MainPage} from "./pages/MainPage/MainPage";
 import {AboutPage} from "./pages/AboutPage/AboutPage";
