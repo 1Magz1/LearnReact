@@ -14,7 +14,9 @@ interface ThemeProviderProps {
 const ThemeProvider = (props: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-  setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+  const toggleTheme = () => {
+    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+  }
 
   const defaultProps = useMemo(() => ({
     theme,
