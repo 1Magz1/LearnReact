@@ -9,12 +9,13 @@ import {MainPageAsync} from "./pages/MainPage/MainPage.async";
 import {AboutPageAsync} from "./pages/AboutPage/AboutPage.async";
 import {Suspense} from "react";
 import {useTheme} from "./context/theme/useTheme";
+import {className} from "./helpers/className";
 
 const App = () => {
   const {theme, toggleTheme} = useTheme();
 
   return (
-    <div className={`app ${theme}`}>
+    <div className={className('app', {"class1": true}, [theme])}>
       <BrowserRouter>
         <button onClick={toggleTheme}>Toggle Theme</button>
         <Link to="/">Main</Link>
