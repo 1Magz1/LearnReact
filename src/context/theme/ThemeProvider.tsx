@@ -1,4 +1,8 @@
-import React, {FC, FunctionComponent, ReactNode, useMemo, useState} from 'react';
+import {
+  ReactNode,
+  useMemo,
+  useState
+} from 'react';
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
@@ -13,10 +17,6 @@ interface ThemeProviderProps {
 
 const ThemeProvider = (props: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
-
-  const toggleTheme = () => {
-    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
-  }
 
   const defaultProps = useMemo(() => ({
     theme,
