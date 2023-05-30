@@ -8,14 +8,20 @@ import {devServer} from "./devServer";
 import {BuildOptions} from "./types/config";
 
 export const webpackConfig = (options: BuildOptions): webpack.Configuration => {
-  const {mode, paths, isDev} = options;
+
+  const {
+    mode,
+    paths,
+    isDev
+  } = options;
+
   return {
     mode,
     entry: paths.entry,
     module: {
       rules: loaders(options),
     },
-    resolve: resolves(),
+    resolve: resolves(options),
     output: {
       filename: './js/[name].[contenthash].js',
       path: paths.output,
