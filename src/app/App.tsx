@@ -5,11 +5,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import {MainPageAsync} from "./pages/MainPage/MainPage.async";
-import {AboutPageAsync} from "./pages/AboutPage/AboutPage.async";
+import {MainPageAsync} from "pages/MainPage/MainPage.async";
+import {AboutPageAsync} from "pages/AboutPage/AboutPage.async";
 import {Suspense} from "react";
-import {useTheme} from "./context/theme/useTheme";
-import {className} from "./helpers/className";
+import {className} from "helpers/className";
+import {useTheme} from "app/providers/ThemeProvider";
 
 const App = () => {
   const {theme, toggleTheme} = useTheme();
