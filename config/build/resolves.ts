@@ -8,5 +8,6 @@ export const resolves = (options: BuildOptions): ResolveOptions => ({
     options.paths.src,
     'node_modules'
   ],
+  mainFiles: ['index'],
   alias: {}
 })
