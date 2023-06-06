@@ -13,8 +13,8 @@ const App = () => {
   return (
     <div className={classNames('app', {"class1": true}, [theme])}>
       <BrowserRouter>
-        <button onClick={toggleTheme}>Toggle Theme</button>
         <Navbar/>
+        <button onClick={toggleTheme}>Toggle Theme</button>
         <AppRouter/>
       </BrowserRouter>
     </div>
