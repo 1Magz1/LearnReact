@@ -1,23 +1,20 @@
 import './styles/index.scss'
-import {
-  BrowserRouter,
-  Link
-} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
-import {className} from "shared/lib/className/className";
+import {classNames} from "shared/lib/classNames/classNames";
 import {useTheme} from "app/providers/ThemeProvider";
 
 import {AppRouter} from "app/providers/Router";
+import {Navbar} from "widgets/Navbar";
 
 const App = () => {
   const {theme, toggleTheme} = useTheme();
 
   return (
-    <div className={className('app', {"class1": true}, [theme])}>
+    <div className={classNames('app', {"class1": true}, [theme])}>
       <BrowserRouter>
+        <Navbar/>
         <button onClick={toggleTheme}>Toggle Theme</button>
-        <Link to="/">Main</Link>
-        <Link to="/about">About</Link>
         <AppRouter/>
       </BrowserRouter>
     </div>
