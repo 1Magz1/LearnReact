@@ -4,7 +4,7 @@ import {
   Link
 } from "react-router-dom";
 
-import {className} from "helpers/className";
+import {className} from "shared/lib/className/className";
 import {useTheme} from "app/providers/ThemeProvider";
 
 import {AppRouter} from "app/providers/Router";
