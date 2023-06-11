@@ -16,4 +16,8 @@
   position: absolute;
   bottom: 50px;
   left: 20px;
+  width: 100%;
+  max-width: calc(var(--sidebar-width) - 40px);
+  display: flex;
+  justify-content: space-between;
 }
