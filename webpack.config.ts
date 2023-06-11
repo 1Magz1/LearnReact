@@ -1,7 +1,8 @@
+// eslint-disable-next-line
 import webpack from 'webpack';
-import {webpackConfig} from "./config/build/webpackConfig";
-import path from "path";
-import {BuildEnv} from "./config/build/types/config";
+import path from 'path';
+import { webpackConfig } from './config/build/webpackConfig';
+import { BuildEnv } from './config/build/types/config';
 
 export default (env: BuildEnv) => {
   const paths = {
@@ -9,7 +10,7 @@ export default (env: BuildEnv) => {
     output: path.resolve(__dirname, 'build'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     src: path.resolve(__dirname, 'src'),
-  }
+  };
 
   const mode = env.mode ? env.mode : 'development';
   const isDev = mode === 'development';
@@ -19,7 +20,7 @@ export default (env: BuildEnv) => {
     mode,
     paths,
     isDev,
-    port
+    port,
   });
 
   return config;

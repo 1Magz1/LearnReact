@@ -1,14 +1,14 @@
-import {classNames} from "shared/lib/classNames/classNames";
+import { classNames } from 'shared/lib/classNames/classNames';
 
-import cls from "./LangSwitcher.module.scss";
-import {useTranslation} from "react-i18next";
-import {Button} from "shared/ui/Button";
+import { useTranslation } from 'react-i18next';
+import { Button } from 'shared/ui/Button';
+import cls from './LangSwitcher.module.scss';
 
 interface LangSwitcherProps {
   className?: string;
 }
 
-export const LangSwitcher = ({className}: LangSwitcherProps) => {
+export function LangSwitcher({ className }: LangSwitcherProps) {
   const { t, i18n } = useTranslation();
 
   const toggleLanguage = async () => {
@@ -17,7 +17,7 @@ export const LangSwitcher = ({className}: LangSwitcherProps) => {
     } catch (e) {
       console.log('i18n error', e);
     }
-  }
+  };
 
   return (
     <Button
@@ -25,9 +25,10 @@ export const LangSwitcher = ({className}: LangSwitcherProps) => {
       className={classNames(
         cls.LangSwitcher,
         {},
-        [className])}
+        [className],
+      )}
     >
       {t('lang')}
     </Button>
-  )
-};
+  );
+}

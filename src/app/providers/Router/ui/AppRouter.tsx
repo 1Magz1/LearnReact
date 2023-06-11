@@ -1,24 +1,22 @@
-import React, {Suspense} from 'react';
-import {Route, Routes} from "react-router-dom";
-import {routeConfig} from "shared/config/routeConfig/routeConfig";
-import {Sidebar} from "widgets/Sidebar";
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import { Sidebar } from 'widgets/Sidebar';
 
-const AppRouter = () => {
+function AppRouter() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="page-content">
-        <Sidebar/>
+        <Sidebar />
         <Routes>
-          {Object.values(routeConfig).map(({path, element}) => (
+          {Object.values(routeConfig).map(({ path, element }) => (
             <Route
               key={path}
               path={path}
               element={(
-                <Suspense fallback={<div>Loading...</div>}>
-                  <div className="page-wrapper">
-                    {element}
-                  </div>
-                </Suspense>
+                <div className="page-wrapper">
+                  {element}
+                </div>
               )}
             />
           ))}
@@ -26,6 +24,6 @@ const AppRouter = () => {
       </div>
     </Suspense>
   );
-};
+}
 
 export default AppRouter;
