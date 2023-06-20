@@ -16,6 +16,7 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider(props: ThemeProviderProps) {
+  const { children } = props;
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   const defaultProps = useMemo(() => ({
@@ -25,7 +26,7 @@ function ThemeProvider(props: ThemeProviderProps) {
 
   return (
     <ThemeContext.Provider value={defaultProps}>
-      {props.children}
+      {children}
     </ThemeContext.Provider>
   );
 }
