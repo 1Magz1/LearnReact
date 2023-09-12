@@ -5,13 +5,13 @@ import {BuildOptions} from "./types/config";
 export const loaders = ({isDev}: BuildOptions): webpack.RuleSetRule[] => {
 
   const fileLoader = {
-      test: /\.(png|jpe?g|gif|woff|woff2)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-        },
-      ],
-    }
+    test: /\.(png|jpe?g|gif|woff|woff2)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      },
+    ],
+  }
 
   const svgLoader = {
     test: /\.svg$/,
@@ -25,27 +25,39 @@ export const loaders = ({isDev}: BuildOptions): webpack.RuleSetRule[] => {
   }
 
   const cssLoader = {
-      test: /\.s[ac]ss$/i,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: "css-loader",
-          options: {
-            modules: {
-              auto: (resourcePath: string) => resourcePath.endsWith('.module.scss'),
-              localIdentName: isDev
-                ? "[path]module--[hash:base64:8]"
-                : "[hash:base64:8]",
-            },
-          }
-        },
-        "sass-loader",
-      ],
+    test: /\.s[ac]ss$/i,
+    use: [
+      MiniCssExtractPlugin.loader,
+      {
+        loader: "css-loader",
+        options: {
+          modules: {
+            auto: (resourcePath: string) => resourcePath.endsWith('.module.scss'),
+            localIdentName: isDev
+              ? "[path]module--[hash:base64:8]"
+              : "[hash:base64:8]",
+          },
+        }
+      },
+      "sass-loader",
+    ],
+  }
+
+  const babelLoader = {
+    test: /\.(js|jsx|tsx)/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ['@babel/preset-env']
+      }
     }
+  }
 
   return [
     fileLoader,
     svgLoader,
+    babelLoader,
     typescriptLoader,
     cssLoader
   ]
