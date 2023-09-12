@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    jest: true
   },
   extends: [
     'plugin:react/recommended',
@@ -28,5 +29,6 @@ module.exports = {
     'react/require-default-props': 'off',
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
+    "max-len": ["error", { "ignoreComments": true }]
   }
 }
