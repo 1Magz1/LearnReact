@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import webpack from 'webpack';
 import path from 'path';
 import { webpackConfig } from './config/build/webpackConfig';

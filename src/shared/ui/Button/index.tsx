@@ -1,4 +1,4 @@
-import { Button } from 'shared/ui/Button/ui/Button';
+import { Button } from './ui/Button';
 
 export {
   Button,
