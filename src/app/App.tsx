@@ -15,10 +15,12 @@ function App() {
 
   return (
     <div className={classNames('app', { class1: true }, [theme])}>
-      <BrowserRouter>
-        <Navbar />
-        <AppRouter />
-      </BrowserRouter>
+      <Suspense fallback="">
+        <BrowserRouter>
+          <Navbar />
+          <AppRouter />
+        </BrowserRouter>
+      </Suspense>
     </div>
   );
 }
