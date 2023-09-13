@@ -1,5 +1,6 @@
 .PageError {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -7,5 +8,12 @@
 }
 
 .title {
-  font: var(--font-l)
+  font: var(--font-l);
+  margin-bottom: 20px;
+}
+
+.btn {
+  font: var(--font-m);
+  padding: 20px;
+  border-radius: 20px;
 }
