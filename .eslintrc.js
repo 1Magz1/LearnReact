@@ -25,10 +25,10 @@ module.exports = {
     'import/no-unresolved': 'off',
     'no-shadow': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/require-default-props': 'off',
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
-    "max-len": ["error", { "ignoreComments": true }]
+    "max-len": ["error", { ignoreComments: true, code: 100 }]
   }
 }
