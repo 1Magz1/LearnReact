@@ -30,8 +30,6 @@ class ErrorBoundary extends React.Component<
     const { children } = this.props;
 
     if (hasError) {
-      console.log('hasError', hasError);
-
       return <PageError />;
     }
     return children;
