@@ -4,9 +4,6 @@ import { THEME_BUTTON, Button } from './Button';
 const meta = {
   title: 'shared/Button',
   component: Button,
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -22,5 +19,12 @@ export const Clear: Story = {
   args: {
     children: 'Text',
     theme: THEME_BUTTON.CLEAR,
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    children: 'Text',
+    theme: THEME_BUTTON.OUTLINE,
   },
 };
