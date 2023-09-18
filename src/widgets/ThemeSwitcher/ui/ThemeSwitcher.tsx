@@ -6,7 +6,7 @@ import { HTMLAttributes } from 'react';
 import MoonIcon from 'shared/assets/icons/full-moon.svg';
 import SunIcon from 'shared/assets/icons/sun.svg';
 import { Button } from 'shared/ui/Button';
-import { ThemeButton } from 'shared/ui/Button/ui/Button';
+import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import cls from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps extends HTMLAttributes<HTMLButtonElement>{
@@ -19,7 +19,7 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
 
   return (
     <Button
-      theme={ThemeButton.CLEAR}
+      theme={THEME_BUTTON.CLEAR}
       onClick={toggleTheme}
       className={classNames(cls.ThemeSwitcher, {}, [className])}
     >

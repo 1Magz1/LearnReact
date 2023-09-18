@@ -3,13 +3,14 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { FC, HTMLAttributes } from 'react';
 import cls from './Button.module.scss';
 
-export enum ThemeButton {
+export enum THEME_BUTTON {
   CLEAR = 'clear',
+  OUTLINE = 'outline',
 }
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
   className?: string;
-  theme?: ThemeButton
+  theme?: THEME_BUTTON
 }
 
 export const Button: FC<ButtonProps> = (props) => {
