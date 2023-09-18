@@ -23,4 +23,9 @@
   "exclude": [
     "node_modules"
   ],
+  "include": [
+    "./config/jest/jest-setup.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+  ]
 }
