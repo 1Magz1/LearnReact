@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { themeDecorator } from 'shared/config/Storybook/decorators/themeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { DefaultDark } from 'shared/ui/Button/ui/Button.stories';
 import { AppLink, AppLinkThemes } from './AppLink';
 
 const meta = {
