@@ -1,10 +1,10 @@
-import { StoryFn } from '@storybook/react';
+import { Story } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
 
-export const themeDecorator = (theme: Theme) => function (storyComponent: StoryFn) {
+export const themeDecorator = (theme: Theme) => function (Story: Story) {
   return (
     <div className={`app ${theme}`}>
-      {storyComponent()}
+      <Story />
     </div>
   );
 };
