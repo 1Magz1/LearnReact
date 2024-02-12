@@ -7,7 +7,6 @@ function AppRouter() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="page-content">
-        <Sidebar />
         <Routes>
           {Object.values(routeConfig).map(({ path, element }) => (
             <Route
