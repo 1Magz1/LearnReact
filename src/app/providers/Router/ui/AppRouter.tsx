@@ -5,9 +5,9 @@ import { Sidebar } from 'widgets/Sidebar';
 
 function AppRouter() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="page-content">
-        <Sidebar />
+    <div className="page-content">
+      <Sidebar />
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {Object.values(routeConfig).map(({ path, element }) => (
             <Route
@@ -21,8 +21,8 @@ function AppRouter() {
             />
           ))}
         </Routes>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }
 
