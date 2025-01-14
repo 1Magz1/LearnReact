@@ -22,7 +22,7 @@ const NavbarPageList = [
 export function Navbar({ className }: NavbarProps) {
   const { t } = useTranslation();
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
+    <div data-testid="navbar" className={classNames(cls.Navbar, {}, [className])}>
       <div>
         {NavbarPageList.map((page) => (
           <AppLink
