@@ -1,0 +1,23 @@
+.Sidebar {
+  width: 100%;
+  max-width: var(--sidebar-width);
+  height: calc(100vh - var(--navbar-height));
+  transition: max-width 0.3s;
+  background: var(--inverted-bg-color);
+  position: relative;
+  padding: 20px;
+}
+
+.collapsed {
+  max-width: var(--sidebar-collapsed-width);
+}
+
+.switchers {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  width: 100%;
+  max-width: calc(var(--sidebar-width) - 40px);
+  display: flex;
+  justify-content: space-between;
+}
