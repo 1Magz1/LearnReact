@@ -16,7 +16,12 @@ export const buildCssLoader = (isDev: boolean) => {
             },
           }
         },
-        "sass-loader",
+        {
+          loader: "sass-loader",
+          options: {
+            api: "modern"
+          }
+        }
       ],
     }
 }

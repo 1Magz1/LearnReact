@@ -1,5 +1,5 @@
 # LearnReact
 Education project for learn ReactJS
 
-1. Node 18.14.1
-2. Npm 9.3.1
+1. Node 22.13.0
+2. Npm 10.9.2
