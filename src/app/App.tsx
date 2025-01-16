@@ -14,7 +14,7 @@ function App() {
   const { theme } = useTheme();
 
   return (
-    <div className={classNames('app', { class1: true }, [theme])}>
+    <div className={classNames('app', { class1: true }, [theme])} id="app">
       <Suspense fallback={<div>Loading ...</div>}>
         <BrowserRouter>
           <Navbar />

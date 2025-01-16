@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import useModal from 'shared/hooks/useModal';
 import { Button } from 'shared/ui/Button';
 import { Modal } from 'widgets/Modal';
+import { Portal } from 'widgets/Portal';
 
 function MainPage() {
   const { t, i18n } = useTranslation('main');
@@ -17,9 +18,11 @@ function MainPage() {
       <Button onClick={handleModalOpen}>
         Open Modal
       </Button>
-      <Modal isOpen={isOpen} onClose={handleModalClose} onConfirm={handleConfirm} title="title">
-        <span>Modal</span>
-      </Modal>
+      <Portal target={document.getElementById('app')!}>
+        <Modal isOpen={isOpen} onClose={handleModalClose} onConfirm={handleConfirm} title="title">
+          <span>Modal</span>
+        </Modal>
+      </Portal>
     </div>
   );
 }
