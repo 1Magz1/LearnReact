@@ -4,5 +4,7 @@
   "about": "About",
   "notFound": "Page not found",
   "pageError": "Page Error",
-  "reload": "Reload"
+  "reload": "Reload",
+  "open": "Open",
+  "close": "Close"
 }

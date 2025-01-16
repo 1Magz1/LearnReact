@@ -2,8 +2,8 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithTranslation from 'shared/lib/forTest/renderWithTranslation';
 import { Sidebar } from './Sidebar';
 
-describe('Sidebar', () => {
-  test('Test render', () => {
+describe('Sidebar unit test', () => {
+  test('Render test', () => {
     renderWithTranslation(<Sidebar />);
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
   });

@@ -1,11 +1,11 @@
-@import 'reset';
+@use 'reset';
 
 // Themes
-@import 'themes/dark';
-@import 'themes/light';
+@use 'themes/dark';
+@use 'themes/light';
 
 // Variables
-@import "variables/global";
+@use "variables/global";
 
 // App
-@import "app";
+@use "app";

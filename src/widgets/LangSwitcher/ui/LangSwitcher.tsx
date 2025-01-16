@@ -21,6 +21,7 @@ export function LangSwitcher({ className }: LangSwitcherProps) {
 
   return (
     <Button
+      data-testid="lang-switcher"
       onClick={toggleLanguage}
       className={classNames(
         cls.LangSwitcher,
