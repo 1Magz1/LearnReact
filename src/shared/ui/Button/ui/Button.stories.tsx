@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { themeDecorator } from 'shared/config/Storybook/decorators/themeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
-import { Button, THEME_BUTTON } from './Button';
+import type { Meta, StoryObj } from "@storybook/react";
+import { themeDecorator } from "shared/config/Storybook/decorators/themeDecorator";
+import { Theme } from "app/providers/ThemeProvider";
+import { Button, THEME_BUTTON } from "./Button";
 
 const meta = {
-  title: 'shared/Button',
+  title: "shared/Button",
   component: Button,
 } satisfies Meta<typeof Button>;
 
@@ -13,49 +13,43 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
   },
 };
 export const DefaultDark: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
   },
 };
-DefaultDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+DefaultDark.decorators = [themeDecorator(Theme.DARK)];
 
 export const Clear: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
     theme: THEME_BUTTON.CLEAR,
   },
 };
 
 export const ClearDark: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
     theme: THEME_BUTTON.CLEAR,
   },
 };
-ClearDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+ClearDark.decorators = [themeDecorator(Theme.DARK)];
 
 export const Outline: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
     theme: THEME_BUTTON.OUTLINE,
   },
 };
 
 export const OutlineDark: Story = {
   args: {
-    children: 'Text',
+    children: "Text",
     theme: THEME_BUTTON.OUTLINE,
   },
 };
 
-ClearDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+ClearDark.decorators = [themeDecorator(Theme.DARK)];

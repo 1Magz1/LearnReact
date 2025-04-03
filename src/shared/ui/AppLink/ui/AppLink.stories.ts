@@ -26,9 +26,7 @@ export const PrimaryDark: Story = {
     to: '/',
   },
 };
-PrimaryDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+PrimaryDark.decorators = [themeDecorator(Theme.DARK)];
 
 export const Secondary: Story = {
   args: {
@@ -45,6 +43,4 @@ export const SecondaryDark: Story = {
     to: '/',
   },
 };
-SecondaryDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+SecondaryDark.decorators = [themeDecorator(Theme.DARK)];
