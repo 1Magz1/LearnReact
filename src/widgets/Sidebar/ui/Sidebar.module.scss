@@ -1,9 +1,11 @@
 .Sidebar {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: var(--sidebar-width);
   height: calc(100vh - var(--navbar-height));
-  transition: max-width 0.3s;
-  background: var(--inverted-bg-color);
+  transition: max-width 0.3s ease-in-out;
+  background: var(--background-color-secondary);
   position: relative;
   padding: 20px;
 }
@@ -13,11 +15,22 @@
 }
 
 .switchers {
-  position: absolute;
-  bottom: 50px;
-  left: 20px;
-  width: 100%;
-  max-width: calc(var(--sidebar-width) - 40px);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  padding: 0;
 }

@@ -22,6 +22,4 @@ export const PrimaryDark: Story = {
     children: 'Text',
   },
 };
-PrimaryDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+PrimaryDark.decorators = [themeDecorator(Theme.DARK)];

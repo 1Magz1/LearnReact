@@ -5,19 +5,24 @@ import {
   ReactNode, SyntheticEvent, useCallback, useEffect,
 } from 'react';
 import CloseIcon from 'shared/assets/icons/close.svg';
+import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
+import { useTranslation } from 'react-i18next';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
   children: ReactNode;
   isOpen: boolean;
   title?: string;
+  confirmText?: string;
   onClose: () => void;
   onConfirm?: () => void;
 }
 
-export function Modal(props: ModalProps) {
+export const Modal = (props: ModalProps) => {
+  const { t } = useTranslation();
+
   const {
-    children, title, isOpen, onClose, onConfirm,
+    children, title, isOpen, onClose, onConfirm, confirmText = t('confirm'),
   } = props;
 
   const handleContentClick = (e: SyntheticEvent) => {
@@ -44,26 +49,26 @@ export function Modal(props: ModalProps) {
       onClick={onClose}
     >
       <div className={classNames(cls.modal)} onClick={handleContentClick}>
-        <div className={classNames(cls.modal__header)}>
+        <div className={classNames(cls.header)}>
           {title ? <span>{title}</span> : null}
-          <Button onClick={onClose} className={cls['modal__header-close-btn']}>
-            <CloseIcon />
+          <Button onClick={onClose} className={cls['close-btn']}>
+            <CloseIcon className={cls['close-icon']} />
           </Button>
         </div>
-        <div className={classNames(cls.modal__body)}>
+        <div className={classNames(cls.body)}>
           {children}
         </div>
-        <div className={classNames(cls.modal__footer)}>
+        <div className={classNames(cls.footer)}>
           {onConfirm ? (
-            <Button onClick={onConfirm}>
-              Confirm
+            <Button theme={THEME_BUTTON.CONFIRM} onClick={onConfirm} className={cls['confirm-btn']}>
+              {confirmText}
             </Button>
           ) : null}
           <Button onClick={onClose}>
-            Close
+            {t('close')}
           </Button>
         </div>
       </div>
     </div>
   );
-}
+};

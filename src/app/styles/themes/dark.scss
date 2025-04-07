@@ -1,8 +1,12 @@
 .app.dark {
-  --bg-color: #090949;
-  --inverted-bg-color: #e8e8ea;
-  --primary-color: #049604;
-  --secondary-color: #04ff04;
-  --inverted-primary-color: #0232c2;
-  --inverted-secondary-color: #0449e0;
+  --background-color-primary: #121212;
+  --background-color-secondary: #333;
+  --text-color-primary: #e0e0e0;
+  --text-color-secondary: #b0b0b0;
+  --accent-color-primary: #3f51b5;
+  --accent-color-secondary: #e91e63;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --info-color: #2196f3;
 }

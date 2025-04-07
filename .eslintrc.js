@@ -27,8 +27,12 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/require-default-props': 'off',
+    'react/function-component-definition': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
-    "max-len": ["error", { ignoreComments: true, code: 100 }]
+    "max-len": ["error", { ignoreComments: true, code: 100 }],
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
   }
 }

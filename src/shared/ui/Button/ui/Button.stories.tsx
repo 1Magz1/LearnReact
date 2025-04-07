@@ -21,9 +21,7 @@ export const DefaultDark: Story = {
     children: 'Text',
   },
 };
-DefaultDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+DefaultDark.decorators = [themeDecorator(Theme.DARK)];
 
 export const Clear: Story = {
   args: {
@@ -31,16 +29,13 @@ export const Clear: Story = {
     theme: THEME_BUTTON.CLEAR,
   },
 };
-
 export const ClearDark: Story = {
   args: {
     children: 'Text',
     theme: THEME_BUTTON.CLEAR,
   },
 };
-ClearDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+ClearDark.decorators = [themeDecorator(Theme.DARK)];
 
 export const Outline: Story = {
   args: {
@@ -48,14 +43,25 @@ export const Outline: Story = {
     theme: THEME_BUTTON.OUTLINE,
   },
 };
-
 export const OutlineDark: Story = {
   args: {
     children: 'Text',
     theme: THEME_BUTTON.OUTLINE,
   },
 };
+OutlineDark.decorators = [themeDecorator(Theme.DARK)];
 
-ClearDark.decorators = [
-  themeDecorator(Theme.DARK),
-];
+export const Confirm: Story = {
+  args: {
+    children: 'Text',
+    theme: THEME_BUTTON.CONFIRM,
+  },
+};
+export const ConfirmDark: Story = {
+  args: {
+    children: 'Text',
+    theme: THEME_BUTTON.CONFIRM,
+  },
+};
+
+ConfirmDark.decorators = [themeDecorator(Theme.DARK)];

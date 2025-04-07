@@ -7,7 +7,6 @@ import { i18nDecorator } from '../../src/shared/config/Storybook/decorators/i18n
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -17,10 +16,10 @@ const preview: Preview = {
     staticDirs: ['../../public'],
   },
   decorators: [
+    i18nDecorator,
     styleDecorator,
     themeDecorator(Theme.LIGHT),
     routeDecorator,
-    i18nDecorator,
   ],
 };
 

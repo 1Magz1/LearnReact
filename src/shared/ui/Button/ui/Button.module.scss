@@ -1,5 +1,9 @@
 .Button {
   cursor: pointer;
+  color: var(--text-color-primary);
+  padding: 10px 15px;
+  background-color: var(--background-color-secondary);
+  border-radius: 10px;
 }
 
 .clear {
@@ -10,8 +14,11 @@
 }
 
 .outline {
-  padding: 10px 15px;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
   background: none;
+  border: 1px solid var(--text-color-primary);
+}
+
+.confirm {
+  color: var(--primary-white-color);
+  background-color: var(--success-color);
 }
