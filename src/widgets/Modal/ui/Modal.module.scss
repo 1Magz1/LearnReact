@@ -22,24 +22,34 @@
 .modal {
   width: 100%;
   max-width: 33vw;
-  background: #fff;
+  background-color: var(--background-color-primary);
   border-radius: 25px;
   padding: 25px;
 
-  &__header {
+  .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
-  &__header-close-btn {
+  .close-btn {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
   }
 
-  &__body {
+  .close-icon {
+    fill: var(--text-color-primary);
+    transform: scale(.5);
+  }
+
+  .body {
     min-height: 200px;
   }
 
-  &__footer {
+  .footer {
     display: flex;
     justify-content: flex-end;
     gap: 20px;
