@@ -6,19 +6,23 @@ import {
 } from 'react';
 import CloseIcon from 'shared/assets/icons/close.svg';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
+import { useTranslation } from 'react-i18next';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
   children: ReactNode;
   isOpen: boolean;
   title?: string;
+  confirmText?: string;
   onClose: () => void;
   onConfirm?: () => void;
 }
 
 export const Modal = (props: ModalProps) => {
+  const { t } = useTranslation();
+
   const {
-    children, title, isOpen, onClose, onConfirm,
+    children, title, isOpen, onClose, onConfirm, confirmText = t('confirm'),
   } = props;
 
   const handleContentClick = (e: SyntheticEvent) => {
@@ -57,11 +61,11 @@ export const Modal = (props: ModalProps) => {
         <div className={classNames(cls.footer)}>
           {onConfirm ? (
             <Button theme={THEME_BUTTON.CONFIRM} onClick={onConfirm} className={cls['confirm-btn']}>
-              Confirm
+              {confirmText}
             </Button>
           ) : null}
           <Button onClick={onClose}>
-            Close
+            {t('close')}
           </Button>
         </div>
       </div>

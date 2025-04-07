@@ -6,5 +6,6 @@
   "pageError": "Page Error",
   "reload": "Reload",
   "open": "Open",
-  "close": "Close"
+  "close": "Close",
+  "confirm": "Confirm"
 }
