@@ -20,7 +20,7 @@ function MainPage() {
         Open Modal
       </Button>
       <Counter />
-      <Portal target={document.getElementById('app')!}>
+      <Portal target={document.body}>
         <Modal isOpen={isOpen} onClose={handleModalClose} onConfirm={handleConfirm} title="title">
           <span>Modal</span>
         </Modal>
