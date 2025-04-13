@@ -7,5 +7,12 @@
   "reload": "Reload",
   "open": "Open",
   "close": "Close",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "labels": {
+    "login": "Login",
+    "password": "Password"
+  },
+  "modals": {
+    "auth": "Authorization"
+  }
 }
