@@ -1,5 +1,6 @@
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
+import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
   userName: string;
@@ -24,10 +25,10 @@ const LoginForm = (props: LoginFormProps) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <form className={cls.form}>
       <Input label={t('labels.login')} value={userName} onChange={handleUserNameChange} />
       <Input label={t('labels.password')} value={password} onChange={handlePasswordChange} />
-    </div>
+    </form>
   );
 };
 
