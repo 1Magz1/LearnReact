@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button';
 import { Portal } from 'widgets/Portal';
 import { Modal } from 'widgets/Modal';
-import { LoginForm } from 'features/LoginForm';
+import { LoginForm } from 'features/AuthByUsername';
 import useModal from 'shared/hooks/useModal';
 import { useState } from 'react';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
+import { userLogin } from 'features/AuthByUsername/model/services/userLogin/userLogin';
+import { useAppDispatch } from 'app/providers/StoreProvider';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -29,16 +31,27 @@ const NavbarPageList = [
 const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const { isOpen, handleModalOpen, handleModalClose } = useModal();
+  const dispatch = useAppDispatch();
 
-  const [userName, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleConfirm = () => {
-    console.log('handleConfirm', { userName, password });
-    handleModalClose();
+    setIsLoading(true);
+
+    dispatch(userLogin({ username, password })).unwrap().then(
+      handleModalClose,
+    ).catch((error) => {
+      console.log('user logged in', error);
+    })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
-  const isDisabled = userName.length === 0 || password.length === 0;
+  const isDisabled = username.length === 0 || password.length === 0;
 
   return (
     <div data-testid="navbar" className={classNames(cls.navbar, {}, [className])}>
@@ -68,7 +81,7 @@ const Navbar = ({ className }: NavbarProps) => {
           onConfirm={handleConfirm}
         >
           <LoginForm
-            userName={userName}
+            userName={username}
             password={password}
             onUserNameChange={setUsername}
             onPasswordChange={setPassword}
