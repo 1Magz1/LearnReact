@@ -1,0 +1,23 @@
+#!/bin/sh
+
+echo "🔍 Running linters before commit..."
+
+if ! npm run lint:ts; then
+    echo "❌ ESLint found TypeScript errors. Commit aborted."
+    exit 1
+fi
+
+if ! npm run lint:scss; then
+    echo "❌ Stylelint found SCSS errors. Commit aborted."
+    exit 1
+fi
+
+echo "🛠️  Auto-fixing lint issues..."
+npm run lint:ts:fix
+npm run lint:scss:fix
+
+# Добавляем исправленные файлы в коммит
+git add .
+
+echo "✅ Linters passed! Proceeding with commit..."
+exit 0
