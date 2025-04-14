@@ -2,6 +2,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import { AppLink, AppLinkThemes } from 'shared/ui/AppLink';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'shared/ui/Button';
+import { Portal } from 'widgets/Portal';
+import { Modal } from 'widgets/Modal';
+import { LoginForm } from 'features/LoginForm';
+import useModal from 'shared/hooks/useModal';
+import { useState } from 'react';
+import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -19,22 +26,57 @@ const NavbarPageList = [
   },
 ];
 
-export function Navbar({ className }: NavbarProps) {
+const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
+  const { isOpen, handleModalOpen, handleModalClose } = useModal();
+
+  const [userName, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleConfirm = () => {
+    console.log('handleConfirm', { userName, password });
+    handleModalClose();
+  };
+
+  const isDisabled = userName.length === 0 || password.length === 0;
+
   return (
-    <div data-testid="navbar" className={classNames(cls.Navbar, {}, [className])}>
-      <div>
-        {NavbarPageList.map((page) => (
-          <AppLink
-            key={page.name}
-            to={page.to}
-            theme={AppLinkThemes.SECONDARY}
-            className={cls.link}
-          >
-            {t(page.name)}
-          </AppLink>
-        ))}
-      </div>
+    <div data-testid="navbar" className={classNames(cls.navbar, {}, [className])}>
+      <nav>
+        <ul className={cls['link-list']}>
+          {NavbarPageList.map((page) => (
+            <li className={cls.link} key={page.name}>
+              <AppLink
+                to={page.to}
+                theme={AppLinkThemes.SECONDARY}
+              >
+                {t(page.name)}
+              </AppLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <Button onClick={handleModalOpen} theme={THEME_BUTTON.CLEAR}>
+        {t('login')}
+      </Button>
+      <Portal target={document.body}>
+        <Modal
+          isOpen={isOpen}
+          title={t('modals.auth')}
+          isConfirmDisabled={isDisabled}
+          onClose={handleModalClose}
+          onConfirm={handleConfirm}
+        >
+          <LoginForm
+            userName={userName}
+            password={password}
+            onUserNameChange={setUsername}
+            onPasswordChange={setPassword}
+          />
+        </Modal>
+      </Portal>
     </div>
   );
-}
+};
+
+export default Navbar;

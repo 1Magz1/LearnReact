@@ -8,6 +8,7 @@
   "open": "Open",
   "close": "Close",
   "confirm": "Confirm",
+  "login": "Login",
   "labels": {
     "login": "Login",
     "password": "Password"
