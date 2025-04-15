@@ -9,11 +9,15 @@
   "close": "Закрыть",
   "confirm": "Подтвердить",
   "login": "Войти",
+  "exit": "Выйти",
   "labels": {
     "login": "Логин",
     "password": "Пароль"
   },
   "modals": {
     "auth": "Авторизация"
+  },
+  "errorMessage": {
+    "authError": "Ошибка авторизации"
   }
 }

@@ -31,17 +31,26 @@ server.post('/login', (req, res) => {
       return res.json(userFromBd);
     }
 
-    return res.status(403).json({ message: 'User not found' });
+    return res.status(403).json({
+      code: 403,
+      message: 'User not found',
+    });
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ message: e.message });
+    return res.status(500).json({
+      code: 500,
+      message: e.message,
+    });
   }
 });
 
 // eslint-disable-next-line consistent-return
 server.use((req, res, next) => {
   if (!req.headers.authorization) {
-    return res.status(403).json({ message: 'AUTH ERROR' });
+    return res.status(403).json({
+      code: 403,
+      message: 'AUTH ERROR',
+    });
   }
 
   next();

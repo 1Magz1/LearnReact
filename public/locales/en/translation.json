@@ -9,11 +9,15 @@
   "close": "Close",
   "confirm": "Confirm",
   "login": "Login",
+  "exit": "Exit",
   "labels": {
     "login": "Login",
     "password": "Password"
   },
   "modals": {
     "auth": "Authorization"
+  },
+  "errorMessage": {
+    "authError": "Authorization error"
   }
 }

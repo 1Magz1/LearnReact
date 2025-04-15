@@ -1,11 +1,11 @@
-import { LoginInfoSchema, UserLoginInfo, AuthSchema } from './model/types/loginInfoSchema';
-import { LoginForm } from './ui/LoginForm';
-import { loginInfoReducer } from './model/slice/authSlice';
+import { AuthSchema, AuthInfoSchema } from './model/types/authInfoSchema';
+import { AuthModal } from './ui/AuthModal';
+import { authSliceReducer, authSliceActions } from './model/slice/authSlice';
 
 export {
-  LoginForm,
-  loginInfoReducer,
+  AuthModal,
+  authSliceReducer,
+  authSliceActions,
   AuthSchema,
-  UserLoginInfo,
-  LoginInfoSchema,
+  AuthInfoSchema,
 };
