@@ -1,11 +1,11 @@
 import { AuthSchema, AuthInfoSchema } from './model/types/authInfoSchema';
 import { AuthModal } from './ui/AuthModal';
-import { authSliceReducer, authSliceActions } from './model/slice/authSlice';
+import { authActions, authReducer } from './model/slice/authSlice';
 
 export {
   AuthModal,
-  authSliceReducer,
-  authSliceActions,
+  authReducer,
+  authActions,
   AuthSchema,
   AuthInfoSchema,
 };

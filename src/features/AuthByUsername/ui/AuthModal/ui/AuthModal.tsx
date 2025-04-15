@@ -11,7 +11,7 @@ import useModal from 'shared/hooks/useModal';
 import { useSelector } from 'react-redux';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import { getLoginInfo } from '../../../model/selectors/getLoginInfo/getLoginInfo';
-import { authSliceActions } from '../../../model/slice/authSlice';
+import { authActions } from '../../../model/slice/authSlice';
 import cls from './AuthModal.module.scss';
 
 const LoginModal = () => {
@@ -42,12 +42,14 @@ const LoginModal = () => {
       setIsLoading(false);
       if (!statusCode) {
         handleModalClose();
+        setPassword('');
+        setUsername('');
       }
     }
   };
 
   const handleLogout = () => {
-    dispatch(authSliceActions.setLoginInfoInfo({
+    dispatch(authActions.setLoginInfoInfo({
       username: '',
       id: -1,
     }));
