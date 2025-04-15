@@ -16,8 +16,5 @@ echo "🛠️  Auto-fixing lint issues..."
 npm run lint:ts:fix
 npm run lint:scss:fix
 
-# Добавляем исправленные файлы в коммит
-git add .
-
 echo "✅ Linters passed! Proceeding with commit..."
 exit 0
