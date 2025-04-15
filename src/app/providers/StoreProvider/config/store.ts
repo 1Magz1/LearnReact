@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { counterReducer } from 'entities/Counter';
-import { authSliceReducer } from 'features/AuthByUsername';
+import { authReducer } from 'features/AuthByUsername';
 import { StateSchema } from '../config/stateSchema';
 
 export function createReduxStore(initialState?: StateSchema) {
   const store = configureStore({
     reducer: {
       counter: counterReducer,
-      authInfo: authSliceReducer,
+      authInfo: authReducer,
     },
     devTools: __IS_DEV__,
     preloadedState: initialState,
