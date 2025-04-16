@@ -1,10 +1,12 @@
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { Portal } from 'widgets/Portal';
+import { useEffect, useState } from 'react';
 import { Modal } from 'widgets/Modal';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { getStatusCodeFromError } from 'shared/lib/getStatusCodeFromError/getStatusCodeFromError';
+import { useStore } from 'react-redux';
+import { authReducer } from 'features/AuthByUsername';
+import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import cls from './AuthModal.module.scss';
 
@@ -17,6 +19,7 @@ function LoginModal(props: AuthModalProps) {
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const store = useStore() as ReduxStoreWithManager;
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +28,10 @@ function LoginModal(props: AuthModalProps) {
 
   const isDisabled = username.length === 0 || password.length === 0 || isLoading;
   let statusCode = 0;
+
+  useEffect(() => {
+    store.reducerManager.add('authInfo', authReducer);
+  }, []);
 
   const handleConfirm = async () => {
     try {

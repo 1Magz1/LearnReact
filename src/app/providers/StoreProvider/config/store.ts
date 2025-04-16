@@ -1,22 +1,34 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {
+  Action,
+  configureStore,
+  ReducersMapObject, ThunkDispatch,
+} from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { counterReducer } from 'entities/Counter';
-import { authReducer } from 'features/AuthByUsername';
-import { StateSchema } from '../config/stateSchema';
+import { createReducerManager } from 'app/providers/StoreProvider/config/reduceManager';
+import { ReduxStoreWithManager, StateSchema } from '../config/stateSchema';
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>,
+): ReduxStoreWithManager {
+  const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
+    counter: counterReducer,
+  };
+
+  const reducerManager = createReducerManager(rootReducers);
+
   const store = configureStore({
-    reducer: {
-      counter: counterReducer,
-      authInfo: authReducer,
-    },
+    reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-  });
+  }) as ReduxStoreWithManager;
+
+  store.reducerManager = reducerManager;
 
   return store;
 }
 
-export type AppStore = ReturnType<typeof createReduxStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = ThunkDispatch<StateSchema, any, Action>;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
