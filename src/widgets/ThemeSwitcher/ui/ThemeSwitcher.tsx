@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, memo } from 'react';
 
 import MoonIcon from 'shared/assets/icons/full-moon.svg';
 import SunIcon from 'shared/assets/icons/sun.svg';
@@ -13,7 +13,7 @@ interface ThemeSwitcherProps extends HTMLAttributes<HTMLButtonElement>{
   className?: string;
 }
 
-export function ThemeSwitcher(props: ThemeSwitcherProps) {
+const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
   const { className } = props;
   const { theme, toggleTheme } = useTheme();
 
@@ -27,4 +27,6 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
       {theme === Theme.DARK ? <MoonIcon /> : <SunIcon />}
     </Button>
   );
-}
+});
+
+export default ThemeSwitcher;
