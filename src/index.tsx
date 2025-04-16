@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
+import { StoreProvider } from 'app/providers/StoreProvider';
 import App from './app/App';
 import { ThemeProvider } from './app/providers/ThemeProvider';
 
@@ -10,7 +11,9 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <ThemeProvider>
-        <App />
+        <StoreProvider>
+          <App />
+        </StoreProvider>
       </ThemeProvider>
     </ErrorBoundary>
   </React.StrictMode>,

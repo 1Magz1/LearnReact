@@ -1,9 +1,14 @@
-.Button {
+.button {
   cursor: pointer;
   color: var(--text-color-primary);
   padding: 10px 15px;
   background-color: var(--background-color-secondary);
   border-radius: 10px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
 }
 
 .clear {

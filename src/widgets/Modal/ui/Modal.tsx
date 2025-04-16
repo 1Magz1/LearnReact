@@ -12,6 +12,7 @@ import cls from './Modal.module.scss';
 interface ModalProps {
   children: ReactNode;
   isOpen: boolean;
+  isConfirmDisabled?: boolean;
   title?: string;
   confirmText?: string;
   onClose: () => void;
@@ -22,7 +23,7 @@ export const Modal = (props: ModalProps) => {
   const { t } = useTranslation();
 
   const {
-    children, title, isOpen, onClose, onConfirm, confirmText = t('confirm'),
+    children, title, isOpen, onClose, onConfirm, confirmText = t('confirm'), isConfirmDisabled,
   } = props;
 
   const handleContentClick = (e: SyntheticEvent) => {
@@ -60,7 +61,12 @@ export const Modal = (props: ModalProps) => {
         </div>
         <div className={classNames(cls.footer)}>
           {onConfirm ? (
-            <Button theme={THEME_BUTTON.CONFIRM} onClick={onConfirm} className={cls['confirm-btn']}>
+            <Button
+              theme={THEME_BUTTON.CONFIRM}
+              className={cls['confirm-btn']}
+              disabled={isConfirmDisabled}
+              onClick={onConfirm}
+            >
               {confirmText}
             </Button>
           ) : null}
