@@ -9,7 +9,7 @@ export const userLogin = createAsyncThunk<AuthInfoSchema, AuthSchema, { rejectVa
   'login/userLogin',
   async (authData, thunkAPI) => {
     const response = await ky.post<AuthInfoSchema>(URL, { json: authData }).json();
-    thunkAPI.dispatch(authActions.setLoginInfoInfo(response));
+    thunkAPI.dispatch(authActions.setAuthInfo(response));
     return response as AuthInfoSchema;
   },
 );

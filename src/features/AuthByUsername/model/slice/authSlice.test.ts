@@ -7,7 +7,7 @@ describe('authReducer', () => {
       id: 10,
     };
 
-    expect(authReducer(undefined, authActions.setLoginInfoInfo(state))).toEqual(state);
+    expect(authReducer(undefined, authActions.setAuthInfo(state))).toEqual(state);
   });
 
   it('should return correct info', () => {
@@ -21,6 +21,6 @@ describe('authReducer', () => {
       id: 10,
     };
 
-    expect(authReducer(state, authActions.setLoginInfoInfo(data))).toEqual(data);
+    expect(authReducer(state, authActions.setAuthInfo(data))).toEqual(data);
   });
 });

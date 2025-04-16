@@ -11,7 +11,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLoginInfoInfo: (state, action: PayloadAction<AuthInfoSchema>) => {
+    setAuthInfo: (state, action: PayloadAction<AuthInfoSchema>) => {
       state.username = action.payload.username;
       state.id = action.payload.id;
       localStorage.setItem('USER_NAME', JSON.stringify(action.payload.username));

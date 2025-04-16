@@ -1,7 +1,7 @@
 import { StateSchema } from 'app/providers/StoreProvider';
-import { getLoginInfo } from './getLoginInfo';
+import { getAuthInfo } from './getAuthInfo';
 
-describe('getLoginInfo selector', () => {
+describe('getAuthInfo selector', () => {
   test('should return the correct state', () => {
     const state: Partial<StateSchema> = {
       authInfo: {
@@ -10,7 +10,7 @@ describe('getLoginInfo selector', () => {
       },
     };
 
-    expect(getLoginInfo(state as StateSchema)).toEqual({
+    expect(getAuthInfo(state as StateSchema)).toEqual({
       username: 'test',
       id: 100,
     });

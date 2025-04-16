@@ -25,7 +25,7 @@ describe('userLogin', () => {
     jest.clearAllMocks();
   });
 
-  it('should dispatch setLoginInfoInfo and return auth info on successful login', async () => {
+  it('should dispatch setAuthInfo and return auth info on successful login', async () => {
     mockedKy.post.mockReturnValue({
       json: jest.fn().mockResolvedValue(mockAuthInfo),
     } as any);
@@ -41,7 +41,7 @@ describe('userLogin', () => {
     });
 
     expect(dispatch).toHaveBeenCalledWith(
-      mockedAuthActions.setLoginInfoInfo(mockAuthInfo),
+      mockedAuthActions.setAuthInfo(mockAuthInfo),
     );
 
     expect(result).toEqual({
