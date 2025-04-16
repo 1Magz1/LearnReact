@@ -1,8 +1,11 @@
 .app {
+  min-height: 100vh;
+}
+
+body {
   font: var(--font-m);
   background: var(--background-color-primary);
   color: var(--text-color-primary);
-  min-height: 100vh;
 }
 
 .page-content {

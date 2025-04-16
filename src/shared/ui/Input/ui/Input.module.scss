@@ -1,0 +1,14 @@
+.Input {
+  border-radius: 10px;
+  border: 2px solid var(--border-color-primary);
+  width: 100%;
+  padding: 8px 15px;
+
+  &:focus {
+    border-color: var(--border-color-secondary);
+  }
+}
+
+.Label {
+  font-size: 0.875rem;
+}
