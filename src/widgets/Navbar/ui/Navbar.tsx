@@ -10,6 +10,8 @@ import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { getAuthInfo } from 'features/AuthByUsername/model/selectors/getAuthInfo/getAuthInfo';
 import useModal from 'shared/hooks/useModal';
+import { Suspense } from 'react';
+import { Portal } from 'widgets/Portal';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -68,7 +70,13 @@ const Navbar = ({ className }: NavbarProps) => {
       <Button onClick={handleClick} theme={THEME_BUTTON.CLEAR}>
         {authInfo.username ? t('exit') : t('login')}
       </Button>
-      <AuthModal isOpen={isOpen} onClose={handleModalClose} />
+      <Suspense fallback="">
+        {isOpen && (
+          <Portal target={document.body}>
+            <AuthModal isOpen={isOpen} onClose={handleModalClose} />
+          </Portal>
+        )}
+      </Suspense>
     </div>
   );
 };

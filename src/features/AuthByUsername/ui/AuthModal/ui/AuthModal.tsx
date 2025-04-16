@@ -13,7 +13,7 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-const LoginModal = (props: AuthModalProps) => {
+function LoginModal(props: AuthModalProps) {
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -47,22 +47,20 @@ const LoginModal = (props: AuthModalProps) => {
   };
 
   return (
-    <Portal target={document.body}>
-      <Modal
-        isOpen={isOpen}
-        title={t('modals.auth')}
-        isConfirmDisabled={isDisabled}
-        onClose={onClose}
-        onConfirm={handleConfirm}
-      >
-        <form className={cls.form}>
-          <Input label={t('labels.login')} value={username} onChange={setUsername} />
-          <Input label={t('labels.password')} value={password} onChange={setPassword} />
-        </form>
-        {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
-      </Modal>
-    </Portal>
+    <Modal
+      isOpen={isOpen}
+      title={t('modals.auth')}
+      isConfirmDisabled={isDisabled}
+      onClose={onClose}
+      onConfirm={handleConfirm}
+    >
+      <form className={cls.form}>
+        <Input label={t('labels.login')} value={username} onChange={setUsername} />
+        <Input label={t('labels.password')} value={password} onChange={setPassword} />
+      </form>
+      {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
+    </Modal>
   );
-};
+}
 
 export default LoginModal;

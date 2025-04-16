@@ -1,5 +1,5 @@
-import AuthModal from './ui/AuthModal';
+import { AuthModalAsync } from './ui/AuthModal.async';
 
 export {
-  AuthModal,
+  AuthModalAsync as AuthModal,
 };
