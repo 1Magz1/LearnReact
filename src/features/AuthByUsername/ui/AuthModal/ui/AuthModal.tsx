@@ -7,6 +7,7 @@ import { getStatusCodeFromError } from 'shared/lib/getStatusCodeFromError/getSta
 import { useStore } from 'react-redux';
 import { authReducer } from 'features/AuthByUsername';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
+import DynamicReducerLoader, { ReducerObject } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import cls from './AuthModal.module.scss';
 
@@ -14,6 +15,13 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+const reducerList: ReducerObject[] = [
+  {
+    name: 'authInfo',
+    reducer: authReducer,
+  },
+];
 
 function LoginModal(props: AuthModalProps) {
   const { isOpen, onClose } = props;
@@ -54,19 +62,21 @@ function LoginModal(props: AuthModalProps) {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      title={t('modals.auth')}
-      isConfirmDisabled={isDisabled}
-      onClose={onClose}
-      onConfirm={handleConfirm}
-    >
-      <form className={cls.form}>
-        <Input label={t('labels.login')} value={username} onChange={setUsername} />
-        <Input label={t('labels.password')} value={password} onChange={setPassword} />
-      </form>
-      {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
-    </Modal>
+    <DynamicReducerLoader reducerList={reducerList}>
+      <Modal
+        isOpen={isOpen}
+        title={t('modals.auth')}
+        isConfirmDisabled={isDisabled}
+        onClose={onClose}
+        onConfirm={handleConfirm}
+      >
+        <form className={cls.form}>
+          <Input label={t('labels.login')} value={username} onChange={setUsername} />
+          <Input label={t('labels.password')} value={password} onChange={setPassword} />
+        </form>
+        {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
+      </Modal>
+    </DynamicReducerLoader>
   );
 }
 
