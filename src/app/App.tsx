@@ -8,11 +8,17 @@ import { AppRouter } from 'app/providers/Router';
 import { Navbar } from 'widgets/Navbar';
 
 import 'shared/config/i18n/i18n';
+import { Loader } from 'widgets/Loader';
 
 function App() {
   return (
     <div className={classNames('app')} id="app">
-      <Suspense fallback={<div>Loading ...</div>}>
+      <Suspense fallback={(
+        <div style={{ height: '100vw' }}>
+          <Loader size={40} />
+        </div>
+      )}
+      >
         <BrowserRouter>
           <Navbar />
           <AppRouter />
