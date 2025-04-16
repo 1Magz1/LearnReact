@@ -67,6 +67,7 @@ function LoginModal(props: AuthModalProps) {
         isOpen={isOpen}
         title={t('modals.auth')}
         isConfirmDisabled={isDisabled}
+        isLoading={isLoading}
         onClose={onClose}
         onConfirm={handleConfirm}
       >
