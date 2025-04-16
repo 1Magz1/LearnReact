@@ -44,7 +44,7 @@ const Navbar = ({ className }: NavbarProps) => {
   };
 
   const handleClick = () => {
-    if (authInfo.username) {
+    if (authInfo?.username) {
       handleLogout();
     } else {
       handleModalOpen();
@@ -68,7 +68,7 @@ const Navbar = ({ className }: NavbarProps) => {
         </ul>
       </nav>
       <Button onClick={handleClick} theme={THEME_BUTTON.CLEAR}>
-        {authInfo.username ? t('exit') : t('login')}
+        {authInfo?.username ? t('exit') : t('login')}
       </Button>
       <Suspense fallback="">
         {isOpen && (
