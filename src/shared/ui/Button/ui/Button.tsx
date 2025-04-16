@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import LoadingIcon from 'shared/assets/icons/loading.svg';
 
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, memo } from 'react';
 import cls from './Button.module.scss';
 
 export enum THEME_BUTTON {
@@ -17,7 +17,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
   isLoading?: boolean,
 }
 
-export const Button = (props: ButtonProps) => {
+export const Button = memo((props: ButtonProps) => {
   const {
     className,
     children,
@@ -41,4 +41,4 @@ export const Button = (props: ButtonProps) => {
       {children}
     </button>
   );
-};
+});
