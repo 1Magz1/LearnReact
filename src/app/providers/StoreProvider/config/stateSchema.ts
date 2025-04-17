@@ -3,6 +3,7 @@ import { AuthInfoSchema } from 'features/AuthByUsername';
 import {
   Action, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { KyInstance } from 'ky';
 
 export interface StateSchema {
   counter: CounterSchema,
@@ -20,4 +21,8 @@ export interface ReducerManager {
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
   reducerManager: ReducerManager;
+}
+
+export interface ThunkExtraArg {
+  api: KyInstance
 }
