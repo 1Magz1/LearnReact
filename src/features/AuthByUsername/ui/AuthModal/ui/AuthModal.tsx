@@ -23,7 +23,7 @@ const reducerList: ReducerObject[] = [
   },
 ];
 
-function LoginModal(props: AuthModalProps) {
+function AuthModal(props: AuthModalProps) {
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -81,4 +81,4 @@ function LoginModal(props: AuthModalProps) {
   );
 }
 
-export default LoginModal;
+export default AuthModal;
