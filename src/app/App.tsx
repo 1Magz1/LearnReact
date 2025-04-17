@@ -19,10 +19,8 @@ function App() {
         </div>
       )}
       >
-        <BrowserRouter>
-          <Navbar />
-          <AppRouter />
-        </BrowserRouter>
+        <Navbar />
+        <AppRouter />
       </Suspense>
     </div>
   );

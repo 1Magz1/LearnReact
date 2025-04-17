@@ -25,9 +25,9 @@ describe('userLogin (with extra.api)', () => {
     }),
   };
 
-  const extra: ThunkExtraArg = {
+  const extra = {
     api: mockApi as any,
-  };
+  } as ThunkExtraArg;
 
   const dispatch = jest.fn() as Dispatch;
   const getState = jest.fn();

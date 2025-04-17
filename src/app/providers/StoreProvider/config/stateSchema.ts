@@ -4,6 +4,8 @@ import {
   Action, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { KyInstance } from 'ky';
+import type { To } from '@remix-run/router';
+import type { NavigateOptions } from 'react-router/dist/lib/context';
 
 export interface StateSchema {
   counter: CounterSchema,
@@ -24,5 +26,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 }
 
 export interface ThunkExtraArg {
-  api: KyInstance
+  api: KyInstance,
+  navigate: (to: To, options?: NavigateOptions) => void;
 }
