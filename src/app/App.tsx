@@ -1,9 +1,6 @@
 import './styles/index.scss';
 import { Suspense } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-
 import { classNames } from 'shared/lib/classNames/classNames';
-
 import { AppRouter } from 'app/providers/Router';
 import { Navbar } from 'widgets/Navbar';
 
