@@ -2,9 +2,10 @@ import { ChangeEvent, HTMLAttributes, memo } from 'react';
 import cls from './Input.module.scss';
 
 interface InputProps extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
-  value: string;
-  onChange?: (value: string) => void;
-  label?: string;
+  value: string,
+  onChange?: (value: string) => void,
+  label?: string,
+  placeholder?: string
 }
 
 const Input = memo((props: InputProps) => {
