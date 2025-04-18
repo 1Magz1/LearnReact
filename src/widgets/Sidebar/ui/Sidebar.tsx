@@ -43,7 +43,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navItems = useMemo(() => {
     const items = [...BASE_PAGES];
 
-    if (authInfo?.username) {
+    if (authInfo) {
       items.push({
         icon: ProfileIcon,
         name: 'profile',
@@ -52,7 +52,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     }
 
     return items;
-  }, [authInfo?.username]);
+  }, [authInfo]);
 
   return (
     <div
