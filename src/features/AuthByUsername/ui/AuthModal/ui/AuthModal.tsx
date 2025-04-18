@@ -1,13 +1,11 @@
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Modal } from 'widgets/Modal';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { getStatusCodeFromError } from 'shared/lib/getStatusCodeFromError/getStatusCodeFromError';
-import { useStore } from 'react-redux';
 import { authReducer } from 'features/AuthByUsername';
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
-import DynamicReducerLoader, { ReducerObject } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
+import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import cls from './AuthModal.module.scss';
 
@@ -24,6 +22,7 @@ const reducerList: ReducerObject[] = [
 ];
 
 function AuthModal(props: AuthModalProps) {
+  useReducerLoader(reducerList);
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -57,22 +56,20 @@ function AuthModal(props: AuthModalProps) {
   };
 
   return (
-    <DynamicReducerLoader reducerList={reducerList}>
-      <Modal
-        isOpen={isOpen}
-        title={t('modals.auth')}
-        isConfirmDisabled={isDisabled}
-        isLoading={isLoading}
-        onClose={onClose}
-        onConfirm={handleConfirm}
-      >
-        <form className={cls.form}>
-          <Input label={t('labels.login')} value={username} onChange={setUsername} />
-          <Input label={t('labels.password')} value={password} onChange={setPassword} />
-        </form>
-        {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
-      </Modal>
-    </DynamicReducerLoader>
+    <Modal
+      isOpen={isOpen}
+      title={t('modals.auth')}
+      isConfirmDisabled={isDisabled}
+      isLoading={isLoading}
+      onClose={onClose}
+      onConfirm={handleConfirm}
+    >
+      <form className={cls.form}>
+        <Input label={t('labels.login')} value={username} onChange={setUsername} />
+        <Input label={t('labels.password')} value={password} onChange={setPassword} />
+      </form>
+      {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
+    </Modal>
   );
 }
 

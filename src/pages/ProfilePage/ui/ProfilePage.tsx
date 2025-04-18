@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import DynamicReducerLoader, { ReducerObject } from 'shared/lib/components/DynamicReducerLoader/DynamicReducerLoader';
 import {
   profileReducer, getProfileData, ProfileCard, fetchProfileData,
 } from 'features/UserProfile';
@@ -8,6 +7,7 @@ import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
 import Text from 'widgets/Text/Text';
+import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -18,6 +18,7 @@ const reducerList: ReducerObject[] = [
 ];
 
 function ProfilePage() {
+  useReducerLoader(reducerList);
   const { t } = useTranslation('profile');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ function ProfilePage() {
   }, []);
 
   return (
-    <DynamicReducerLoader reducerList={reducerList}>
+    <>
       <Text variant="h1">
         {t('title')}
       </Text>
@@ -46,7 +47,7 @@ function ProfilePage() {
       ) : (
         <Loader />
       )}
-    </DynamicReducerLoader>
+    </>
   );
 }
 

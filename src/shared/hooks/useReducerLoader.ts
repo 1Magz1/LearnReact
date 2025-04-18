@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider/config/stateSchema';
 import { Reducer } from '@reduxjs/toolkit';
@@ -9,17 +9,7 @@ export interface ReducerObject {
   reducer: Reducer;
 }
 
-interface DynamicReduceLoaderProps {
-  reducerList: ReducerObject[]
-  children: ReactNode;
-  isReducerDestroy?: boolean;
-}
-
-const DynamicReducerLoader = (props: DynamicReduceLoaderProps) => {
-  const {
-    reducerList, children, isReducerDestroy = false,
-  } = props;
-
+export default function useReducerLoader(reducerList: ReducerObject[], isReducerDestroy = false) {
   const store = useStore() as ReduxStoreWithManager;
   const dispatch = useAppDispatch();
 
@@ -40,10 +30,4 @@ const DynamicReducerLoader = (props: DynamicReduceLoaderProps) => {
       }
     };
   }, []);
-
-  return (
-    children
-  );
-};
-
-export default DynamicReducerLoader;
+}
