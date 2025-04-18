@@ -1,5 +1,5 @@
 :root {
-  --font-family-main: consolas, "Time New Roman", sans-serif;
+  --font-family-main: 'Segoe UI', tahoma, geneva, verdana, sans-serif;
   --font-size-m: 16px;
   --font-line-m: 24px;
   --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
@@ -14,4 +14,8 @@
 
   // Цвета
   --primary-white-color: #f6f6f6;
+
+  // Другое
+  --border-radius: 10px;
+  --shadow: 0 4px 12px rgb(0 0 0 / 10%)
 }
