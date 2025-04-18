@@ -27,7 +27,6 @@ function AuthModal(props: AuthModalProps) {
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const store = useStore() as ReduxStoreWithManager;
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,10 +35,6 @@ function AuthModal(props: AuthModalProps) {
 
   const isDisabled = username.length === 0 || password.length === 0 || isLoading;
   let statusCode = 0;
-
-  useEffect(() => {
-    store.reducerManager.add('authInfo', authReducer);
-  }, []);
 
   const handleConfirm = async () => {
     try {
