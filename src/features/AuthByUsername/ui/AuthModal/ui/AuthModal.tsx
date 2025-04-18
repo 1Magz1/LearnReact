@@ -1,10 +1,11 @@
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Portal } from 'widgets/Portal';
 import { Modal } from 'widgets/Modal';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { getStatusCodeFromError } from 'shared/lib/getStatusCodeFromError/getStatusCodeFromError';
+import { authReducer } from 'features/AuthByUsername';
+import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import cls from './AuthModal.module.scss';
 
@@ -13,7 +14,15 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-function LoginModal(props: AuthModalProps) {
+const reducerList: ReducerObject[] = [
+  {
+    name: 'authInfo',
+    reducer: authReducer,
+  },
+];
+
+function AuthModal(props: AuthModalProps) {
+  useReducerLoader(reducerList);
   const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -51,6 +60,7 @@ function LoginModal(props: AuthModalProps) {
       isOpen={isOpen}
       title={t('modals.auth')}
       isConfirmDisabled={isDisabled}
+      isLoading={isLoading}
       onClose={onClose}
       onConfirm={handleConfirm}
     >
@@ -63,4 +73,4 @@ function LoginModal(props: AuthModalProps) {
   );
 }
 
-export default LoginModal;
+export default AuthModal;

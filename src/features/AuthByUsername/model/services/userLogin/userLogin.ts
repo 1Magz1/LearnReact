@@ -1,15 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthSchema, AuthInfoSchema } from 'features/AuthByUsername';
-import ky from 'ky';
 import { authActions } from 'features/AuthByUsername/model/slice/authSlice';
+import { ThunkExtraArg } from 'app/providers/StoreProvider/config/stateSchema';
 
-export const URL = 'http://localhost:8000/login';
-
-export const userLogin = createAsyncThunk<AuthInfoSchema, AuthSchema, { rejectValue: string }>(
+export const userLogin = createAsyncThunk<AuthInfoSchema, AuthSchema, { rejectValue: string, extra: ThunkExtraArg }>(
   'login/userLogin',
   async (authData, thunkAPI) => {
-    const response = await ky.post<AuthInfoSchema>(URL, { json: authData }).json();
+    const response = await thunkAPI.extra.api.post('login', { json: authData }).json<AuthInfoSchema>();
     thunkAPI.dispatch(authActions.setAuthInfo(response));
-    return response as AuthInfoSchema;
+
+    return response;
   },
 );

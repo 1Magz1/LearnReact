@@ -4,12 +4,12 @@ import { Sidebar } from './Sidebar';
 
 describe('Sidebar unit test', () => {
   test('Render test', () => {
-    renderWithTranslation(<Sidebar />);
+    renderWithTranslation(<Sidebar />, true);
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
   });
 
   test('Toggle test', () => {
-    renderWithTranslation(<Sidebar />);
+    renderWithTranslation(<Sidebar />, true);
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
 
     const toggleButton = screen.getByTestId('sidebar-toggle');

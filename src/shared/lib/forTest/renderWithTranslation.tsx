@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import i18nForTest from '../../config/i18n/i18nForTest';
 
-function RenderWithTranslation(component: ReactNode, isRouterNeed = false, initialState = {} as StateSchema) {
+function RenderWithTranslation(component: ReactNode, isRouterNeed = true, initialState = {} as StateSchema) {
   return (
     render(
       isRouterNeed ? (

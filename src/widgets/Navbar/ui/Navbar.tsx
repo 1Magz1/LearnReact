@@ -1,6 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-
-import { AppLink, AppLinkThemes } from 'shared/ui/AppLink';
 import { useTranslation } from 'react-i18next';
 import { AuthModal } from 'features/AuthByUsername/ui/AuthModal';
 import { Button } from 'shared/ui/Button';
@@ -18,17 +16,6 @@ interface NavbarProps {
   className?: string;
 }
 
-const NavbarPageList = [
-  {
-    name: 'main',
-    to: '/',
-  },
-  {
-    name: 'about',
-    to: '/about',
-  },
-];
-
 const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const { isOpen, handleModalOpen, handleModalClose } = useModal();
@@ -44,7 +31,7 @@ const Navbar = ({ className }: NavbarProps) => {
   };
 
   const handleClick = () => {
-    if (authInfo.username) {
+    if (authInfo?.username) {
       handleLogout();
     } else {
       handleModalOpen();
@@ -53,22 +40,11 @@ const Navbar = ({ className }: NavbarProps) => {
 
   return (
     <div data-testid="navbar" className={classNames(cls.navbar, {}, [className])}>
-      <nav>
-        <ul className={cls['link-list']}>
-          {NavbarPageList.map((page) => (
-            <li className={cls.link} key={page.name}>
-              <AppLink
-                to={page.to}
-                theme={AppLinkThemes.SECONDARY}
-              >
-                {t(page.name)}
-              </AppLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div>
+        Learn React
+      </div>
       <Button onClick={handleClick} theme={THEME_BUTTON.CLEAR}>
-        {authInfo.username ? t('exit') : t('login')}
+        {authInfo?.username ? t('exit') : t('login')}
       </Button>
       <Suspense fallback="">
         {isOpen && (

@@ -1,5 +1,10 @@
 .AppLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
   color: var(--text-color-primary);
+  text-wrap: nowrap;
 }
 
 .primary {

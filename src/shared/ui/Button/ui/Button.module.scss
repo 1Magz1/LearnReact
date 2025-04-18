@@ -1,4 +1,7 @@
 .button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
   color: var(--text-color-primary);
   padding: 10px 15px;
@@ -26,4 +29,19 @@
 .confirm {
   color: var(--primary-white-color);
   background-color: var(--success-color);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-wrap {
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(-360deg);
+  }
 }

@@ -17,6 +17,7 @@
     "run:before:storybook": "npm run clean:storybook && npm run start:http-server",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "test-storybook": "test-storybook -c ./config/storybook",
+    "test-storybook:update": "test-storybook -c ./config/storybook -u",
     "clean:storybook": "rm -rf node_modules/.cache/storybook",
     "start:http-server": "npx http-server ./public -p 6007 --cors",
     "build:storybook": "storybook build -c ./config/storybook"

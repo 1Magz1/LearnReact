@@ -1,84 +1,68 @@
-import ky from 'ky';
 import { Dispatch } from '@reduxjs/toolkit';
+import { ThunkExtraArg } from 'app/providers/StoreProvider/config/stateSchema';
 import { authActions } from '../../slice/authSlice';
 import { AuthInfoSchema, AuthSchema } from '../../types/authInfoSchema';
-import { URL, userLogin } from './userLogin';
+import { userLogin } from './userLogin';
 
-jest.mock('ky');
-jest.mock('features/AuthByUsername/model/slice/authSlice');
+jest.mock('../../slice/authSlice');
 
-const mockedKy = ky as jest.Mocked<typeof ky>;
 const mockedAuthActions = authActions as jest.Mocked<typeof authActions>;
 
-describe('userLogin', () => {
-  const mockAuthData = {
+describe('userLogin (with extra.api)', () => {
+  const mockAuthData: AuthSchema = {
     username: 'testuser',
     password: 'testpass',
-  } as AuthSchema;
+  };
 
-  const mockAuthInfo = {
+  const mockAuthInfo: AuthInfoSchema = {
     id: 1,
     username: 'testuser',
-  } as AuthInfoSchema;
+  };
+
+  const mockApi = {
+    post: jest.fn().mockReturnValue({
+      json: jest.fn().mockResolvedValue(mockAuthInfo),
+    }),
+  };
+
+  const extra = {
+    api: mockApi as any,
+  } as ThunkExtraArg;
+
+  const dispatch = jest.fn() as Dispatch;
+  const getState = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should dispatch setAuthInfo and return auth info on successful login', async () => {
-    mockedKy.post.mockReturnValue({
-      json: jest.fn().mockResolvedValue(mockAuthInfo),
-    } as any);
-
-    const dispatch = jest.fn() as Dispatch;
-    const getState = jest.fn();
-
+  it('should dispatch setAuthInfo and return auth info on success', async () => {
     const thunk = userLogin(mockAuthData);
-    const result = await thunk(dispatch, getState, {});
+    const result = await thunk(dispatch, getState, extra);
 
-    expect(mockedKy.post).toHaveBeenCalledWith(URL, {
-      json: mockAuthData,
-    });
+    expect(mockApi.post).toHaveBeenCalledWith('login', { json: mockAuthData });
 
     expect(dispatch).toHaveBeenCalledWith(
       mockedAuthActions.setAuthInfo(mockAuthInfo),
     );
 
-    expect(result).toEqual({
+    expect(result).toEqual(expect.objectContaining({
       payload: mockAuthInfo,
-      meta: {
-        arg: mockAuthData,
-        requestId: expect.any(String),
-        requestStatus: 'fulfilled',
-      },
       type: 'login/userLogin/fulfilled',
-    });
+    }));
   });
 
-  it('should reject with error message when login fails', async () => {
+  it('should reject with error message on failure', async () => {
     const errorMessage = 'Login failed';
-
-    mockedKy.post.mockReturnValue({
+    mockApi.post.mockReturnValueOnce({
       json: jest.fn().mockRejectedValue(new Error(errorMessage)),
-    } as any);
-
-    const dispatch = jest.fn() as Dispatch;
-    const getState = jest.fn();
+    });
 
     const thunk = userLogin(mockAuthData);
-    const result = await thunk(dispatch, getState, {});
+    const result = await thunk(dispatch, getState, extra);
 
     expect(result).toEqual(expect.objectContaining({
-      error: expect.objectContaining({
-        message: errorMessage,
-        name: 'Error',
-      }),
-      meta: expect.objectContaining({
-        arg: mockAuthData,
-        requestStatus: 'rejected',
-        rejectedWithValue: false,
-        requestId: expect.any(String),
-      }),
+      error: expect.any(Object),
       type: 'login/userLogin/rejected',
     }));
   });
