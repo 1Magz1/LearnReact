@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import {
-  profileReducer, getProfileData, ProfileCard, fetchProfileData,
+  profileReducer, getProfileData, fetchProfileData,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -12,6 +12,7 @@ import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { useNavigate } from 'react-router';
 import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { PageError } from 'widgets/PageError';
+import { ProfileCard } from 'widgets/ProfileCard';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -27,7 +28,7 @@ function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const dispatch = useAppDispatch();
-  const profileData = useSelector(getProfileData);
+  const data = useSelector(getProfileData);
   const navigation = useNavigate();
   const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
@@ -63,7 +64,7 @@ function ProfilePage() {
         {t('title')}
       </Text>
       {!isLoading ? (
-        <ProfileCard profile={profileData} className={cls.card} />
+        <ProfileCard profile={data} className={cls.card} />
       ) : (
         <Loader />
       )}

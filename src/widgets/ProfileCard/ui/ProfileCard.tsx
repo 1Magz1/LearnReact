@@ -48,9 +48,7 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => (
         </div>
       </>
     ) : (
-      <div className={cls['profile-card__empty']}>
-        Profile data not available
-      </div>
+      null
     )}
   </div>
 ));
