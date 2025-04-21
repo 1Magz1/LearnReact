@@ -29,6 +29,10 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => (
             {' '}
             {profile.lastname}
           </h2>
+          <div className={cls['profile-card__username']}>
+            @
+            {profile.username}
+          </div>
 
           <div className={cls['profile-card__details']}>
             <div className={cls['profile-card__detail']}>
@@ -43,6 +47,10 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => (
                 {' '}
                 {profile.country}
               </span>
+            </div>
+            <div className={cls['profile-card__detail']}>
+              <span className={cls['profile-card__label']}>Currency:</span>
+              <span>{profile.currency}</span>
             </div>
           </div>
         </div>

@@ -8,15 +8,20 @@
   background-color: var(--background-card-color-primary);
   color: var(--text-color-primary);
 
-
   &__info {
     text-align: center;
   }
 
   &__name {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 24px;
     font-weight: 600;
+  }
+
+  &__username {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--text-color-secondary);
   }
 
   &__details {
