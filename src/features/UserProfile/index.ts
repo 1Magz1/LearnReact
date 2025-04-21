@@ -1,3 +1,4 @@
+import { ProfileEditForm } from 'features/UserProfile/ui/ProfileEditForm';
 import { UserProfileScheme } from './model/types/userProfileScheme';
 import { profileActions, profileReducer } from './model/slice/profileSlice';
 import { getProfileData } from './model/selectors/getProfileData/getProfileData';
@@ -9,4 +10,5 @@ export {
   UserProfileScheme,
   getProfileData,
   fetchProfileData,
+  ProfileEditForm,
 };
