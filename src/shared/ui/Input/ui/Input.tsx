@@ -2,15 +2,16 @@ import { ChangeEvent, HTMLAttributes, memo } from 'react';
 import cls from './Input.module.scss';
 
 interface InputProps extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
-  value: string,
+  value: string | number,
   onChange?: (value: string) => void,
   label?: string,
-  placeholder?: string
+  placeholder?: string,
+  type?: 'text' | 'number',
 }
 
 const Input = memo((props: InputProps) => {
   const {
-    value, onChange, label, ...otherProps
+    value, onChange, label, type, ...otherProps
   } = props;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +22,7 @@ const Input = memo((props: InputProps) => {
     <div>
       {label && <span className={cls.Label}>{label}</span>}
       <input
+        type={type}
         className={cls.Input}
         value={value}
         onChange={handleChange}
