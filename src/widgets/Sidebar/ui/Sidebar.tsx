@@ -12,6 +12,7 @@ import AboutIcon from 'shared/assets/icons/about.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
 import { useSelector } from 'react-redux';
 import { getAuthInfo } from 'features/AuthByUsername/model/selectors/getAuthInfo/getAuthInfo';
+import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -35,6 +36,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const { t } = useTranslation();
   const authInfo = useSelector(getAuthInfo);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const isAuth = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
@@ -43,7 +45,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navItems = useMemo(() => {
     const items = [...BASE_PAGES];
 
-    if (authInfo) {
+    if (authInfo?.username || isAuth) {
       items.push({
         icon: ProfileIcon,
         name: 'profile',
@@ -52,7 +54,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     }
 
     return items;
-  }, [authInfo]);
+  }, [authInfo?.username, isAuth]);
 
   return (
     <div

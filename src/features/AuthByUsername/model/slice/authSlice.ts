@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { AuthInfoSchema } from '../types/authInfoSchema';
 import { userLogin } from '../services/userLogin/userLogin';
 
@@ -14,7 +15,7 @@ export const authSlice = createSlice({
     setAuthInfo: (state, action: PayloadAction<AuthInfoSchema>) => {
       state.username = action.payload.username;
       state.id = action.payload.id;
-      localStorage.setItem('USER_NAME', JSON.stringify(action.payload.username));
+      localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, JSON.stringify(action.payload.username));
     },
   },
   extraReducers: (builder) => {
