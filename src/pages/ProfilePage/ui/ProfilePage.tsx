@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import {
-  profileReducer, getProfileData, fetchProfileData,
+  profileReducer, getProfileData, fetchProfileData, ProfileEditForm,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -14,6 +14,7 @@ import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import log from 'eslint-plugin-react/lib/util/log';
+import { Button } from 'shared/ui/Button';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -28,6 +29,7 @@ function ProfilePage() {
   const { t } = useTranslation('profile');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const dispatch = useAppDispatch();
   const data = useSelector(getProfileData);
   const navigation = useNavigate();
@@ -45,6 +47,14 @@ function ProfilePage() {
     }
   }, [dispatch]);
 
+  const handleOnSave = () => {
+    console.log('handleOnSave');
+  };
+
+  const handleOnCancel = () => {
+    console.log('handleOnCancel');
+  };
+
   useEffect(() => {
     if (userName.length > 0 && data === null) {
       fetchProfile().finally(() => setIsLoading(false));
@@ -61,11 +71,34 @@ function ProfilePage() {
 
   return (
     <>
-      <Text variant="h1">
-        {t('title')}
-      </Text>
+      <div className={cls.header}>
+        <Text variant="h1">
+          {t('title')}
+        </Text>
+        <div>
+          <Button onClick={() => setIsEditing(true)}>Edit</Button>
+        </div>
+      </div>
       {!isLoading ? (
-        <ProfileCard profile={data} className={cls.card} />
+        <div className={cls.wrapper}>
+          <div className={cls.wrap}>
+            <ProfileCard
+              profile={data}
+              className={cls.card}
+            />
+          </div>
+
+          {isEditing && (
+            <div className={cls.wrap}>
+              <ProfileEditForm
+                profile={data}
+                onSave={handleOnSave}
+                onCancel={() => setIsEditing(false)}
+                isLoading={isLoading}
+              />
+            </div>
+          )}
+        </div>
       ) : (
         <Loader />
       )}
