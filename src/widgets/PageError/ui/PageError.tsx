@@ -4,7 +4,12 @@ import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 import cls from './PageError.module.scss';
 
-export function PageError() {
+interface PageErrorProps {
+  message?: string;
+}
+
+export function PageError(props: PageErrorProps) {
+  const { message } = props;
   const { t } = useTranslation('translation');
 
   const clickHandler = () => {
@@ -13,7 +18,7 @@ export function PageError() {
 
   return (
     <div className={classNames(cls.PageError)}>
-      <h1 className={classNames(cls.title)}>{t('pageError')}</h1>
+      <h1 className={classNames(cls.title)}>{message || t('pageError')}</h1>
       <Button className={cls.btn} onClick={clickHandler}>{t('reload')}</Button>
     </div>
   );

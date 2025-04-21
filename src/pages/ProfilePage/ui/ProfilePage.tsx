@@ -11,6 +11,7 @@ import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { useNavigate } from 'react-router';
 import { useLocalStorage } from 'shared/hooks/useLocalStorage';
+import { PageError } from 'widgets/PageError';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -24,6 +25,7 @@ function ProfilePage() {
   useReducerLoader(reducerList);
   const { t } = useTranslation('profile');
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const dispatch = useAppDispatch();
   const profileData = useSelector(getProfileData);
   const navigation = useNavigate();
@@ -32,9 +34,12 @@ function ProfilePage() {
   const fetchProfile = useCallback(async () => {
     try {
       setIsLoading(true);
-      await dispatch(fetchProfileData());
+      setIsError(false);
+      await dispatch(fetchProfileData()).unwrap();
     } catch (error) {
-      console.error(error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
   }, [dispatch]);
 
@@ -45,6 +50,12 @@ function ProfilePage() {
       navigation('/');
     }
   }, [userName]);
+
+  if (isError) {
+    return (
+      <PageError message={t('error')} />
+    );
+  }
 
   return (
     <>
