@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router';
 import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
+import log from 'eslint-plugin-react/lib/util/log';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -45,9 +46,9 @@ function ProfilePage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (userName.length) {
+    if (userName.length > 0 && data === null) {
       fetchProfile().finally(() => setIsLoading(false));
-    } else {
+    } else if (userName.length === 0 && data === null) {
       navigation('/');
     }
   }, [userName]);
