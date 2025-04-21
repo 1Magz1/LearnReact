@@ -13,8 +13,8 @@ import { useNavigate } from 'react-router';
 import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
-import log from 'eslint-plugin-react/lib/util/log';
 import { Button } from 'shared/ui/Button';
+import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -47,8 +47,8 @@ function ProfilePage() {
     }
   }, [dispatch]);
 
-  const handleOnSave = () => {
-    console.log('handleOnSave');
+  const handleOnSave = (profile: UserProfile) => {
+    console.log('handleOnSave', profile);
   };
 
   const handleOnCancel = () => {

@@ -1,9 +1,10 @@
-import { memo, useState } from 'react';
-import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
+import { FormEvent, memo, useState } from 'react';
+import { Currency, UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
+import { Select } from 'shared/ui/Select';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -30,10 +31,15 @@ export const ProfileEditForm = memo(({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSave(formData);
   };
+
+  const currencyList = Object.keys(Currency).map((key) => ({
+    value: key,
+    content: key,
+  }));
 
   return (
     <form
@@ -103,6 +109,12 @@ export const ProfileEditForm = memo(({
             onChange={(value) => handleChange('city', value)}
             placeholder="City"
             label="City"
+          />
+
+          <Select
+            value={formData.currency}
+            options={currencyList}
+            onChange={(value) => handleChange('currency', value)}
           />
 
           {/* <select */}
