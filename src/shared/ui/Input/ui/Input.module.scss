@@ -1,4 +1,4 @@
-.Input {
+.input {
   border-radius: 10px;
   border: 2px solid var(--border-color-primary);
   width: 100%;
@@ -9,6 +9,10 @@
   }
 }
 
-.Label {
+.label {
   font-size: 0.875rem;
+}
+
+.input-wrap {
+  width: 100%;
 }

@@ -19,11 +19,11 @@ const Input = memo((props: InputProps) => {
   };
 
   return (
-    <div>
-      {label && <span className={cls.Label}>{label}</span>}
+    <div className={cls['input-wrap']}>
+      {label && <span className={cls.label}>{label}</span>}
       <input
         type={type}
-        className={cls.Input}
+        className={cls.input}
         value={value}
         onChange={handleChange}
         {...otherProps}
