@@ -5,11 +5,13 @@ import { Button } from 'shared/ui/Button';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { authActions } from 'features/AuthByUsername';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import { useSelector } from 'react-redux';
-import { getAuthInfo } from 'features/AuthByUsername/model/selectors/getAuthInfo/getAuthInfo';
 import useModal from 'shared/hooks/useModal';
-import { Suspense } from 'react';
+import {
+  Suspense,
+} from 'react';
 import { Portal } from 'widgets/Portal';
+import { useLocalStorage } from 'shared/hooks/useLocalStorage';
+import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -19,11 +21,11 @@ interface NavbarProps {
 const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const { isOpen, handleModalOpen, handleModalClose } = useModal();
-
   const dispatch = useAppDispatch();
-  const authInfo = useSelector(getAuthInfo);
+  const [userName, setUserName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
   const handleLogout = () => {
+    setUserName('');
     dispatch(authActions.setAuthInfo({
       username: '',
       id: -1,
@@ -31,7 +33,7 @@ const Navbar = ({ className }: NavbarProps) => {
   };
 
   const handleClick = () => {
-    if (authInfo?.username) {
+    if (userName.length) {
       handleLogout();
     } else {
       handleModalOpen();
@@ -44,7 +46,7 @@ const Navbar = ({ className }: NavbarProps) => {
         Learn React
       </div>
       <Button onClick={handleClick} theme={THEME_BUTTON.CLEAR}>
-        {authInfo?.username ? t('exit') : t('login')}
+        {userName.length ? t('exit') : t('login')}
       </Button>
       <Suspense fallback="">
         {isOpen && (

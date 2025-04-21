@@ -8,6 +8,9 @@ import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
 import Text from 'widgets/Text/Text';
 import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
+import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
+import { useNavigate } from 'react-router';
+import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -23,6 +26,8 @@ function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const profileData = useSelector(getProfileData);
+  const navigation = useNavigate();
+  const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
   const fetchProfile = useCallback(async () => {
     try {
@@ -34,8 +39,12 @@ function ProfilePage() {
   }, [dispatch]);
 
   useEffect(() => {
-    fetchProfile().finally(() => setIsLoading(false));
-  }, []);
+    if (userName.length) {
+      fetchProfile().finally(() => setIsLoading(false));
+    } else {
+      navigation('/');
+    }
+  }, [userName]);
 
   return (
     <>

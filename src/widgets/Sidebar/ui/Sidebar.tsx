@@ -10,8 +10,7 @@ import { useTranslation } from 'react-i18next';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
-import { useSelector } from 'react-redux';
-import { getAuthInfo } from 'features/AuthByUsername/model/selectors/getAuthInfo/getAuthInfo';
+import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Sidebar.module.scss';
 
@@ -34,9 +33,8 @@ const BASE_PAGES = [
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const { t } = useTranslation();
-  const authInfo = useSelector(getAuthInfo);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const isAuth = localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
+  const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
@@ -45,16 +43,18 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navItems = useMemo(() => {
     const items = [...BASE_PAGES];
 
-    if (authInfo?.username || isAuth) {
+    if (userName.length) {
       items.push({
         icon: ProfileIcon,
         name: 'profile',
         to: '/profile',
       });
+    } else if (items.length === 3) {
+      items.pop();
     }
 
     return items;
-  }, [authInfo?.username, isAuth]);
+  }, [userName]);
 
   return (
     <div

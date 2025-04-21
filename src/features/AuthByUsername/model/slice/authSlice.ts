@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
+import { STORAGE_EVENT } from 'shared/hooks/useLocalStorage';
 import { AuthInfoSchema } from '../types/authInfoSchema';
 import { userLogin } from '../services/userLogin/userLogin';
 
@@ -16,6 +17,7 @@ export const authSlice = createSlice({
       state.username = action.payload.username;
       state.id = action.payload.id;
       localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, JSON.stringify(action.payload.username));
+      window.dispatchEvent(new Event(STORAGE_EVENT));
     },
   },
   extraReducers: (builder) => {
