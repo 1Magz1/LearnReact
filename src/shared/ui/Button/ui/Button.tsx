@@ -15,6 +15,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
   theme?: THEME_BUTTON,
   disabled?: boolean,
   isLoading?: boolean,
+  type?: 'button' | 'submit'
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -24,11 +25,12 @@ export const Button = memo((props: ButtonProps) => {
     theme,
     disabled,
     isLoading,
+    type = 'button',
     ...otherProps
   } = props;
   return (
     <button
-      type="button"
+      type={type}
       disabled={disabled}
       className={classNames(cls.button, {}, [className, cls[theme]])}
       {...otherProps}
