@@ -15,6 +15,7 @@ import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';
 import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
+import { updateProfileData } from 'features/UserProfile/model/services/updateProfileData/updateProfileData';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -42,23 +43,30 @@ function ProfilePage() {
       await dispatch(fetchProfileData()).unwrap();
     } catch (error) {
       setIsError(true);
-    } finally {
-      setIsLoading(false);
     }
   }, [dispatch]);
 
-  const handleOnSave = (profile: UserProfile) => {
-    console.log('handleOnSave', profile);
-  };
+  const toggleEditing = () => setIsEditing((prev) => !prev);
 
-  const handleOnCancel = () => {
-    console.log('handleOnCancel');
+  const handleOnSave = async (profile: UserProfile) => {
+    try {
+      setIsLoading(true);
+      await dispatch(updateProfileData(profile)).unwrap();
+    } catch (error) {
+      setIsError(true);
+      setIsEditing(false);
+    } finally {
+      setIsLoading(false);
+      setIsEditing(false);
+    }
   };
 
   useEffect(() => {
-    if (userName.length > 0 && data === null) {
-      fetchProfile().finally(() => setIsLoading(false));
-    } else if (userName.length === 0 && data === null) {
+    if (userName.length > 0) {
+      if (data === null) {
+        fetchProfile().finally(() => setIsLoading(false));
+      }
+    } else {
       navigation('/');
     }
   }, [userName]);
@@ -76,7 +84,9 @@ function ProfilePage() {
           {t('title')}
         </Text>
         <div>
-          <Button onClick={() => setIsEditing(true)}>Edit</Button>
+          <Button onClick={toggleEditing}>
+            {!isEditing ? t('edit') : t('cancel')}
+          </Button>
         </div>
       </div>
       {!isLoading ? (

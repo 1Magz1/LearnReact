@@ -5,6 +5,7 @@ import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { Select } from 'shared/ui/Select';
+import { useTranslation } from 'react-i18next';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -15,6 +16,11 @@ interface ProfileEditFormProps {
   isLoading?: boolean;
 }
 
+const currencyList = Object.keys(Currency).map((key) => ({
+  value: key,
+  content: key,
+}));
+
 export const ProfileEditForm = memo(({
   profile,
   onSave,
@@ -22,6 +28,7 @@ export const ProfileEditForm = memo(({
   className,
   isLoading,
 }: ProfileEditFormProps) => {
+  const { t } = useTranslation('profile');
   const [formData, setFormData] = useState<UserProfile>(profile);
 
   const handleChange = (field: keyof UserProfile, value: string | number) => {
@@ -35,11 +42,6 @@ export const ProfileEditForm = memo(({
     e.preventDefault();
     onSave(formData);
   };
-
-  const currencyList = Object.keys(Currency).map((key) => ({
-    value: key,
-    content: key,
-  }));
 
   return (
     <form
@@ -58,7 +60,7 @@ export const ProfileEditForm = memo(({
         <Input
           value={formData.avatar}
           onChange={(value) => handleChange('avatar', value)}
-          placeholder="Avatar URL"
+          placeholder={t('editForm.avatarURL')}
         />
       </div>
 
@@ -67,65 +69,53 @@ export const ProfileEditForm = memo(({
           <Input
             value={formData.username}
             onChange={(value) => handleChange('username', value)}
-            placeholder="Username"
-            label="Username"
+            placeholder={t('editForm.userName')}
+            label={t('editForm.userName')}
           />
 
           <Input
             type="number"
             value={formData.age}
             onChange={(value) => handleChange('age', Number(value))}
-            placeholder="Age"
-            label="Age"
+            placeholder={t('editForm.age')}
+            label={t('editForm.age')}
           />
         </div>
         <div className={cls.wrap}>
           <Input
             value={formData.firstname}
             onChange={(value) => handleChange('firstname', value)}
-            placeholder="First Name"
-            label="First Name"
+            placeholder={t('editForm.firstName')}
+            label={t('editForm.firstName')}
           />
           <Input
             value={formData.lastname}
             onChange={(value) => handleChange('lastname', value)}
-            placeholder="Last Name"
-            label="Last Name"
+            placeholder={t('editForm.lastName')}
+            label={t('editForm.lastName')}
           />
         </div>
         <div className={cls.wrap}>
-          {/* <select */}
-          {/*  value={formData.country} */}
-          {/*  onChange={(value) => handleChange('country', value as Country)} */}
-          {/*  options={Object.entries(Country).map(([key, value]) => ({ */}
-          {/*    value, */}
-          {/*    content: key, */}
-          {/*  }))} */}
-          {/*  label="Country" */}
-          {/* /> */}
-
           <Input
             value={formData.city}
             onChange={(value) => handleChange('city', value)}
-            placeholder="City"
-            label="City"
+            placeholder={t('editForm.city')}
+            label={t('editForm.city')}
+          />
+
+          <Input
+            value={formData.country}
+            onChange={(value) => handleChange('country', value)}
+            placeholder={t('editForm.country')}
+            label={t('editForm.country')}
           />
 
           <Select
+            label={t('editForm.currency')}
             value={formData.currency}
             options={currencyList}
             onChange={(value) => handleChange('currency', value)}
           />
-
-          {/* <select */}
-          {/*  value={formData.currency} */}
-          {/*  onChange={(value) => handleChange('currency', value as Currency)} */}
-          {/*  options={Object.entries(Currency).map(([key, value]) => ({ */}
-          {/*    value, */}
-          {/*    content: key, */}
-          {/*  }))} */}
-          {/*  label="Currency" */}
-          {/* /> */}
         </div>
 
         <div className={cls.actions}>
@@ -134,13 +124,13 @@ export const ProfileEditForm = memo(({
             theme={THEME_BUTTON.CONFIRM}
             disabled={isLoading}
           >
-            {isLoading ? 'Saving...' : 'Save'}
+            {t('save')}
           </Button>
           <Button
             onClick={onCancel}
             disabled={isLoading}
           >
-            Cancel
+            {t('cancel')}
           </Button>
         </div>
       </div>
