@@ -5,7 +5,8 @@
   padding: 8px 15px;
 
   &:focus {
-    border-color: var(--border-color-secondary);
+    border-color: var(--primary-blue-color);
+    box-shadow: 0 0 0 2px var(--primary-shadow-color);
   }
 }
 
