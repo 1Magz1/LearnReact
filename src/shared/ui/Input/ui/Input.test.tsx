@@ -4,7 +4,7 @@ import Input from './Input';
 
 describe('Input component', () => {
   it('displays the provided value', () => {
-    const Wrapper = () => {
+    const TestComponent = () => {
       const methods = useForm({ defaultValues: { test: 'Test value' } });
       return (
         <FormProvider {...methods}>
@@ -13,13 +13,13 @@ describe('Input component', () => {
       );
     };
 
-    render(<Wrapper />);
+    render(<TestComponent />);
     const input = screen.getByDisplayValue('Test value');
     expect(input).toBeInTheDocument();
   });
 
   it('calls onChange handler when value changes (via RHF)', () => {
-    const Wrapper = () => {
+    const TestComponent = () => {
       const methods = useForm({ defaultValues: { test: '' } });
       return (
         <FormProvider {...methods}>
@@ -28,7 +28,7 @@ describe('Input component', () => {
       );
     };
 
-    render(<Wrapper />);
+    render(<TestComponent />);
     const input = screen.getByTestId('input');
 
     fireEvent.change(input, { target: { value: 'new' } });
@@ -36,7 +36,7 @@ describe('Input component', () => {
   });
 
   it('renders the label when provided', () => {
-    const Wrapper = () => {
+    const TestComponent = () => {
       const methods = useForm({ defaultValues: { test: '' } });
       return (
         <FormProvider {...methods}>
@@ -45,13 +45,13 @@ describe('Input component', () => {
       );
     };
 
-    render(<Wrapper />);
+    render(<TestComponent />);
     const label = screen.getByText('Username');
     expect(label).toBeInTheDocument();
   });
 
   it('passes additional props to the input element', () => {
-    const Wrapper = () => {
+    const TestComponent = () => {
       const methods = useForm({ defaultValues: { test: '' } });
       return (
         <FormProvider {...methods}>
@@ -64,7 +64,7 @@ describe('Input component', () => {
       );
     };
 
-    render(<Wrapper />);
+    render(<TestComponent />);
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInTheDocument();
   });
