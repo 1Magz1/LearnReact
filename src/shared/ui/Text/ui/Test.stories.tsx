@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Text from './Text';
 
 const meta = {
-  title: 'widgets/Text',
+  title: 'shared/Text',
   component: Text,
   argTypes: {
     variant: {

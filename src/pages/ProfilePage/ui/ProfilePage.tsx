@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
-import Text from 'widgets/Text/Text';
+import { Text } from 'shared/ui/Text';
 import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { useNavigate } from 'react-router';
