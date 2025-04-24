@@ -132,8 +132,9 @@ export const ProfileEditForm = memo(({
           />
 
           <Select
+            control={control}
+            name="currency"
             label={t('editForm.currency')}
-            value={profile.currency}
             options={currencyList}
           />
         </div>
