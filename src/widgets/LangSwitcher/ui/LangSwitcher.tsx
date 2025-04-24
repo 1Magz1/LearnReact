@@ -29,7 +29,7 @@ export const LangSwitcher = memo(({ className }: LangSwitcherProps) => {
       className={classNames(
         cls.LangSwitcher,
         {},
-        [className],
+        [className || ''],
       )}
     >
       {t('lang')}

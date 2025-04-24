@@ -98,7 +98,7 @@ function ProfilePage() {
             />
           </div>
 
-          {isEditing && (
+          {isEditing && data && (
             <div className={cls.wrap}>
               <ProfileEditForm
                 profile={data}

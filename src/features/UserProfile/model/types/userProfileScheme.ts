@@ -16,5 +16,5 @@ export interface UserProfile {
 }
 
 export interface UserProfileScheme {
-  data: UserProfile
+  data: UserProfile | null
 }

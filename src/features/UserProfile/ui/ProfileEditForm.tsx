@@ -26,7 +26,7 @@ export const ProfileEditForm = memo(({
   profile,
   onSave,
   onCancel,
-  className,
+  className = '',
   isLoading,
 }: ProfileEditFormProps) => {
   const { t } = useTranslation('profile');

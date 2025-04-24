@@ -59,7 +59,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   return (
     <div
       data-testid="sidebar"
-      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className])}
+      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className || ''])}
     >
       <nav>
         <ul className={cls.linkList}>

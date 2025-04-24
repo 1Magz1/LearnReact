@@ -23,7 +23,8 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
 
         keysToRemove = [];
       }
-
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       return combinedReducer(state, action);
     },
 

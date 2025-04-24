@@ -28,11 +28,12 @@ export const Button = memo((props: ButtonProps) => {
     type = 'button',
     ...otherProps
   } = props;
+
   return (
     <button
       type={type}
       disabled={disabled}
-      className={classNames(cls.button, {}, [className, cls[theme]])}
+      className={classNames(cls.button, {}, [className || '', theme ? cls[theme] : ''])}
       {...otherProps}
     >
       {isLoading && (

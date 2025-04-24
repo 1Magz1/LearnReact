@@ -41,7 +41,7 @@ const Navbar = ({ className }: NavbarProps) => {
   };
 
   return (
-    <div data-testid="navbar" className={classNames(cls.navbar, {}, [className])}>
+    <div data-testid="navbar" className={classNames(cls.navbar, {}, [className || ''])}>
       <div>
         Learn React
       </div>

@@ -43,7 +43,9 @@ function AuthModal(props: AuthModalProps) {
 
       await dispatch(userLogin({ username, password })).unwrap();
     } catch (error) {
-      statusCode = getStatusCodeFromError(error.message);
+      if (error instanceof Error) {
+        statusCode = getStatusCodeFromError(error.message);
+      }
       setErrorMessage(t('errorMessage.authError'));
     } finally {
       setIsLoading(false);

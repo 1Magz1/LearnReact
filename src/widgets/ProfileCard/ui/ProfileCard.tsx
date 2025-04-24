@@ -14,7 +14,7 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className={classNames(cls['profile-card'], {}, [className])}>
+    <div className={classNames(cls['profile-card'], {}, [className || ''])}>
       {profile ? (
         <>
           <div className={cls['avatar-wrapper']}>
