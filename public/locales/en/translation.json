@@ -11,6 +11,9 @@
   "confirm": "Confirm",
   "login": "Login",
   "exit": "Exit",
+  "age": "Age",
+  "location": "Location",
+  "currency": "Currency",
   "labels": {
     "login": "Login",
     "password": "Password"
