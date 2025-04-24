@@ -13,12 +13,13 @@ interface Option {
 interface CustomSelectProps {
   value?: string;
   label?: string;
+  placeholder?: string;
   options: Option[];
   onChange?: (value: string) => void;
 }
 
 const CustomSelect = ({
-  value, label, options, onChange,
+  value, label, options, placeholder = '', onChange,
 }: CustomSelectProps) => {
   const id = useId();
   const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +84,7 @@ const CustomSelect = ({
         onClick={toggleOpen}
         onKeyDown={handleKeyDown}
       >
-        <span className={cls.selected}>{selectedOption?.content || 'Выберите...'}</span>
+        <span className={cls.selected}>{selectedOption?.content || placeholder}</span>
         <span className={cls.arrow}>▾</span>
         {isOpen && (
           <ul
