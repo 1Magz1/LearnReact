@@ -1,4 +1,4 @@
-import { FormEvent, memo, useState } from 'react';
+import { memo } from 'react';
 import { Currency, UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
@@ -7,6 +7,9 @@ import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { Select } from 'shared/ui/Select';
 import { useTranslation } from 'react-i18next';
 import Avatar from 'widgets/Avatar/ui/Avatar';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -22,6 +25,19 @@ const currencyList = Object.keys(Currency).map((key) => ({
   content: key,
 }));
 
+const zodSchema = z.object({
+  avatar: z.string(),
+  username: z.string().min(1, 'Обязательное поле'),
+  firstname: z.string().min(1, 'Обязательное поле'),
+  lastname: z.string().min(1, 'Обязательное поле'),
+  city: z.string().min(1, 'Обязательное поле'),
+  country: z.string().min(1, 'Обязательное поле'),
+  age: z.number().min(18, 'Обязательное поле'),
+  currency: z.nativeEnum(Currency),
+});
+
+type FormValues = z.infer<typeof zodSchema>;
+
 export const ProfileEditForm = memo(({
   profile,
   onSave,
@@ -30,30 +46,36 @@ export const ProfileEditForm = memo(({
   isLoading,
 }: ProfileEditFormProps) => {
   const { t } = useTranslation('profile');
-  const [formData, setFormData] = useState<UserProfile>(profile);
+  const {
+    control, handleSubmit, formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(zodSchema),
+    defaultValues: {
+      avatar: profile.avatar,
+      username: profile.username,
+      firstname: profile.firstname,
+      lastname: profile.lastname,
+      city: profile.city,
+      country: profile.country,
+      age: profile.age,
+      currency: profile.currency,
+    },
+  });
 
-  const handleChange = (field: keyof UserProfile, value: string | number) => {
-    setFormData({
-      ...formData,
-      [field]: value,
-    });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    onSave(formData);
+  const onSubmit = (data: UserProfile) => {
+    onSave(data);
   };
 
   return (
     <form
       className={classNames(cls['profile-edit-form'], {}, [className])}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className={cls['avatar-section']}>
-        <Avatar src={formData.avatar} size={200} />
+        <Avatar src={profile.avatar} size={200} />
         <Input
-          value={formData.avatar}
-          onChange={(value) => handleChange('avatar', value)}
+          control={control}
+          name="avatar"
           placeholder={t('editForm.avatarURL')}
         />
       </div>
@@ -61,54 +83,58 @@ export const ProfileEditForm = memo(({
       <div className={cls['form-fields']}>
         <div className={cls.wrap}>
           <Input
-            value={formData.username}
-            onChange={(value) => handleChange('username', value)}
+            control={control}
+            name="username"
             placeholder={t('editForm.userName')}
             label={t('editForm.userName')}
+            error={errors.username?.message}
           />
-
           <Input
+            control={control}
+            name="age"
             type="number"
-            value={formData.age}
-            onChange={(value) => handleChange('age', Number(value))}
             placeholder={t('editForm.age')}
             label={t('editForm.age')}
+            error={errors.age?.message}
           />
         </div>
         <div className={cls.wrap}>
           <Input
-            value={formData.firstname}
-            onChange={(value) => handleChange('firstname', value)}
+            control={control}
+            name="firstname"
             placeholder={t('editForm.firstName')}
             label={t('editForm.firstName')}
+            error={errors.firstname?.message}
           />
           <Input
-            value={formData.lastname}
-            onChange={(value) => handleChange('lastname', value)}
+            control={control}
+            name="lastname"
             placeholder={t('editForm.lastName')}
             label={t('editForm.lastName')}
+            error={errors.lastname?.message}
           />
         </div>
         <div className={cls.wrap}>
           <Input
-            value={formData.city}
-            onChange={(value) => handleChange('city', value)}
+            control={control}
+            name="city"
             placeholder={t('editForm.city')}
             label={t('editForm.city')}
+            error={errors.city?.message}
           />
 
           <Input
-            value={formData.country}
-            onChange={(value) => handleChange('country', value)}
+            control={control}
+            name="country"
             placeholder={t('editForm.country')}
             label={t('editForm.country')}
+            error={errors.country?.message}
           />
 
           <Select
             label={t('editForm.currency')}
-            value={formData.currency}
+            value={profile.currency}
             options={currencyList}
-            onChange={(value) => handleChange('currency', value)}
           />
         </div>
 

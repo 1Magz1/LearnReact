@@ -1,3 +1,6 @@
+import { useForm, Controller } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
@@ -15,33 +18,43 @@ interface AuthModalProps {
 }
 
 const reducerList: ReducerObject[] = [
-  {
-    name: 'authInfo',
-    reducer: authReducer,
-  },
+  { name: 'authInfo', reducer: authReducer },
 ];
 
-function AuthModal(props: AuthModalProps) {
+const authSchema = z.object({
+  username: z.string().min(1, 'Имя пользователя обязательно'),
+  password: z.string().min(1, 'Пароль обязателен'),
+});
+
+type AuthFormValues = z.infer<typeof authSchema>;
+
+function AuthModal({ isOpen, onClose }: AuthModalProps) {
   useReducerLoader(reducerList);
-  const { isOpen, onClose } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const isDisabled = username.length === 0 || password.length === 0 || isLoading;
-  let statusCode = 0;
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AuthFormValues>({
+    resolver: zodResolver(authSchema),
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
 
-  const handleConfirm = async () => {
+  const onSubmit = async (data: AuthFormValues) => {
+    let statusCode = 0;
+
     try {
       setIsLoading(true);
-      statusCode = 0;
       setErrorMessage('');
-
-      await dispatch(userLogin({ username, password })).unwrap();
+      await dispatch(userLogin(data)).unwrap();
     } catch (error) {
       if (error instanceof Error) {
         statusCode = getStatusCodeFromError(error.message);
@@ -50,9 +63,8 @@ function AuthModal(props: AuthModalProps) {
     } finally {
       setIsLoading(false);
       if (!statusCode) {
+        reset();
         onClose();
-        setPassword('');
-        setUsername('');
       }
     }
   };
@@ -61,14 +73,26 @@ function AuthModal(props: AuthModalProps) {
     <Modal
       isOpen={isOpen}
       title={t('modals.auth')}
-      isConfirmDisabled={isDisabled}
+      isConfirmDisabled={isLoading}
       isLoading={isLoading}
       onClose={onClose}
-      onConfirm={handleConfirm}
+      onConfirm={handleSubmit(onSubmit)}
     >
       <form className={cls.form}>
-        <Input label={t('labels.login')} value={username} onChange={setUsername} />
-        <Input label={t('labels.password')} value={password} onChange={setPassword} />
+        <Input
+          control={control}
+          name="username"
+          label={t('labels.login')}
+          error={errors.username?.message}
+        />
+
+        <Input
+          control={control}
+          name="password"
+          label={t('labels.password')}
+          type="password"
+          error={errors.password?.message}
+        />
       </form>
       {errorMessage && <span className={cls['error-text']}>{errorMessage}</span>}
     </Modal>
