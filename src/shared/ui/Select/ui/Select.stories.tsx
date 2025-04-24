@@ -1,15 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { useForm, FormProvider } from 'react-hook-form';
 import Select from './Select';
 
 const meta = {
   title: 'shared/Select',
   component: Select,
-  args: {
-    options: [
-      { value: 'apple', content: 'Apple' },
-      { value: 'banana', content: 'Banana' },
-      { value: 'orange', content: 'Orange' },
-    ],
+  parameters: {
+    layout: 'centered',
   },
   argTypes: {
     label: {
@@ -24,30 +21,68 @@ const meta = {
 } satisfies Meta<typeof Select>;
 
 export default meta;
-type Story = StoryObj<typeof meta>
 
+type Story = StoryObj<typeof meta>;
+
+interface FormValues {
+  fruit: string;
+}
+
+const options = [
+  { value: 'apple', content: 'Apple' },
+  { value: 'banana', content: 'Banana' },
+  { value: 'orange', content: 'Orange' },
+];
+
+interface ArgSchema {
+  defaultValue?: string;
+  placeholder?: string;
+  label?: string;
+}
+
+const Template = (args: ArgSchema) => {
+  const { placeholder, label, defaultValue } = args;
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      fruit: defaultValue || '',
+    },
+  });
+
+  return (
+    <FormProvider {...methods}>
+      <form>
+        <Select
+          name="fruit"
+          control={methods.control}
+          options={options}
+          label={label}
+          placeholder={placeholder}
+        />
+      </form>
+    </FormProvider>
+  );
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const Default: Story = {
-  args: {
-    placeholder: 'Placeholder',
-  },
+  render: () => <Template placeholder="Placeholder" />,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const WithLabel: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder',
-  },
+  render: () => <Template label="Label" placeholder="Choose fruit" />,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const WithValue: Story = {
-  args: {
-    value: 'apple',
-  },
+  render: () => <Template defaultValue="apple" />,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const WithLabelAndValue: Story = {
-  args: {
-    label: 'Label and Value',
-    value: 'apple',
-  },
+  render: () => <Template label="Label and Value" defaultValue="apple" />,
 };
