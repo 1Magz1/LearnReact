@@ -1,35 +1,41 @@
-import { ChangeEvent, HTMLAttributes, memo } from 'react';
+import { Controller, Control } from 'react-hook-form';
+import { InputHTMLAttributes } from 'react';
 import cls from './Input.module.scss';
 
-interface InputProps extends Omit<HTMLAttributes<HTMLInputElement>, 'onChange'> {
-  value: string | number,
-  onChange?: (value: string) => void,
-  label?: string,
-  placeholder?: string,
-  type?: 'text' | 'number',
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  name: string;
+  control: Control<any>;
 }
 
-const Input = memo((props: InputProps) => {
+const Input = (props: InputProps) => {
   const {
-    value, onChange, label, type, ...otherProps
+    label,
+    error,
+    control,
+    name,
+    ...rest
   } = props;
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(event.target.value);
-  };
-
   return (
-    <div className={cls['input-wrap']}>
-      {label && <span className={cls.label}>{label}</span>}
-      <input
-        type={type}
-        className={cls.input}
-        value={value}
-        onChange={handleChange}
-        {...otherProps}
-      />
-    </div>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <div className={cls['input-wrap']}>
+          {label && <span className={cls.label}>{label}</span>}
+          <input
+            {...rest}
+            {...field}
+            ref={field.ref}
+            className={cls.input}
+          />
+          {error && <span className={cls.error}>{error}</span>}
+        </div>
+      )}
+    />
   );
-});
+};
 
 export default Input;
