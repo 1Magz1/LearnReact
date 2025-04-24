@@ -6,6 +6,7 @@ import { Input } from 'shared/ui/Input';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { Select } from 'shared/ui/Select';
 import { useTranslation } from 'react-i18next';
+import Avatar from 'widgets/Avatar/ui/Avatar';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -49,14 +50,7 @@ export const ProfileEditForm = memo(({
       onSubmit={handleSubmit}
     >
       <div className={cls['avatar-section']}>
-        <img
-          src={formData.avatar}
-          alt="Avatar"
-          className={cls.avatar}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/default-avatar.png';
-          }}
-        />
+        <Avatar src={formData.avatar} size={200} />
         <Input
           value={formData.avatar}
           onChange={(value) => handleChange('avatar', value)}

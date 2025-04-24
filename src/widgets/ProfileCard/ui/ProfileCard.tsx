@@ -2,6 +2,7 @@ import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme'
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
+import Avatar from 'widgets/Avatar/ui/Avatar';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -17,14 +18,7 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => {
       {profile ? (
         <>
           <div className={cls['avatar-wrapper']}>
-            <img
-              src={profile.avatar}
-              alt="Avatar"
-              className={cls.avatar}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = '/default-avatar.png';
-              }}
-            />
+            <Avatar src={profile.avatar} />
           </div>
 
           <div className={cls['profile-card__info']}>
