@@ -22,8 +22,8 @@ const reducerList: ReducerObject[] = [
 ];
 
 const authSchema = z.object({
-  username: z.string().min(1, 'Имя пользователя обязательно'),
-  password: z.string().min(1, 'Пароль обязателен'),
+  username: z.string().min(1, 'Обязательное поле'),
+  password: z.string().min(1, 'Обязательное поле'),
 });
 
 type AuthFormValues = z.infer<typeof authSchema>;
@@ -80,6 +80,7 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
     >
       <form className={cls.form}>
         <Input
+          required
           control={control}
           name="username"
           label={t('labels.login')}
@@ -87,6 +88,7 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
         />
 
         <Input
+          required
           control={control}
           name="password"
           label={t('labels.password')}
