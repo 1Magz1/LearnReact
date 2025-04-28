@@ -10,7 +10,7 @@ import { Text } from 'shared/ui/Text';
 import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { useNavigate } from 'react-router';
-import { useLocalStorage } from 'shared/hooks/useLocalStorage';
+import { useLocalStorage } from 'shared/hooks';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';

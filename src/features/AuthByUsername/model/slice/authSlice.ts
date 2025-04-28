@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
-import { STORAGE_EVENT } from 'shared/hooks/useLocalStorage';
+import { LOCAL_STORAGE_USERNAME_KEY, STORAGE_EVENT } from 'shared/constants';
 import { AuthInfoSchema } from '../types/authInfoSchema';
 import { userLogin } from '../services/userLogin/userLogin';
 

@@ -5,12 +5,11 @@ import { Button } from 'shared/ui/Button';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { authActions } from 'features/AuthByUsername';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import { useModal } from 'shared/hooks';
+import { useModal, useLocalStorage } from 'shared/hooks';
 import {
   Suspense,
 } from 'react';
 import { Portal } from 'widgets/Portal';
-import { useLocalStorage } from 'shared/hooks/useLocalStorage';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Navbar.module.scss';
 

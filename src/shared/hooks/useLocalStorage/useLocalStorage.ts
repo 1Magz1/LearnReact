@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
+import { STORAGE_EVENT } from 'shared/constants';
 
 type SetValue<T> = (value: T) => void;
 type RemoveValue = () => void;
-
-export const STORAGE_EVENT = 'local-storage';
 
 export function useLocalStorage<T>(
   key: string,
