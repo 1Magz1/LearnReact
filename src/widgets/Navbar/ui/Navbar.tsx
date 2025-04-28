@@ -5,7 +5,7 @@ import { Button } from 'shared/ui/Button';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { authActions } from 'features/AuthByUsername';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-import useModal from 'shared/hooks/useModal';
+import { useModal } from 'shared/hooks';
 import {
   Suspense,
 } from 'react';
