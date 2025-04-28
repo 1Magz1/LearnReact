@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
 import { useStore } from 'react-redux';
-import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider/config/stateSchema';
-import { Reducer } from '@reduxjs/toolkit';
+import { ReducerObject, ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider';
-
-export interface ReducerObject {
-  name: StateSchemaKey;
-  reducer: Reducer;
-}
 
 export default function useReducerLoader(reducerList: ReducerObject[], isReducerDestroy = false) {
   const store = useStore() as ReduxStoreWithManager;

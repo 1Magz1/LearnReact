@@ -7,15 +7,15 @@ import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
 import { Text } from 'shared/ui/Text';
-import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
+import { useLocalStorage, useReducerLoader } from 'shared/hooks';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import { useNavigate } from 'react-router';
-import { useLocalStorage } from 'shared/hooks';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';
 import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { updateProfileData } from 'features/UserProfile/model/services/updateProfileData/updateProfileData';
+import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [

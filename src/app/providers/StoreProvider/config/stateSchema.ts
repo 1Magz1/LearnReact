@@ -31,3 +31,8 @@ export interface ThunkExtraArg {
   api: KyInstance,
   navigate: (to: To, options?: NavigateOptions) => void;
 }
+
+export interface ReducerObject {
+  name: StateSchemaKey;
+  reducer: Reducer;
+}
