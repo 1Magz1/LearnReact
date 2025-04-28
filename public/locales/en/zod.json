@@ -1,0 +1,10 @@
+{
+  "errors": {
+    "invalid_type": "Expected {{expected}}, received {{received}}",
+    "invalid_string": "Invalid string",
+    "too_small": "Field must contain at least {{minimum}} characters",
+    "too_big": "Field must contain at most {{maximum}} characters",
+    "required_field": "Required filed",
+    "adult": "You must be at least 18 years old"
+  }
+}

@@ -1,5 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from 'shared/ui/Input';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +8,7 @@ import { useAppDispatch } from 'app/providers/StoreProvider';
 import { getStatusCodeFromError } from 'shared/lib/getStatusCodeFromError/getStatusCodeFromError';
 import { authReducer } from 'features/AuthByUsername';
 import useReducerLoader, { ReducerObject } from 'shared/hooks/useReducerLoader';
+import { AuthFormValues, authSchema } from '../schema/authSchema';
 import { userLogin } from '../../../model/services/userLogin/userLogin';
 import cls from './AuthModal.module.scss';
 
@@ -20,13 +20,6 @@ interface AuthModalProps {
 const reducerList: ReducerObject[] = [
   { name: 'authInfo', reducer: authReducer },
 ];
-
-const authSchema = z.object({
-  username: z.string().min(1, 'Обязательное поле'),
-  password: z.string().min(1, 'Обязательное поле'),
-});
-
-type AuthFormValues = z.infer<typeof authSchema>;
 
 function AuthModal({ isOpen, onClose }: AuthModalProps) {
   useReducerLoader(reducerList);

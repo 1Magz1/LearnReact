@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Currency, UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
@@ -7,9 +7,10 @@ import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { Select } from 'shared/ui/Select';
 import { useTranslation } from 'react-i18next';
 import Avatar from 'widgets/Avatar/ui/Avatar';
-import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import i18n from 'i18next';
+import { userProfileSchema } from '../model/schema/userProfileScheme';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -25,17 +26,6 @@ const currencyList = Object.keys(Currency).map((key) => ({
   content: key,
 }));
 
-const zodSchema = z.object({
-  avatar: z.string(),
-  username: z.string().min(1, 'Обязательное поле'),
-  firstname: z.string().min(1, 'Обязательное поле'),
-  lastname: z.string().min(1, 'Обязательное поле'),
-  city: z.string().min(1, 'Обязательное поле'),
-  country: z.string().min(1, 'Обязательное поле'),
-  age: z.number().min(18, 'Обязательное поле'),
-  currency: z.nativeEnum(Currency),
-});
-
 export const ProfileEditForm = memo(({
   profile,
   onSave,
@@ -45,9 +35,9 @@ export const ProfileEditForm = memo(({
 }: ProfileEditFormProps) => {
   const { t } = useTranslation('profile');
   const {
-    control, handleSubmit, formState: { errors },
+    control, handleSubmit, formState: { errors }, trigger,
   } = useForm<UserProfile>({
-    resolver: zodResolver(zodSchema),
+    resolver: zodResolver(userProfileSchema),
     defaultValues: {
       avatar: profile.avatar,
       username: profile.username,
@@ -59,6 +49,19 @@ export const ProfileEditForm = memo(({
       currency: profile.currency,
     },
   });
+
+  // TODO: add hook
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      trigger();
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [trigger]);
 
   const onSubmit = (data: UserProfile) => {
     onSave(data);
