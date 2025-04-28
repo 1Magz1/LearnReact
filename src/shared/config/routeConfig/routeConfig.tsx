@@ -1,8 +1,8 @@
-import { RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
+import { ReactNode } from 'react';
 
 export enum appRoutes {
   MAIN = 'main',
@@ -11,6 +11,12 @@ export enum appRoutes {
   NOT_FOUND = 'not_found',
 }
 
+export type AppRouteProps = {
+  path: string;
+  element: ReactNode;
+  authOnly?: boolean;
+};
+
 export const routePath: Record<appRoutes, string> = {
   [appRoutes.MAIN]: '/',
   [appRoutes.ABOUT]: '/about',
@@ -18,7 +24,7 @@ export const routePath: Record<appRoutes, string> = {
   [appRoutes.NOT_FOUND]: '*',
 };
 
-export const routeConfig: Record<appRoutes, RouteProps> = {
+export const routeConfig: Record<appRoutes, AppRouteProps> = {
   [appRoutes.MAIN]: {
     path: routePath[appRoutes.MAIN],
     element: <MainPage />,
@@ -30,6 +36,7 @@ export const routeConfig: Record<appRoutes, RouteProps> = {
   [appRoutes.PROFILE]: {
     path: routePath[appRoutes.PROFILE],
     element: <ProfilePage />,
+    authOnly: true,
   },
   [appRoutes.NOT_FOUND]: {
     path: routePath[appRoutes.NOT_FOUND],

@@ -1,20 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import {
-  profileReducer, getProfileData, fetchProfileData, ProfileEditForm,
+  profileReducer, getProfileData, fetchProfileData, ProfileEditForm, updateProfileData,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
 import { Text } from 'shared/ui/Text';
-import { useLocalStorage, useReducerLoader } from 'shared/hooks';
-import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
-import { useNavigate } from 'react-router';
+import { useReducerLoader } from 'shared/hooks';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';
 import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
-import { updateProfileData } from 'features/UserProfile/model/services/updateProfileData/updateProfileData';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import cls from './ProfilePage.module.scss';
 
@@ -33,8 +30,6 @@ function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useAppDispatch();
   const data = useSelector(getProfileData);
-  const navigation = useNavigate();
-  const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
   const fetchProfile = useCallback(async () => {
     try {
@@ -62,14 +57,10 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    if (userName.length > 0) {
-      if (data === null) {
-        fetchProfile().finally(() => setIsLoading(false));
-      }
-    } else {
-      navigation('/');
+    if (data === null) {
+      fetchProfile().finally(() => setIsLoading(false));
     }
-  }, [userName]);
+  }, []);
 
   if (isError) {
     return (
