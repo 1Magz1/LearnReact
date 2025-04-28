@@ -5,6 +5,7 @@ import cls from './Input.module.scss';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  required?: boolean;
   name: string;
   control: Control<any>;
 }
@@ -15,6 +16,7 @@ const Input = (props: InputProps) => {
     error,
     control,
     name,
+    required,
     ...rest
   } = props;
 
@@ -24,11 +26,12 @@ const Input = (props: InputProps) => {
       control={control}
       render={({ field }) => (
         <div className={cls['input-wrap']}>
-          {label && <span className={cls.label}>{label}</span>}
+          {label && <label className={cls.label} htmlFor={name}>{`${label}${required ? '*' : ''}`}</label>}
           <input
             {...rest}
             {...field}
             ref={field.ref}
+            id={name}
             className={cls.input}
           />
           {error && <span className={cls.error}>{error}</span>}

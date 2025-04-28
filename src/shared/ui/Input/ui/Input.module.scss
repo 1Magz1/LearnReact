@@ -16,4 +16,13 @@
 
 .input-wrap {
   width: 100%;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: calc(100% - 3px);
+  left: 0;
+  font-size: 0.75rem;
+  color: var( --accent-color-secondary);
 }

@@ -36,8 +36,6 @@ const zodSchema = z.object({
   currency: z.nativeEnum(Currency),
 });
 
-type FormValues = z.infer<typeof zodSchema>;
-
 export const ProfileEditForm = memo(({
   profile,
   onSave,
@@ -48,7 +46,7 @@ export const ProfileEditForm = memo(({
   const { t } = useTranslation('profile');
   const {
     control, handleSubmit, formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<UserProfile>({
     resolver: zodResolver(zodSchema),
     defaultValues: {
       avatar: profile.avatar,
@@ -83,6 +81,7 @@ export const ProfileEditForm = memo(({
       <div className={cls['form-fields']}>
         <div className={cls.wrap}>
           <Input
+            required
             control={control}
             name="username"
             placeholder={t('editForm.userName')}
@@ -90,6 +89,7 @@ export const ProfileEditForm = memo(({
             error={errors.username?.message}
           />
           <Input
+            required
             control={control}
             name="age"
             type="number"
@@ -100,6 +100,7 @@ export const ProfileEditForm = memo(({
         </div>
         <div className={cls.wrap}>
           <Input
+            required
             control={control}
             name="firstname"
             placeholder={t('editForm.firstName')}
@@ -107,6 +108,7 @@ export const ProfileEditForm = memo(({
             error={errors.firstname?.message}
           />
           <Input
+            required
             control={control}
             name="lastname"
             placeholder={t('editForm.lastName')}
@@ -116,6 +118,7 @@ export const ProfileEditForm = memo(({
         </div>
         <div className={cls.wrap}>
           <Input
+            required
             control={control}
             name="city"
             placeholder={t('editForm.city')}
@@ -124,6 +127,7 @@ export const ProfileEditForm = memo(({
           />
 
           <Input
+            required
             control={control}
             name="country"
             placeholder={t('editForm.country')}
