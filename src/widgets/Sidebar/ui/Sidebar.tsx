@@ -31,6 +31,19 @@ const BASE_PAGES = [
   },
 ];
 
+const AUTH_PAGES = [
+  {
+    icon: ProfileIcon,
+    name: 'profile',
+    to: '/profile',
+  },
+  {
+    icon: HomeIcon,
+    name: 'articles',
+    to: '/articles',
+  },
+];
+
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -44,13 +57,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     const items = [...BASE_PAGES];
 
     if (userName.length) {
-      items.push({
-        icon: ProfileIcon,
-        name: 'profile',
-        to: '/profile',
-      });
-    } else if (items.length === 3) {
-      items.pop();
+      items.push(...AUTH_PAGES);
     }
 
     return items;
