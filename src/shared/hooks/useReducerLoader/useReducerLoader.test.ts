@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { Reducer } from '@reduxjs/toolkit';
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
-import useReducerLoader, { ReducerObject } from './useReducerLoader';
+import { ReducerObject, ReduxStoreWithManager } from 'app/providers/StoreProvider/config/stateSchema';
+import useReducerLoader from './useReducerLoader';
 
 const mockReducer1: Reducer = (state = {}) => state;
 const mockReducer2: Reducer = (state = {}) => state;

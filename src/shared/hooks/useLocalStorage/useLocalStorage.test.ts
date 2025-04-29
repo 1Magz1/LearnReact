@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
-import { useLocalStorage, STORAGE_EVENT } from './useLocalStorage';
+import { STORAGE_EVENT } from 'shared/constants';
+import { useLocalStorage } from './useLocalStorage';
 
 const mockLocalStorage = (function () {
   let store: Record<string, string> = {};
