@@ -17,7 +17,7 @@ const ProtectedRoute = (props: ProtectedRouteProps) => {
 
   useEffect(() => {
     if (!userName.length && authOnly) {
-      navigation(-1);
+      navigation('/');
     }
     setIsLoading(false);
   }, [userName]);
