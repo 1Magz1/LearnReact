@@ -6,13 +6,13 @@ import {
 import { KyInstance } from 'ky';
 import type { To } from '@remix-run/router';
 import type { NavigateOptions } from 'react-router/dist/lib/context';
-import { UserProfileScheme } from 'features/UserProfile';
+import { UserProfileSchema } from 'features/UserProfile';
 import { ArticleSchema } from 'entities/Article';
 
 export interface StateSchema {
   counter: CounterSchema,
   authInfo?: AuthInfoSchema,
-  profile?: UserProfileScheme,
+  profile?: UserProfileSchema,
   article?: ArticleSchema,
 }
 

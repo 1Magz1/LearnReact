@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
-import { ThunkExtraArg } from 'app/providers/StoreProvider/config/stateSchema';
-import { profileActions } from 'features/UserProfile';
+import { ThunkExtraArg } from 'app/providers/StoreProvider';
+import { UserProfile } from '../../schema/userProfileSchema';
+import { profileActions } from '../../slice/profileSlice';
 
 export const updateProfileData = createAsyncThunk<UserProfile, UserProfile, {extra: ThunkExtraArg}>(
   'profile/updateProfileData',

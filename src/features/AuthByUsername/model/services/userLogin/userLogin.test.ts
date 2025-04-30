@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import { ThunkExtraArg } from 'app/providers/StoreProvider/config/stateSchema';
 import { authActions } from '../../slice/authSlice';
-import { AuthInfoSchema, AuthSchema } from '../../types/authInfoSchema';
+import { AuthInfoSchema, AuthSchema } from '../../schema/authInfoSchema';
 import { userLogin } from './userLogin';
 
 jest.mock('../../slice/authSlice');

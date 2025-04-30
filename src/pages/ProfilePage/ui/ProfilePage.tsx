@@ -1,6 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import {
-  profileReducer, getProfileData, fetchProfileData, ProfileEditForm, updateProfileData,
+  profileReducer,
+  getProfileData,
+  fetchProfileData,
+  ProfileEditForm,
+  updateProfileData,
+  UserProfile,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -11,7 +16,6 @@ import { useReducerLoader } from 'shared/hooks';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';
-import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import cls from './ProfilePage.module.scss';
 

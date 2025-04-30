@@ -1,8 +1,8 @@
-import { UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import Avatar from 'widgets/Avatar/ui/Avatar';
+import { UserProfile } from 'features/UserProfile';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {

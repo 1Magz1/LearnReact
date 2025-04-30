@@ -1,4 +1,4 @@
-import { AuthSchema, AuthInfoSchema } from './model/types/authInfoSchema';
+import { AuthSchema, AuthInfoSchema } from './model/schema/authInfoSchema';
 import { AuthModal } from './ui/AuthModal';
 import { authActions, authReducer } from './model/slice/authSlice';
 

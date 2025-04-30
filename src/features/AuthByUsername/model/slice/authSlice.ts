@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_USERNAME_KEY, STORAGE_EVENT } from 'shared/constants';
-import { AuthInfoSchema } from '../types/authInfoSchema';
+import { AuthInfoSchema } from '../schema/authInfoSchema';
 import { userLogin } from '../services/userLogin/userLogin';
 
 const initialState: AuthInfoSchema = {

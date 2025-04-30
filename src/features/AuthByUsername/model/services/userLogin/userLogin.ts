@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthSchema, AuthInfoSchema } from 'features/AuthByUsername';
-import { authActions } from 'features/AuthByUsername/model/slice/authSlice';
-import { ThunkExtraArg } from 'app/providers/StoreProvider/config/stateSchema';
+import { ThunkExtraArg } from 'app/providers/StoreProvider';
+import { authActions } from '../../slice/authSlice';
+import { AuthSchema, AuthInfoSchema } from '../../schema/authInfoSchema';
 
 export const userLogin = createAsyncThunk<AuthInfoSchema, AuthSchema, { rejectValue: string, extra: ThunkExtraArg }>(
   'login/userLogin',

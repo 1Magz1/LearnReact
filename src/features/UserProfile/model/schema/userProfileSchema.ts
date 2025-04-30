@@ -18,16 +18,16 @@ export const userProfileSchema = z.object({
 });
 
 export interface UserProfile {
-  'firstname': string,
-  'lastname': string,
-  'age': number,
-  'currency': Currency,
-  'country': string,
-  'city': string,
-  'username': string,
-  'avatar': string,
+  firstname: string,
+  lastname: string,
+  age: number,
+  currency: Currency,
+  country: string,
+  city: string,
+  username: string,
+  avatar: string,
 }
 
-export interface UserProfileScheme {
+export interface UserProfileSchema {
   data: UserProfile | null
 }

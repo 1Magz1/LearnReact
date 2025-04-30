@@ -1,5 +1,4 @@
 import { memo, useEffect } from 'react';
-import { Currency, UserProfile } from 'features/UserProfile/model/types/userProfileScheme';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input';
@@ -10,7 +9,7 @@ import Avatar from 'widgets/Avatar/ui/Avatar';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import i18n from 'i18next';
-import { userProfileSchema } from '../model/schema/userProfileScheme';
+import { Currency, UserProfile, userProfileSchema } from '../model/schema/userProfileSchema';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
