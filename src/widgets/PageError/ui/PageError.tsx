@@ -2,6 +2,7 @@ import React from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
+import { Text } from 'shared/ui/Text';
 import cls from './PageError.module.scss';
 
 interface PageErrorProps {
@@ -16,11 +17,9 @@ export function PageError(props: PageErrorProps) {
     window.location.reload();
   };
 
-  // TODO: refactoring. Add <Text> component
-
   return (
     <div className={classNames(cls.PageError)}>
-      <h1 className={classNames(cls.title)}>{message || t('pageError')}</h1>
+      <Text variant="h1" className={classNames(cls.title)}>{message || t('pageError')}</Text>
       <Button className={cls.btn} onClick={clickHandler}>{t('reload')}</Button>
     </div>
   );

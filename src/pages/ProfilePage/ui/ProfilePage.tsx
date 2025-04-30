@@ -31,6 +31,8 @@ function ProfilePage() {
   const dispatch = useAppDispatch();
   const data = useSelector(getProfileData);
 
+  const toggleEditing = () => setIsEditing((prev) => !prev);
+
   const fetchProfile = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -41,25 +43,22 @@ function ProfilePage() {
     }
   }, [dispatch]);
 
-  const toggleEditing = () => setIsEditing((prev) => !prev);
-
-  const handleOnSave = async (profile: UserProfile) => {
+  const handleOnSave = useCallback(async (profile: UserProfile) => {
     try {
       setIsLoading(true);
       await dispatch(updateProfileData(profile)).unwrap();
     } catch (error) {
       setIsError(true);
       setIsEditing(false);
-    } finally {
-      // TODO: refactoring
-      setIsLoading(false);
-      setIsEditing(false);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     if (data === null) {
-      fetchProfile().finally(() => setIsLoading(false));
+      fetchProfile().finally(() => {
+        setIsLoading(false);
+        setIsEditing(false);
+      });
     }
   }, []);
 
@@ -76,9 +75,11 @@ function ProfilePage() {
           {t('title')}
         </Text>
         <div>
-          <Button onClick={toggleEditing}>
-            {!isEditing ? t('edit') : t('cancel')}
-          </Button>
+          { !isLoading && !isError && (
+            <Button onClick={toggleEditing}>
+              {!isEditing ? t('edit') : t('cancel')}
+            </Button>
+          )}
         </div>
       </div>
       {!isLoading ? (
@@ -102,7 +103,7 @@ function ProfilePage() {
           )}
         </div>
       ) : (
-        <Loader />
+        <Loader size={80} />
       )}
     </>
   );
