@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
+import ArticleIcon from 'shared/assets/icons/article.svg';
 import { useLocalStorage } from 'shared/hooks';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Sidebar.module.scss';
@@ -38,7 +39,7 @@ const AUTH_PAGES = [
     to: '/profile',
   },
   {
-    icon: HomeIcon,
+    icon: ArticleIcon,
     name: 'articles',
     to: '/articles',
   },
