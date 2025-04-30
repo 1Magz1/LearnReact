@@ -51,6 +51,7 @@ function ProfilePage() {
       setIsError(true);
       setIsEditing(false);
     } finally {
+      // TODO: refactoring
       setIsLoading(false);
       setIsEditing(false);
     }

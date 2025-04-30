@@ -16,6 +16,8 @@ export function PageError(props: PageErrorProps) {
     window.location.reload();
   };
 
+  // TODO: refactoring. Add <Text> component
+
   return (
     <div className={classNames(cls.PageError)}>
       <h1 className={classNames(cls.title)}>{message || t('pageError')}</h1>
