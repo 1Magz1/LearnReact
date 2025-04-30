@@ -4,15 +4,17 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import {
   ArticleComponent,
-  articleReducer, fetchArticleData, getArticleData,
+  articleReducer,
+  fetchArticleData,
+  getArticleData,
 } from 'entities/Article';
 import { useParams } from 'react-router-dom';
-import { Loader } from 'widgets/Loader';
 import { useSelector } from 'react-redux';
 import { useReducerLoader } from 'shared/hooks';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
+import cls from './ArticleDetailsPage.module.scss';
 
 const reducerList: ReducerObject[] = [
   {
@@ -24,11 +26,11 @@ const reducerList: ReducerObject[] = [
 const ArticleDetailsPage = () => {
   useReducerLoader(reducerList);
   const { t } = useTranslation('articleDetails');
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const data = useSelector(getArticleData);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const { id } = useParams();
 
   const fetchArticle = useCallback(async () => {
     try {
@@ -41,13 +43,20 @@ const ArticleDetailsPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setIsLoading(true);
     fetchArticle().then(() => setIsLoading(false));
   }, []);
 
   if (isLoading) {
     return (
-      <Skeleton />
+      <div className={cls.skeleton}>
+        <Skeleton className={cls.centered} variant="circle" width={150} height={150} />
+        <Skeleton width="30%" height={30} />
+        <Skeleton width="15%" height={20} />
+        <Skeleton width="10%" height={10} />
+        <Skeleton width="10%" height={10} />
+        <Skeleton height={250} />
+        <Skeleton height={250} />
+      </div>
     );
   }
 

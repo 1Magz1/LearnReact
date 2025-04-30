@@ -4,16 +4,19 @@ import cls from './Skeleton.module.scss';
 
 interface SkeletonProps {
   variant?: 'circle' | 'rectangular' | 'rounded';
-  width?: number;
-  height?: number;
+  width?: string | number;
+  height?: string | number;
+  className?: string;
 }
 const Skeleton = memo((props: SkeletonProps) => {
-  const { variant = 'rounded', width, height } = props;
+  const {
+    variant = 'rounded', width, height, className,
+  } = props;
 
   return (
     <div
-      className={classNames(cls.skeleton, {}, [cls[variant]])}
-      style={{ width: `${width}px`, height: `${height}px` }}
+      className={classNames(cls.skeleton, {}, [cls[variant], className || ''])}
+      style={{ width, height }}
     />
   );
 });
