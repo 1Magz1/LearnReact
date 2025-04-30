@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { useReducerLoader } from 'shared/hooks';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
+import { Skeleton } from 'widgets/Skeleton';
 
 const reducerList: ReducerObject[] = [
   {
@@ -45,7 +46,9 @@ const ArticleDetailsPage = () => {
   }, []);
 
   if (isLoading) {
-    return <Loader size={80} />;
+    return (
+      <Skeleton />
+    );
   }
 
   if (!data || isError) {
