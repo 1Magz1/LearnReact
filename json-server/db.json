@@ -62,8 +62,8 @@
       "subtitle": "Что нового в JS за 2022 год?",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
-      "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "createdAt": 1645863261,
+      "tags": ["IT"],
       "blocks": [
         {
           "id": "1",
@@ -87,8 +87,8 @@
       "subtitle": "Что нового в Python 3.10?",
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
       "views": 856,
-      "createdAt": "15.03.2022",
-      "type": ["IT", "Programming"],
+      "createdAt": 1647347601,
+      "tags": ["IT", "Programming"],
       "blocks": [
         {
           "id": "1",
@@ -112,8 +112,8 @@
       "subtitle": "Новые открытия телескопа Джеймс Уэбб",
       "img": "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
       "views": 2450,
-      "createdAt": "12.07.2022",
-      "type": ["Science", "Space"],
+      "createdAt": 1657640001,
+      "tags": ["Science", "Space"],
       "blocks": [
         {
           "id": "1",
@@ -138,8 +138,8 @@
       "subtitle": "Как изменился мировой рынок",
       "img": "https://www.imf.org/-/media/Images/IMF/Data-Charts/World-Economic-Outlook.ashx",
       "views": 532,
-      "createdAt": "05.01.2022",
-      "type": ["Economics", "Business"],
+      "createdAt": 1679137881,
+      "tags": ["Economics", "Business"],
       "blocks": [
         {
           "id": "1",
@@ -167,8 +167,8 @@
       "subtitle": "Современные подходы к питанию",
       "img": "https://images.unsplash.com/photo-1498837167922-ddd27525d352",
       "views": 789,
-      "createdAt": "18.04.2022",
-      "type": ["Health", "Lifestyle"],
+      "createdAt": 1719059481,
+      "tags": ["Health", "Lifestyle"],
       "blocks": [
         {
           "id": "1",
