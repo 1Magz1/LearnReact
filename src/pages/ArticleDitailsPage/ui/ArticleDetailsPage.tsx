@@ -1,4 +1,3 @@
-import { Text } from 'shared/ui/Text';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -14,6 +13,7 @@ import { useReducerLoader } from 'shared/hooks';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleDetailsPage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -49,12 +49,12 @@ const ArticleDetailsPage = () => {
   if (isLoading) {
     return (
       <div className={cls.skeleton}>
-        <Skeleton className={cls.centered} variant="circle" width={150} height={150} />
-        <Skeleton width="30%" height={30} />
-        <Skeleton width="15%" height={20} />
-        <Skeleton width="10%" height={10} />
-        <Skeleton width="10%" height={10} />
-        <Skeleton height={250} />
+        <Skeleton className={cls.centered} variant="circle" width={200} height={200} />
+        <Skeleton className={cls['skeleton-title']} width="50%" height={32} />
+        <Skeleton className={cls['skeleton-title']} width="35%" height={24} />
+        <Skeleton className={cls['skeleton-view']} width="10%" height={20} />
+        <Skeleton width="10%" height={20} />
+        <Skeleton className={classNames(cls['skeleton-content'], {}, [cls['skeleton-card']])} height={250} />
         <Skeleton height={250} />
       </div>
     );
@@ -66,7 +66,6 @@ const ArticleDetailsPage = () => {
 
   return (
     <div>
-      <Text variant="h1">{t('title')}</Text>
       <ArticleComponent data={data} />
     </div>
   );
