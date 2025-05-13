@@ -1,32 +1,32 @@
-enum BookType {
+export enum BookType {
   TEXT = 'TEXT',
   CODE = 'CODE',
   IMAGE = 'IMAGE',
 }
 
-interface BaseBlock {
+interface BaseBlockType {
   id: string;
   type: BookType
 }
 
-interface CodeBlock extends BaseBlock{
+export interface CodeBlockType extends BaseBlockType{
   type:BookType.CODE;
   code: string;
 }
 
-interface ImageBlock extends BaseBlock {
+export interface ImageBlockType extends BaseBlockType {
   type:BookType.IMAGE,
   src: string;
   title?: string;
 }
 
-interface TextBlock extends BaseBlock {
+export interface TextBlockType extends BaseBlockType {
   type:BookType.TEXT,
   title?: string;
   paragraphs: string[]
 }
 
-type BlockType = CodeBlock | ImageBlock | TextBlock;
+export type BlockType = CodeBlockType | ImageBlockType | TextBlockType;
 
 export interface Article {
   id: string;
@@ -35,8 +35,8 @@ export interface Article {
   img: string;
   views: number
   createdAt: number;
-  type: string[],
-  block: BlockType
+  tags: string[],
+  blocks: BlockType[]
 }
 
 export interface ArticleSchema {
