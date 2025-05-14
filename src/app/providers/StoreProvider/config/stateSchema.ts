@@ -8,12 +8,14 @@ import type { To } from '@remix-run/router';
 import type { NavigateOptions } from 'react-router/dist/lib/context';
 import { UserProfileSchema } from 'features/UserProfile';
 import { ArticleSchema } from 'entities/Article';
+import { CommentSchema } from 'entities/Comment';
 
 export interface StateSchema {
   counter: CounterSchema,
   authInfo?: AuthInfoSchema,
   profile?: UserProfileSchema,
   article?: ArticleSchema,
+  articleComments?: CommentSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

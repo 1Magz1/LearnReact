@@ -3,6 +3,7 @@ import Avatar from 'widgets/Avatar/ui/Avatar';
 import { Text } from 'shared/ui/Text';
 import EyeIcon from 'shared/assets/icons/eye.svg';
 import CalendarIcon from 'shared/assets/icons/calendar.svg';
+import { CommentList, Comment } from 'entities/Comment';
 import ImageBlock from '../ImageBlock/ImageBlock';
 import CodeBlock from '../CodeBlock/CodeBlock';
 import TextBlock from '../TextBlock/TextBlock';
@@ -10,11 +11,12 @@ import { Article, BlockType, BookType } from '../../model/schema/articleSchema';
 import cls from './ArticleComponent.module.scss';
 
 interface ArticleComponentProps {
-  data: Article
+  data: Article,
+  comments?: Comment[],
 }
 
 const ArticleComponent = (props: ArticleComponentProps) => {
-  const { data } = props;
+  const { data, comments } = props;
   const date = new Date(data.createdAt * 1000);
 
   const renderBlock = useCallback((block: BlockType) => {
@@ -54,6 +56,7 @@ const ArticleComponent = (props: ArticleComponentProps) => {
       <div className={cls.content}>
         {data.blocks.map((block) => renderBlock(block))}
       </div>
+      <CommentList comments={comments} />
     </div>
   );
 };

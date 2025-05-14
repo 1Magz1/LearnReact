@@ -1,7 +1,8 @@
 import {
   Action,
   configureStore,
-  ReducersMapObject, ThunkDispatch,
+  ReducersMapObject,
+  ThunkDispatch,
 } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { counterReducer } from 'entities/Counter';
