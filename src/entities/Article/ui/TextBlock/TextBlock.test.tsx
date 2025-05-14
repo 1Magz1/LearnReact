@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TextBlock from './TextBlock';
-import { BookType, TextBlock as TextBlockType } from '../../model/schema/articleSchema';
+import { BookType, TextBlockType } from '../../model/schema/articleSchema';
 
 describe('TextBlock component', () => {
   const mockBlock: TextBlockType = {

@@ -3,7 +3,7 @@ import {
   act, fireEvent, render, screen,
 } from '@testing-library/react';
 import CodeBlock from './CodeBlock';
-import { BookType, CodeBlock as CodeBlockType } from '../../model/schema/articleSchema';
+import { BookType, CodeBlockType } from '../../model/schema/articleSchema';
 
 describe('CodeBlock component', () => {
   const mockBlock: CodeBlockType = {

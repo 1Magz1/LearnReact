@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ImageBlock from './ImageBlock';
-import { BookType, ImageBlock as ImageBlockType } from '../../model/schema/articleSchema';
+import { BookType, ImageBlockType } from '../../model/schema/articleSchema';
 
 describe('ImageBlock component', () => {
   const mockBlockWithTitle: ImageBlockType = {
