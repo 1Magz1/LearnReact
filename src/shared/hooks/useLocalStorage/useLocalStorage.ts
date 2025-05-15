@@ -13,6 +13,7 @@ export function useLocalStorage<T>(
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
+      // eslint-disable-next-line
       console.warn(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
@@ -28,6 +29,7 @@ export function useLocalStorage<T>(
 
         window.dispatchEvent(new Event(STORAGE_EVENT));
       } catch (error) {
+        // eslint-disable-next-line
         console.warn(`Error setting localStorage key "${key}":`, error);
       }
     },
@@ -40,6 +42,7 @@ export function useLocalStorage<T>(
       setStoredValue(initialValue);
       window.dispatchEvent(new Event(STORAGE_EVENT));
     } catch (error) {
+      // eslint-disable-next-line
       console.warn(`Error removing localStorage key "${key}":`, error);
     }
   }, [key, initialValue]);

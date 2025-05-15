@@ -1,5 +1,5 @@
 import { ProfileEditForm } from 'features/UserProfile/ui/ProfileEditForm';
-import { UserProfile, UserProfileSchema } from './model/schema/userProfileSchema';
+import { UserProfile, UserProfileSchema, UserShema } from './model/schema/userProfileSchema';
 import { profileActions, profileReducer } from './model/slice/profileSlice';
 import { getProfileData } from './model/selectors/getProfileData/getProfileData';
 import { fetchProfileData } from './model/services/fetchProfileData/fetchProfileData';
@@ -14,4 +14,5 @@ export {
   updateProfileData,
   UserProfile,
   UserProfileSchema,
+  UserShema,
 };

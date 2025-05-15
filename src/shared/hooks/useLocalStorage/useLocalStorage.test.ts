@@ -2,6 +2,7 @@ import { renderHook, act } from '@testing-library/react';
 import { STORAGE_EVENT } from 'shared/constants';
 import { useLocalStorage } from './useLocalStorage';
 
+// eslint-disable-next-line func-names
 const mockLocalStorage = (function () {
   let store: Record<string, string> = {};
   return {

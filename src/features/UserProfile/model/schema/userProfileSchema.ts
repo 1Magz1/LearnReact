@@ -6,6 +6,11 @@ export enum Currency {
   KZT = 'KZT',
 }
 
+enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
 export const userProfileSchema = z.object({
   avatar: z.string(),
   username: z.string().nonempty(),
@@ -17,15 +22,20 @@ export const userProfileSchema = z.object({
   currency: z.nativeEnum(Currency),
 });
 
-export interface UserProfile {
+export interface UserShema {
+  id: string,
+  username: string,
+  role: Role,
+  avatar?: string,
+}
+
+export interface UserProfile extends UserShema{
   firstname: string,
   lastname: string,
   age: number,
   currency: Currency,
   country: string,
   city: string,
-  username: string,
-  avatar: string,
 }
 
 export interface UserProfileSchema {
