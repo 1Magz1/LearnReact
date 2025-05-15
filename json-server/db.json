@@ -53,16 +53,32 @@
       "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
     }
   ],
-  "profile": {
-    "firstname": "User",
-    "lastname": "Name",
-    "age": 29,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
-  },
+  "profile":
+    [
+      {
+        "id": "1",
+        "firstname": "User",
+        "lastname": "Name",
+        "age": 29,
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "Moscow",
+        "username": "admin",
+        "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+      },
+      {
+        "id": "2",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "age": 29,
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "Tomsk",
+        "username": "user",
+        "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
+      }
+    ]
+  ,
   "articles": [
     {
       "id": "1",
