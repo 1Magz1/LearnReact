@@ -5,7 +5,7 @@ import {
   fetchProfileData,
   ProfileEditForm,
   updateProfileData,
-  UserProfile,
+  UserProfile, ProfileFormData,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
@@ -47,7 +47,7 @@ function ProfilePage() {
     }
   }, [dispatch]);
 
-  const handleOnSave = useCallback(async (profile: UserProfile) => {
+  const handleOnSave = useCallback(async (profile: ProfileFormData) => {
     try {
       setIsLoading(true);
       await dispatch(updateProfileData(profile)).unwrap();

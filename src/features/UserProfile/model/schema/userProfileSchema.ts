@@ -38,6 +38,8 @@ export interface UserProfile extends UserShema{
   city: string,
 }
 
+export type ProfileFormData = Omit<UserProfile, 'role' | 'id'>
+
 export interface UserProfileSchema {
   data: UserProfile | null
 }

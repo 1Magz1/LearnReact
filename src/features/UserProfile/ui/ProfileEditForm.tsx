@@ -9,14 +9,17 @@ import Avatar from 'widgets/Avatar/ui/Avatar';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import i18n from 'i18next';
-import { Currency, UserProfile, userProfileSchema } from '../model/schema/userProfileSchema';
+import {
+  Currency,
+  UserProfile,
+  userProfileSchema,
+  ProfileFormData,
+} from '../model/schema/userProfileSchema';
 import cls from './ProfileEditForm.module.scss';
-
-type FormData = Omit<UserProfile, 'role' | 'id'>
 
 interface ProfileEditFormProps {
   profile: UserProfile;
-  onSave: (profile: FormData) => void;
+  onSave: (profile: ProfileFormData) => void;
   onCancel: () => void;
   className?: string;
   isLoading?: boolean;
@@ -37,7 +40,7 @@ export const ProfileEditForm = memo(({
   const { t } = useTranslation('profile');
   const {
     control, handleSubmit, formState: { errors }, trigger,
-  } = useForm<FormData>({
+  } = useForm<ProfileFormData>({
     resolver: zodResolver(userProfileSchema),
     defaultValues: {
       avatar: profile.avatar,
@@ -64,7 +67,7 @@ export const ProfileEditForm = memo(({
     };
   }, [trigger]);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: ProfileFormData) => {
     onSave(data);
   };
 
