@@ -10,8 +10,9 @@ import { useTranslation } from 'react-i18next';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
-import { useSelector } from 'react-redux';
-import { getAuthInfo } from 'features/AuthByUsername/model/selectors/getAuthInfo/getAuthInfo';
+import ArticleIcon from 'shared/assets/icons/article.svg';
+import { useLocalStorage } from 'shared/hooks';
+import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -31,10 +32,23 @@ const BASE_PAGES = [
   },
 ];
 
+const AUTH_PAGES = [
+  {
+    icon: ProfileIcon,
+    name: 'profile',
+    to: '/profile',
+  },
+  {
+    icon: ArticleIcon,
+    name: 'articles',
+    to: '/articles',
+  },
+];
+
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const { t } = useTranslation();
-  const authInfo = useSelector(getAuthInfo);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
@@ -43,21 +57,17 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navItems = useMemo(() => {
     const items = [...BASE_PAGES];
 
-    if (authInfo) {
-      items.push({
-        icon: ProfileIcon,
-        name: 'profile',
-        to: '/profile',
-      });
+    if (userName.length) {
+      items.push(...AUTH_PAGES);
     }
 
     return items;
-  }, [authInfo]);
+  }, [userName]);
 
   return (
     <div
       data-testid="sidebar"
-      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className])}
+      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className || ''])}
     >
       <nav>
         <ul className={cls.linkList}>

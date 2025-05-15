@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthInfoSchema } from '../types/authInfoSchema';
+import { LOCAL_STORAGE_USERNAME_KEY, STORAGE_EVENT } from 'shared/constants';
+import { AuthInfoSchema } from '../schema/authInfoSchema';
 import { userLogin } from '../services/userLogin/userLogin';
 
 const initialState: AuthInfoSchema = {
@@ -14,7 +15,8 @@ export const authSlice = createSlice({
     setAuthInfo: (state, action: PayloadAction<AuthInfoSchema>) => {
       state.username = action.payload.username;
       state.id = action.payload.id;
-      localStorage.setItem('USER_NAME', JSON.stringify(action.payload.username));
+      localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, JSON.stringify(action.payload.username));
+      window.dispatchEvent(new Event(STORAGE_EVENT));
     },
   },
   extraReducers: (builder) => {

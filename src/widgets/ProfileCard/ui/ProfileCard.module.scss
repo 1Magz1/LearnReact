@@ -1,0 +1,47 @@
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  background-color: var(--background-card-color-primary);
+  color: var(--text-color-primary);
+
+  &__info {
+    text-align: center;
+  }
+
+  &__name {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  &__username {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--text-color-secondary);
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__detail {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 16px;
+  }
+
+  &__label {
+    font-weight: 500;
+  }
+}
+
+.avatar-wrapper {
+  margin-bottom: 20px;
+}

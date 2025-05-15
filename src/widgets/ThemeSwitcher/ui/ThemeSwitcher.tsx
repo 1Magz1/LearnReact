@@ -22,7 +22,7 @@ const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
       data-testid="theme-switcher"
       theme={THEME_BUTTON.CLEAR}
       onClick={toggleTheme}
-      className={classNames(cls.ThemeSwitcher, {}, [className])}
+      className={classNames(cls.ThemeSwitcher, {}, [className || ''])}
     >
       {theme === Theme.DARK ? <MoonIcon /> : <SunIcon />}
     </Button>

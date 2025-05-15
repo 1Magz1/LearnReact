@@ -1,0 +1,32 @@
+.article {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  margin: 0 auto 44px;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 100%;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.article-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 0.25rem;
+}
+
+.content {
+  margin-top: 2rem;
+}

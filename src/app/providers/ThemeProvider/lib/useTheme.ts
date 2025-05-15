@@ -1,12 +1,12 @@
 import { useContext, useEffect } from 'react';
+import { LOCAL_STORAGE_THEME_KEY } from 'shared/constants';
 import {
-  LOCAL_STORAGE_THEME_KEY,
   Theme,
   ThemeContext,
 } from './ThemeContext';
 
 interface UseTheme {
-  theme: Theme;
+  theme?: Theme;
   toggleTheme: () => void;
 }
 
@@ -15,12 +15,12 @@ export const useTheme = (): UseTheme => {
 
   const toggleTheme = () => {
     const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
-    setTheme(newTheme);
+    setTheme?.(newTheme);
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
   useEffect(() => {
-    document.body.className = theme;
+    document.body.className = theme || Theme.DARK;
   }, [theme]);
 
   return {

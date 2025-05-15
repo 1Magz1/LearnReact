@@ -1,14 +1,24 @@
-import { UserProfileScheme } from './model/types/userProfileScheme';
+import { ProfileEditForm } from 'features/UserProfile/ui/ProfileEditForm';
+import {
+  UserProfile,
+  UserProfileSchema,
+  UserShema,
+  ProfileFormData,
+} from './model/schema/userProfileSchema';
 import { profileActions, profileReducer } from './model/slice/profileSlice';
 import { getProfileData } from './model/selectors/getProfileData/getProfileData';
-import ProfileCard from './ui/ProfileCard/ProfileCard';
 import { fetchProfileData } from './model/services/fetchProfileData/fetchProfileData';
+import { updateProfileData } from './model/services/updateProfileData/updateProfileData';
 
 export {
   profileActions,
   profileReducer,
-  UserProfileScheme,
   getProfileData,
-  ProfileCard,
   fetchProfileData,
+  ProfileEditForm,
+  updateProfileData,
+  UserProfile,
+  UserProfileSchema,
+  UserShema,
+  ProfileFormData,
 };

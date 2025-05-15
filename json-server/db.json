@@ -13,26 +13,332 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "1",
+      "text": "some comment",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "text": "some comment 2",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "3",
+      "text": "some comment 3",
+      "articleId": "1",
+      "userId": "1"
+    },
+    {
+      "id": "4",
+      "text": "some comment123123",
+      "articleId": "1",
+      "userId": "2"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
-      "password": "admin"
+      "password": "admin",
+      "role": "ADMIN",
+      "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "123",
+      "role": "USER",
+      "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
     }
   ],
   "profile": {
     "firstname": "User",
     "lastname": "Name",
-    "age": 33,
+    "age": 29,
     "currency": "RUB",
     "country": "Russia",
     "city": "Moscow",
     "username": "admin",
     "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
-  }
+  },
+  "articles": [
+    {
+      "id": "1",
+      "title": "Javascript news",
+      "subtitle": "Что нового в JS за 2022 год?",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1022,
+      "createdAt": 1645863261,
+      "tags": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Заголовок этого блока",
+          "paragraphs": [
+            "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+            "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Новые возможности ES2022",
+          "paragraphs": [
+            "В ES2022 появились новые возможности, такие как статические блоки в классах и приватные поля.",
+            "Метод .at() для массивов позволяет удобно получать элементы с конца массива."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Производительность",
+          "paragraphs": [
+            "Современные движки JavaScript продолжают улучшать производительность выполнения кода.",
+            "Оптимизации в V8 и других движках делают JavaScript быстрее с каждой версией."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>"
+        },
+        {
+          "id": "5",
+          "type": "CODE",
+          "code": "class MyClass {\n  #privateField;\n\n  static {\n    // Статический блок инициализации\n    console.log('Class initialized');\n  }\n\n  constructor() {\n    this.#privateField = 42;\n  }\n}"
+        },
+        {
+          "id": "6",
+          "type": "IMAGE",
+          "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
+          "title": "ES2022 Features"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Python 3.10 Release",
+      "subtitle": "Что нового в Python 3.10?",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
+      "views": 856,
+      "createdAt": 1647347601,
+      "tags": ["IT", "Programming"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Pattern Matching",
+          "paragraphs": [
+            "Python 3.10 introduces structural pattern matching, which allows for more expressive ways to handle data structures.",
+            "This feature is similar to switch/case statements in other languages but much more powerful."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Improved Error Messages",
+          "paragraphs": [
+            "Python 3.10 provides more precise and helpful error messages, especially for syntax errors.",
+            "The interpreter now points exactly to where the problem might be in your code."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "New Type System Features",
+          "paragraphs": [
+            "The type system has been enhanced with new capabilities like union types with the | operator.",
+            "Type aliases are now more flexible and powerful."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "def handle_command(command):\n    match command.split():\n        case [\"quit\"]:\n            print(\"Quitting the program\")\n        case [\"load\", filename]:\n            print(f\"Loading {filename}\")\n        case _:\n            print(f\"Unknown command: {command}\")"
+        },
+        {
+          "id": "5",
+          "type": "CODE",
+          "code": "# New precise error locations\ntry:\n    some_undefined_var += 1\nexcept NameError as e:\n    print(f\"Error: {e}\")"
+        },
+        {
+          "id": "6",
+          "type": "IMAGE",
+          "src": "https://www.python.org/static/img/python-logo.png",
+          "title": "Python 3.10 Logo"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Космические исследования",
+      "subtitle": "Новые открытия телескопа Джеймс Уэбб",
+      "img": "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
+      "views": 2450,
+      "createdAt": 1657640001,
+      "tags": ["Science", "Space"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Первые изображения",
+          "paragraphs": [
+            "Телескоп Джеймс Уэбб предоставил первые в истории изображения далеких галактик с беспрецедентной четкостью.",
+            "Ученые обнаружили новые детали о процессе формирования звезд и планетных систем."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Технологии телескопа",
+          "paragraphs": [
+            "JWST использует инфракрасные датчики для наблюдения за самыми далекими объектами во Вселенной.",
+            "Зеркало диаметром 6.5 метров позволяет собирать свет от чрезвычайно тусклых объектов."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Научные цели",
+          "paragraphs": [
+            "Основные цели миссии включают изучение первых галактик, формирования звезд и поиск потенциально обитаемых экзопланет.",
+            "Телескоп уже предоставил данные, меняющие наше понимание ранней Вселенной."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "IMAGE",
+          "src": "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
+          "title": "Туманность Киля - снимок JWST"
+        },
+        {
+          "id": "5",
+          "type": "IMAGE",
+          "src": "https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-01g8j5f6j3v5k3t1e1zq1z1z1z.png",
+          "title": "Глубокое поле JWST"
+        },
+        {
+          "id": "6",
+          "type": "CODE",
+          "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Экономические тенденции 2022",
+      "subtitle": "Как изменился мировой рынок",
+      "img": "https://www.imf.org/-/media/Images/IMF/Data-Charts/World-Economic-Outlook.ashx",
+      "views": 532,
+      "createdAt": 1679137881,
+      "tags": ["Economics", "Business"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Основные показатели",
+          "paragraphs": [
+            "Мировая экономика продолжает восстанавливаться после пандемии, но сталкивается с новыми вызовами.",
+            "Инфляция остается высокой в большинстве развитых стран, что вынуждает центральные банки ужесточать денежно-кредитную политику."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Рынки труда",
+          "paragraphs": [
+            "На рынках труда наблюдается нехватка квалифицированных кадров во многих отраслях.",
+            "Удаленная работа становится стандартом для многих компаний, что меняет структуру занятости."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Энергетический кризис",
+          "paragraphs": [
+            "Рост цен на энергоносители существенно влияет на экономику Европы и других регионов.",
+            "Страны ищут альтернативные источники энергии и пути диверсификации поставок."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "Прогнозы на 2023 год",
+          "paragraphs": [
+            "Эксперты прогнозируют замедление темпов роста мировой экономики в 2023 году.",
+            "Ключевыми факторами будут оставаться геополитическая напряженность и энергетический кризис."
+          ]
+        },
+        {
+          "id": "5",
+          "type": "IMAGE",
+          "src": "https://www.imf.org/-/media/Images/IMF/Data-Charts/Inflation-Projections.ashx",
+          "title": "Прогнозы инфляции"
+        },
+        {
+          "id": "6",
+          "type": "CODE",
+          "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Здоровый образ жизни",
+      "subtitle": "Современные подходы к питанию",
+      "img": "https://images.unsplash.com/photo-1498837167922-ddd27525d352",
+      "views": 789,
+      "createdAt": 1719059481,
+      "tags": ["Health", "Lifestyle"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Сбалансированное питание",
+          "paragraphs": [
+            "Современные исследования подтверждают важность разнообразия в питании для поддержания здоровья.",
+            "Основные принципы включают умеренность, баланс макронутриентов и достаточное потребление овощей и фруктов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Гидратация",
+          "paragraphs": [
+            "Достаточное потребление воды критически важно для всех функций организма.",
+            "Новые исследования показывают, что индивидуальная норма воды может значительно варьироваться в зависимости от многих факторов."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Физическая активность",
+          "paragraphs": [
+            "ВОЗ рекомендует не менее 150 минут умеренной физической активности в неделю.",
+            "Комбинация кардио и силовых тренировок дает наилучшие результаты для здоровья."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "IMAGE",
+          "src": "https://images.unsplash.com/photo-1498837167922-ddd27525d352",
+          "title": "Здоровое питание"
+        },
+        {
+          "id": "5",
+          "type": "IMAGE",
+          "src": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+          "title": "Тренировка на свежем воздухе"
+        },
+        {
+          "id": "6",
+          "type": "CODE",
+          "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
+        }
+      ]
+    }
+  ]
 }

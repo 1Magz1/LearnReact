@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchProfileData } from 'features/UserProfile/model/services/fetchProfileData/fetchProfileData';
-import { UserProfile, UserProfileScheme } from '../types/userProfileScheme';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
+import { UserProfile, UserProfileSchema } from '../schema/userProfileSchema';
 
-const initialState: UserProfileScheme = {
+const initialState: UserProfileSchema = {
   data: null,
 };
 
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {
-    setUserProfile: (state, action: PayloadAction<UserProfile>) => {
-      state.data = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<UserProfile>) => {
+      state.data = action.payload;
+    });
+    builder.addCase(updateProfileData.fulfilled, (state, action: PayloadAction<UserProfile>) => {
       state.data = action.payload;
     });
   },

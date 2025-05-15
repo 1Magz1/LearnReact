@@ -1,0 +1,14 @@
+.card {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 3px solid var(--background-color-secondary);
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}

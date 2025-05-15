@@ -1,7 +1,8 @@
 import {
   Action,
   configureStore,
-  ReducersMapObject, ThunkDispatch,
+  ReducersMapObject,
+  ThunkDispatch,
 } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { counterReducer } from 'entities/Counter';
@@ -24,9 +25,13 @@ export function createReduxStore(
   const reducerManager = createReducerManager(rootReducers);
 
   const store = configureStore({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(
       {
         thunk: {

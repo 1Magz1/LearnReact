@@ -3,6 +3,7 @@
   "main": "Main",
   "about": "About",
   "profile": "Profile",
+  "articles": "Articles",
   "notFound": "Page not found",
   "pageError": "Page Error",
   "reload": "Reload",
@@ -11,6 +12,9 @@
   "confirm": "Confirm",
   "login": "Login",
   "exit": "Exit",
+  "age": "Age",
+  "location": "Location",
+  "currency": "Currency",
   "labels": {
     "login": "Login",
     "password": "Password"

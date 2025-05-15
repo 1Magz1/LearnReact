@@ -1,0 +1,25 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.skeleton-title {
+  margin-bottom: 1.5rem;
+}
+
+.skeleton-view {
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-content {
+  margin-top: 2rem;
+}
+
+.skeleton-card {
+  margin-bottom: 1.75rem;
+}
+
+.centered {
+  margin: 0 auto 44px;
+}

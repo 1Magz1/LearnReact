@@ -24,7 +24,6 @@ describe('classNames', () => {
         {
           red: true,
           long: false,
-          secondary: undefined,
         },
         ['primary', 'secondary'],
       ),

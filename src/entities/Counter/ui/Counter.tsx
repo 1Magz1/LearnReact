@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
 import { counterActions } from '../model/slice/counterSlice';
+import cls from './Counter.module.scss';
 
 const Counter = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Counter = () => {
   };
 
   return (
-    <div>
+    <div className={cls.counter}>
       <Button onClick={handleIncrement}>
         +
       </Button>

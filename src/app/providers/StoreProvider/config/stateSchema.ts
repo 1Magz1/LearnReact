@@ -6,12 +6,16 @@ import {
 import { KyInstance } from 'ky';
 import type { To } from '@remix-run/router';
 import type { NavigateOptions } from 'react-router/dist/lib/context';
-import { UserProfileScheme } from 'features/UserProfile';
+import { UserProfileSchema } from 'features/UserProfile';
+import { ArticleSchema } from 'entities/Article';
+import { CommentSchema } from 'entities/Comment';
 
 export interface StateSchema {
   counter: CounterSchema,
   authInfo?: AuthInfoSchema,
-  profile?: UserProfileScheme
+  profile?: UserProfileSchema,
+  article?: ArticleSchema,
+  articleComments?: CommentSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -30,4 +34,9 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 export interface ThunkExtraArg {
   api: KyInstance,
   navigate: (to: To, options?: NavigateOptions) => void;
+}
+
+export interface ReducerObject {
+  name: StateSchemaKey;
+  reducer: Reducer;
 }

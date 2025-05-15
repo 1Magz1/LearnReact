@@ -9,7 +9,7 @@ interface ProfileCardProps {
 }
 
 const ProfileCard = memo(({ profile, className }: ProfileCardProps) => (
-  <div className={classNames(cls['profile-card'], {}, [className])}>
+  <div className={classNames(cls['profile-card'], {}, [className || ''])}>
     {profile ? (
       <>
         <div className={cls['avatar-wrapper']}>

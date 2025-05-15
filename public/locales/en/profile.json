@@ -1,3 +1,17 @@
 {
-  "title": "Profile page"
+  "title": "Profile page",
+  "error": "Error while load profile",
+  "save": "Save",
+  "cancel": "Cancel",
+  "edit": "Edit",
+  "editForm": {
+    "userName": "Username",
+    "firstName": "First Name",
+    "lastName": "Second Name",
+    "age": "Age",
+    "city": "City",
+    "country": "Country",
+    "currency": "Currency",
+    "avatarURL": "Avatar URL"
+  }
 }
