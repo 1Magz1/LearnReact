@@ -26,7 +26,7 @@ export interface UserShema {
   id: string,
   username: string,
   role: Role,
-  avatar?: string,
+  avatar: string,
 }
 
 export interface UserProfile extends UserShema{

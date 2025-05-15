@@ -12,9 +12,11 @@ import i18n from 'i18next';
 import { Currency, UserProfile, userProfileSchema } from '../model/schema/userProfileSchema';
 import cls from './ProfileEditForm.module.scss';
 
+type FormData = Omit<UserProfile, 'role' | 'id'>
+
 interface ProfileEditFormProps {
   profile: UserProfile;
-  onSave: (profile: UserProfile) => void;
+  onSave: (profile: FormData) => void;
   onCancel: () => void;
   className?: string;
   isLoading?: boolean;
@@ -35,7 +37,7 @@ export const ProfileEditForm = memo(({
   const { t } = useTranslation('profile');
   const {
     control, handleSubmit, formState: { errors }, trigger,
-  } = useForm<UserProfile>({
+  } = useForm<FormData>({
     resolver: zodResolver(userProfileSchema),
     defaultValues: {
       avatar: profile.avatar,
@@ -62,7 +64,7 @@ export const ProfileEditForm = memo(({
     };
   }, [trigger]);
 
-  const onSubmit = (data: UserProfile) => {
+  const onSubmit = (data: FormData) => {
     onSave(data);
   };
 
