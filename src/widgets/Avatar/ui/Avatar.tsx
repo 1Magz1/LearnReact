@@ -20,6 +20,7 @@ const Avatar = memo((props: AvatarProps) => {
       style={{ width: size, height: size }}
     >
       <img
+        className={cls.img}
         width={size}
         height={size}
         src={src}
