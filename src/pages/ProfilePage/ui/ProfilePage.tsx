@@ -5,18 +5,20 @@ import {
   fetchProfileData,
   ProfileEditForm,
   updateProfileData,
-  UserProfile, ProfileFormData,
+  ProfileFormData,
 } from 'features/UserProfile';
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useSelector } from 'react-redux';
 import { Loader } from 'widgets/Loader';
 import { Text } from 'shared/ui/Text';
-import { useReducerLoader } from 'shared/hooks';
+import { useLocalStorage, useReducerLoader } from 'shared/hooks';
 import { PageError } from 'widgets/PageError';
 import { ProfileCard } from 'widgets/ProfileCard';
 import { Button } from 'shared/ui/Button';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
+import { useParams } from 'react-router-dom';
+import { LOCAL_STORAGE_USERNAME_ID_KEY, LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -34,14 +36,14 @@ function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useAppDispatch();
   const data = useSelector(getProfileData);
+  const { id } = useParams();
+  const [userId] = useLocalStorage(LOCAL_STORAGE_USERNAME_ID_KEY, '');
 
   const toggleEditing = () => setIsEditing((prev) => !prev);
 
-  const fetchProfile = useCallback(async () => {
+  const fetchProfile = useCallback(async (id: string) => {
     try {
-      setIsLoading(true);
-      setIsError(false);
-      await dispatch(fetchProfileData()).unwrap();
+      await dispatch(fetchProfileData(id)).unwrap();
     } catch (error) {
       setIsError(true);
     }
@@ -58,13 +60,16 @@ function ProfilePage() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (data === null) {
-      fetchProfile().finally(() => {
+    if (id) {
+      setIsLoading(true);
+      setIsError(false);
+
+      fetchProfile(id).finally(() => {
         setIsLoading(false);
         setIsEditing(false);
       });
     }
-  }, []);
+  }, [id]);
 
   if (isError) {
     return (
@@ -79,7 +84,7 @@ function ProfilePage() {
           {t('title')}
         </Text>
         <div>
-          { !isLoading && !isError && (
+          { !isLoading && !isError && id === userId && (
             <Button onClick={toggleEditing}>
               {!isEditing ? t('edit') : t('cancel')}
             </Button>

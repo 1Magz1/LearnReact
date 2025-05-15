@@ -12,7 +12,7 @@ import AboutIcon from 'shared/assets/icons/about.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
 import ArticleIcon from 'shared/assets/icons/article.svg';
 import { useLocalStorage } from 'shared/hooks';
-import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
+import { LOCAL_STORAGE_USERNAME_ID_KEY, LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -34,11 +34,6 @@ const BASE_PAGES = [
 
 const AUTH_PAGES = [
   {
-    icon: ProfileIcon,
-    name: 'profile',
-    to: '/profile',
-  },
-  {
     icon: ArticleIcon,
     name: 'articles',
     to: '/articles',
@@ -48,7 +43,7 @@ const AUTH_PAGES = [
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [userName] = useLocalStorage(LOCAL_STORAGE_USERNAME_KEY, '');
+  const [userId] = useLocalStorage(LOCAL_STORAGE_USERNAME_ID_KEY, '');
 
   const toggleSidebar = () => {
     setIsCollapsed((prev) => !prev);
@@ -57,12 +52,19 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navItems = useMemo(() => {
     const items = [...BASE_PAGES];
 
-    if (userName.length) {
-      items.push(...AUTH_PAGES);
+    if (userId.length) {
+      items.push(
+        {
+          icon: ProfileIcon,
+          name: 'profile',
+          to: `/profile/${userId}`,
+        },
+        ...AUTH_PAGES,
+      );
     }
 
     return items;
-  }, [userName]);
+  }, [userId]);
 
   return (
     <div
