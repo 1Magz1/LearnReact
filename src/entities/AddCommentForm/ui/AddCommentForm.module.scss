@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  border: 3px solid var(--background-color-secondary);
+  border-radius: var(--border-radius);
+  gap: 2rem;
+}
+
+.btn {
+  width: 120px;
+  justify-content: center;
+}
