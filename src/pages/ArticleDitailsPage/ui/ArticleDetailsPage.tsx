@@ -14,6 +14,8 @@ import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AddCommentFormState } from 'entities/AddCommentForm';
+import { sendComment } from 'pages/ArticleDitailsPage/model/service/sendComment/sendComment';
 import cls from './ArticleDetailsPage.module.scss';
 import { articleCommentsReducer, getArticleComments } from '../model/slice/articleDetailsSlice';
 import { fetchArticleComments } from '../model/service/fetchArticleComments/fetchArticleComments';
@@ -56,6 +58,17 @@ const ArticleDetailsPage = () => {
     }
   }, [dispatch]);
 
+  const onCommentSend = async (data: AddCommentFormState) => {
+    console.log('onCommentSend', data);
+    try {
+      await dispatch(sendComment(data)).unwrap();
+    } catch (e) {
+      setIsError(true);
+    } finally {
+      fetchArticle();
+    }
+  };
+
   useEffect(() => {
     fetchArticle().then(() => setIsLoading(false));
   }, []);
@@ -80,7 +93,7 @@ const ArticleDetailsPage = () => {
 
   return (
     <div>
-      <ArticleComponent data={data} comments={comments} />
+      <ArticleComponent data={data} comments={comments} onCommentSave={onCommentSend} />
     </div>
   );
 };
