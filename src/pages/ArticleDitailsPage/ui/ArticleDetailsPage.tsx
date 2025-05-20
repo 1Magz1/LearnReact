@@ -37,6 +37,7 @@ const ArticleDetailsPage = () => {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isCommentSending, setIsCommentSending] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -59,13 +60,15 @@ const ArticleDetailsPage = () => {
   }, [dispatch]);
 
   const onCommentSend = async (data: AddCommentFormState) => {
-    console.log('onCommentSend', data);
+    setIsCommentSending(true);
     try {
       await dispatch(sendComment(data)).unwrap();
     } catch (e) {
       setIsError(true);
     } finally {
-      fetchArticle();
+      fetchArticle().then(() => {
+        setIsCommentSending(false);
+      });
     }
   };
 
@@ -93,7 +96,12 @@ const ArticleDetailsPage = () => {
 
   return (
     <div>
-      <ArticleComponent data={data} comments={comments} onCommentSave={onCommentSend} />
+      <ArticleComponent
+        data={data}
+        comments={comments}
+        isLoading={isCommentSending}
+        onCommentSave={onCommentSend}
+      />
     </div>
   );
 };

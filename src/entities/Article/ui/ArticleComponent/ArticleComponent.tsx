@@ -15,10 +15,13 @@ interface ArticleComponentProps {
   data: Article,
   comments?: Comment[],
   onCommentSave: (data: AddCommentFormState) => void,
+  isLoading: boolean,
 }
 
 const ArticleComponent = (props: ArticleComponentProps) => {
-  const { data, comments, onCommentSave } = props;
+  const {
+    data, comments, onCommentSave, isLoading,
+  } = props;
   const date = new Date(data.createdAt * 1000);
 
   const renderBlock = useCallback((block: BlockType) => {
@@ -58,7 +61,11 @@ const ArticleComponent = (props: ArticleComponentProps) => {
       <div className={cls.content}>
         {data.blocks.map((block) => renderBlock(block))}
       </div>
-      <AddCommentForm onSave={onCommentSave} className={cls['comment-form']} />
+      <AddCommentForm
+        className={cls['comment-form']}
+        isLoading={isLoading}
+        onSave={onCommentSave}
+      />
       <CommentList comments={comments} />
     </div>
   );

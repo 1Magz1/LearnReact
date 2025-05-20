@@ -1,4 +1,5 @@
-import AddCommentForm, { AddCommentFormState } from './ui/AddCommentForm';
+import { AddCommentFormAsync as AddCommentForm } from './ui/AddCommentForm.async';
+import { AddCommentFormState } from './ui/AddCommentForm';
 
 export {
   AddCommentForm,

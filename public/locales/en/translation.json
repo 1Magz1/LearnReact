@@ -13,6 +13,7 @@
   "login": "Login",
   "exit": "Exit",
   "age": "Age",
+  "send": "Send",
   "location": "Location",
   "currency": "Currency",
   "labels": {
