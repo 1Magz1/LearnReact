@@ -20,7 +20,7 @@ const CodeBlock = (props: CodeBlockProps) => {
 
   return (
     <div className={cls.block}>
-      <Button data-testId="copy-button" className={cls.btn} onClick={handleClick}>
+      <Button data-testid="copy-button" className={cls.btn} onClick={handleClick}>
         <CopyIcon />
       </Button>
       <pre className={cls.code}>

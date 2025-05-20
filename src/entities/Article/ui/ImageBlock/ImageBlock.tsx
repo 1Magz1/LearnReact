@@ -13,7 +13,7 @@ const ImageBlock = (props: ImageBlockProps) => {
       <img src={block.src} alt={block.title} className={cls.image} />
       {block.title && (
       <Text
-        data-testId="image-caption"
+        data-testid="image-caption"
         variant="span"
         className={cls.text}
       >
