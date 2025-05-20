@@ -35,6 +35,24 @@
       "text": "some comment123123",
       "articleId": "1",
       "userId": "2"
+    },
+    {
+      "text": "asd",
+      "userId": "1",
+      "articleId": "1",
+      "id": "5ChhMSY"
+    },
+    {
+      "text": "some comments",
+      "userId": "1",
+      "articleId": "1",
+      "id": "8VNJ_Cx"
+    },
+    {
+      "text": "123",
+      "userId": "1",
+      "articleId": "1",
+      "id": "tJPlCXE"
     }
   ],
   "users": [
@@ -53,32 +71,30 @@
       "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
     }
   ],
-  "profile":
-    [
-      {
-        "id": "1",
-        "firstname": "User",
-        "lastname": "Name",
-        "age": 29,
-        "currency": "RUB",
-        "country": "Russia",
-        "city": "Moscow",
-        "username": "admin",
-        "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
-      },
-      {
-        "id": "2",
-        "firstname": "Firstname",
-        "lastname": "Lastname",
-        "age": 29,
-        "currency": "RUB",
-        "country": "Russia",
-        "city": "Tomsk",
-        "username": "user",
-        "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
-      }
-    ]
-  ,
+  "profile": [
+    {
+      "id": "1",
+      "firstname": "User",
+      "lastname": "Name",
+      "age": 29,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+    },
+    {
+      "id": "2",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "age": 29,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Tomsk",
+      "username": "user",
+      "avatar": "https://images-s.kinorium.com/persona/300/4515100.jpg?1593548704"
+    }
+  ],
   "articles": [
     {
       "id": "1",
@@ -87,7 +103,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": 1645863261,
-      "tags": ["IT"],
+      "tags": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -141,7 +159,10 @@
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
       "views": 856,
       "createdAt": 1647347601,
-      "tags": ["IT", "Programming"],
+      "tags": [
+        "IT",
+        "Programming"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -195,7 +216,10 @@
       "img": "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
       "views": 2450,
       "createdAt": 1657640001,
-      "tags": ["Science", "Space"],
+      "tags": [
+        "Science",
+        "Space"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -250,7 +274,10 @@
       "img": "https://www.imf.org/-/media/Images/IMF/Data-Charts/World-Economic-Outlook.ashx",
       "views": 532,
       "createdAt": 1679137881,
-      "tags": ["Economics", "Business"],
+      "tags": [
+        "Economics",
+        "Business"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -308,7 +335,10 @@
       "img": "https://images.unsplash.com/photo-1498837167922-ddd27525d352",
       "views": 789,
       "createdAt": 1719059481,
-      "tags": ["Health", "Lifestyle"],
+      "tags": [
+        "Health",
+        "Lifestyle"
+      ],
       "blocks": [
         {
           "id": "1",
