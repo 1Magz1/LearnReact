@@ -1,3 +1,4 @@
+import ArticleList from 'entities/Article/ui/ArticleList/ArticleList';
 import ArticleComponent from './ui/ArticleComponent/ArticleComponent';
 import {
   Article,
@@ -19,4 +20,5 @@ export {
   getArticleList,
   fetchArticleData,
   fetchArticleList,
+  ArticleList,
 };

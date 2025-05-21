@@ -43,3 +43,5 @@ export interface ArticleSchema {
   articleData: Article | null;
   articleList: Article[] | null;
 }
+
+export type ViewType = 'CARD' | 'FLAT'

@@ -11,6 +11,7 @@ import { Skeleton } from 'widgets/Skeleton';
 import { PageError } from 'widgets/PageError';
 import { useReducerLoader } from 'shared/hooks';
 import {
+  ArticleList,
   articleReducer,
   fetchArticleList,
   getArticleList,
@@ -61,7 +62,7 @@ const ArticlesPage = () => {
   return (
     <>
       <Text variant="h1">{t('title')}</Text>
-      <span>Content</span>
+      <ArticleList list={articleList} viewType="CARD" />
     </>
   );
 };
