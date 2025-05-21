@@ -14,7 +14,7 @@ const ArticleList = (props: ArticleListProps) => {
     <div className={cls[viewType.toLowerCase()]}>
       {list?.length ? (
         list.map((article: Article) => (
-          <ArticleItem data={article} viewType={viewType} />
+          <ArticleItem key={article.id} data={article} viewType={viewType} />
         ))
       ) : (
         <Text>No article found</Text>

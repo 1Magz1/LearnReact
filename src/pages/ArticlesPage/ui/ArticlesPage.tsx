@@ -17,6 +17,9 @@ import {
   getArticleList,
 } from 'entities/Article';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
+import { Button } from 'shared/ui/Button';
+import { ViewType } from 'entities/Article/model/schema/articleSchema';
+import cls from './ArticlesPage.module.scss';
 
 const reducerList: ReducerObject[] = [
   {
@@ -30,6 +33,7 @@ const ArticlesPage = () => {
   const { t } = useTranslation('articles');
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewType>('CARD');
   const articleList = useSelector(getArticleList);
   const dispatch = useAppDispatch();
 
@@ -44,6 +48,10 @@ const ArticlesPage = () => {
   useEffect(() => {
     fetchArticles().finally(() => setIsLoading(false));
   }, []);
+
+  const handleClick = () => {
+    setCurrentView((prev) => (prev === 'CARD' ? 'FLAT' : 'CARD'));
+  };
 
   if (isLoading) {
     return (
@@ -62,7 +70,12 @@ const ArticlesPage = () => {
   return (
     <>
       <Text variant="h1">{t('title')}</Text>
-      <ArticleList list={articleList} viewType="CARD" />
+      <div className={cls.wrap}>
+        <Button onClick={handleClick}>
+          {t('toggleView')}
+        </Button>
+      </div>
+      <ArticleList list={articleList} viewType={currentView} />
     </>
   );
 };
