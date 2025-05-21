@@ -9,7 +9,7 @@ import {
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { Skeleton } from 'widgets/Skeleton';
 import { PageError } from 'widgets/PageError';
-import { useReducerLoader } from 'shared/hooks';
+import { useLocalStorage, useReducerLoader } from 'shared/hooks';
 import {
   ArticleList,
   articleReducer,
@@ -19,6 +19,7 @@ import {
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { Button } from 'shared/ui/Button';
 import { ViewType } from 'entities/Article/model/schema/articleSchema';
+import { LOCAL_STORAGE_VIEW_TYPE } from 'shared/constants';
 import cls from './ArticlesPage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -33,7 +34,7 @@ const ArticlesPage = () => {
   const { t } = useTranslation('articles');
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [currentView, setCurrentView] = useState<ViewType>('CARD');
+  const [viewType, setViewType] = useLocalStorage<ViewType>(LOCAL_STORAGE_VIEW_TYPE, 'CARD');
   const articleList = useSelector(getArticleList);
   const dispatch = useAppDispatch();
 
@@ -50,16 +51,25 @@ const ArticlesPage = () => {
   }, []);
 
   const handleClick = () => {
-    setCurrentView((prev) => (prev === 'CARD' ? 'FLAT' : 'CARD'));
+    setViewType(viewType === 'CARD' ? 'FLAT' : 'CARD');
   };
 
   if (isLoading) {
     return (
-      <>
-        <Skeleton variant="circle" width={200} height={200} />
-        <Skeleton variant="circle" width={200} height={200} />
-        <Skeleton variant="circle" width={200} height={200} />
-      </>
+      <div className={cls[viewType.toLowerCase()]}>
+        <Skeleton className={cls['skeleton-title']} width={200} height={48} />
+        <Skeleton className={cls['skeleton-btn']} width={250} height={44} />
+        <div className={cls['skeleton-wrap']}>
+          { new Array(5).fill(0).map((_, index) => (
+            <Skeleton
+              key={index}
+              className={cls['skeleton-card']}
+              width="100%"
+              height={viewType === 'CARD' ? 274 : 628}
+            />
+          ))}
+        </div>
+      </div>
     );
   }
 
@@ -75,7 +85,7 @@ const ArticlesPage = () => {
           {t('toggleView')}
         </Button>
       </div>
-      <ArticleList list={articleList} viewType={currentView} />
+      <ArticleList list={articleList} viewType={viewType} />
     </>
   );
 };

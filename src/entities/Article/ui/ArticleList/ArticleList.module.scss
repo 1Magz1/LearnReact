@@ -1,8 +1,7 @@
 .card {
-  display: flex;
-  align-items: center;
+  display: grid;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
 }
 
 .flat {
