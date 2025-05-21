@@ -1,22 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchArticleList } from 'entities/Article/model/services/fetchArticleList/fetchArticleList';
 import { fetchArticleData } from '../services/fetchArticleData/fetchArticleData';
 import { Article, ArticleSchema } from '../schema/articleSchema';
 
 const initialState: ArticleSchema = {
-  data: null,
+  articleData: null,
+  articleList: null,
 };
 
 const articleSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    setArticle: (state, action: PayloadAction<Article>) => {
-      state.data = action.payload;
+    setArticleData: (state, action: PayloadAction<Article>) => {
+      state.articleData = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchArticleData.fulfilled, (state, action: PayloadAction<Article>) => {
-      state.data = action.payload;
+      state.articleData = action.payload;
+    });
+    builder.addCase(fetchArticleList.fulfilled, (state, action: PayloadAction<Article[]>) => {
+      state.articleList = action.payload;
     });
   },
 });

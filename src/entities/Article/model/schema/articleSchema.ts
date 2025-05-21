@@ -40,5 +40,6 @@ export interface Article {
 }
 
 export interface ArticleSchema {
-  data: Article | null;
+  articleData: Article | null;
+  articleList: Article[] | null;
 }
