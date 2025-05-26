@@ -4,12 +4,17 @@ import { useSelector } from 'react-redux';
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { useAppDispatch } from 'app/providers/StoreProvider';
 import { Skeleton } from 'widgets/Skeleton';
 import { PageError } from 'widgets/PageError';
-import { useLocalStorage, useReducerLoader } from 'shared/hooks';
+import {
+  useIntersectionObserver,
+  useLocalStorage,
+  useReducerLoader,
+} from 'shared/hooks';
 import {
   ArticleList,
   articleReducer,
@@ -31,20 +36,29 @@ const reducerList: ReducerObject[] = [
 
 const ArticlesPage = () => {
   useReducerLoader(reducerList);
+
   const { t } = useTranslation('articles');
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [viewType, setViewType] = useLocalStorage<ViewType>(LOCAL_STORAGE_VIEW_TYPE, 'CARD');
   const articleList = useSelector(getArticleList);
   const dispatch = useAppDispatch();
+  const targetRef = useRef<HTMLDivElement | null>(null);
 
   const fetchArticles = useCallback(async () => {
     try {
+      setIsLoading(true);
       await dispatch(fetchArticleList()).unwrap();
     } catch (e) {
       setIsError(true);
     }
   }, [dispatch]);
+
+  useIntersectionObserver(targetRef, () => {
+    if (!isLoading) {
+      fetchArticles().finally(() => setIsLoading(false));
+    }
+  });
 
   useEffect(() => {
     fetchArticles().finally(() => setIsLoading(false));
@@ -54,15 +68,15 @@ const ArticlesPage = () => {
     setViewType(viewType === 'CARD' ? 'FLAT' : 'CARD');
   };
 
-  if (isLoading) {
+  if (isLoading && !articleList?.length) {
     return (
       <div className={cls[viewType.toLowerCase()]}>
         <Skeleton className={cls['skeleton-title']} width={200} height={48} />
         <Skeleton className={cls['skeleton-btn']} width={250} height={44} />
         <div className={cls['skeleton-wrap']}>
-          { new Array(5).fill(0).map((_, index) => (
+          { new Array(6).fill(0).map((_, index) => (
             <Skeleton
-              key={index}
+              key={`skeleton-${index}`}
               className={cls['skeleton-card']}
               width="100%"
               height={viewType === 'CARD' ? 274 : 628}
@@ -85,7 +99,12 @@ const ArticlesPage = () => {
           {t('toggleView')}
         </Button>
       </div>
-      <ArticleList list={articleList} viewType={viewType} />
+      <ArticleList
+        list={articleList}
+        viewType={viewType}
+        isLoading={isLoading}
+      />
+      <div ref={targetRef} />
     </>
   );
 };

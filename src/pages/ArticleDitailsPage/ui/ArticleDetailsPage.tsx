@@ -18,6 +18,7 @@ import { AddCommentFormState } from 'entities/AddCommentForm';
 import { sendComment } from 'pages/ArticleDitailsPage/model/service/sendComment/sendComment';
 import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router';
+import { routePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './ArticleDetailsPage.module.scss';
 import { articleCommentsReducer, getArticleComments } from '../model/slice/articleDetailsSlice';
 import { fetchArticleComments } from '../model/service/fetchArticleComments/fetchArticleComments';
@@ -76,7 +77,7 @@ const ArticleDetailsPage = () => {
   };
 
   const handleClick = () => {
-    navigate(-1);
+    navigate(routePath.articles);
   };
 
   useEffect(() => {
