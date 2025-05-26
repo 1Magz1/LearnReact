@@ -6,14 +6,19 @@ import { Article, ArticleSchema } from '../schema/articleSchema';
 const initialState: ArticleSchema = {
   articleData: null,
   articleList: null,
+  currentArticlePage: 1,
+  isFinishedPage: false,
 };
 
 const articleSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    setArticleData: (state, action: PayloadAction<Article>) => {
-      state.articleData = action.payload;
+    setArticleCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentArticlePage = action.payload;
+    },
+    setIsFinishedPage: (state, action: PayloadAction<boolean>) => {
+      state.isFinishedPage = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -21,7 +26,11 @@ const articleSlice = createSlice({
       state.articleData = action.payload;
     });
     builder.addCase(fetchArticleList.fulfilled, (state, action: PayloadAction<Article[]>) => {
-      state.articleList = action.payload;
+      if (!state.articleList) {
+        state.articleList = action.payload;
+      } else {
+        state.articleList = [...state.articleList, ...action.payload];
+      }
     });
   },
 });

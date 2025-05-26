@@ -42,6 +42,8 @@ export interface Article {
 export interface ArticleSchema {
   articleData: Article | null;
   articleList: Article[] | null;
+  currentArticlePage: number;
+  isFinishedPage: boolean;
 }
 
 export type ViewType = 'CARD' | 'FLAT'
