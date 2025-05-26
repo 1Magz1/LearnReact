@@ -8,6 +8,7 @@ const initialState: ArticleSchema = {
   articleList: null,
   currentArticlePage: 1,
   isFinishedPage: false,
+  isInit: false,
 };
 
 const articleSlice = createSlice({
@@ -20,6 +21,9 @@ const articleSlice = createSlice({
     setIsFinishedPage: (state, action: PayloadAction<boolean>) => {
       state.isFinishedPage = action.payload;
     },
+    setIsInit: (state, action: PayloadAction<boolean>) => {
+      state.isInit = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchArticleData.fulfilled, (state, action: PayloadAction<Article>) => {
@@ -30,6 +34,13 @@ const articleSlice = createSlice({
         state.articleList = action.payload;
       } else {
         state.articleList = [...state.articleList, ...action.payload];
+        state.articleList = state.articleList.filter(
+          (
+            article,
+            index,
+            arr,
+          ) => arr.findIndex((a) => a.id === article.id) === index,
+        );
       }
     });
   },

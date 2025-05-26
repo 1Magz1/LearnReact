@@ -18,6 +18,7 @@ export const fetchArticleList = createAsyncThunk<Article[], void, {extra: ThunkE
 
     if (response.length > 0) {
       thunkAPI.dispatch(articleActions.setArticleCurrentPage(page + 1));
+      thunkAPI.dispatch(articleActions.setIsInit(true));
     } else {
       thunkAPI.dispatch(articleActions.setIsFinishedPage(true));
     }

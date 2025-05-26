@@ -20,6 +20,7 @@ import {
   articleReducer,
   fetchArticleList,
   getArticleList,
+  getIsInit,
 } from 'entities/Article';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { Button } from 'shared/ui/Button';
@@ -38,10 +39,11 @@ const ArticlesPage = () => {
   useReducerLoader(reducerList);
 
   const { t } = useTranslation('articles');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [viewType, setViewType] = useLocalStorage<ViewType>(LOCAL_STORAGE_VIEW_TYPE, 'CARD');
   const articleList = useSelector(getArticleList);
+  const isInit = useSelector(getIsInit);
   const dispatch = useAppDispatch();
   const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -61,7 +63,9 @@ const ArticlesPage = () => {
   });
 
   useEffect(() => {
-    fetchArticles().finally(() => setIsLoading(false));
+    if (!isInit) {
+      fetchArticles().finally(() => setIsLoading(false));
+    }
   }, []);
 
   const handleClick = () => {
@@ -104,7 +108,7 @@ const ArticlesPage = () => {
         viewType={viewType}
         isLoading={isLoading}
       />
-      <div ref={targetRef} />
+      <div ref={targetRef} style={{ height: '20px' }} />
     </>
   );
 };

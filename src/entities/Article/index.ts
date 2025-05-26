@@ -7,6 +7,7 @@ import {
 import { articleActions, articleReducer } from './model/slice/articleSlice';
 import { getArticleData } from './model/selector/getArticleData/getArticleData';
 import { getArticleList } from './model/selector/getArticleList/getArticleList';
+import { getIsInit } from './model/selector/getIsInit/getIsInit';
 import { fetchArticleData } from './model/services/fetchArticleData/fetchArticleData';
 import { fetchArticleList } from './model/services/fetchArticleList/fetchArticleList';
 
@@ -21,4 +22,5 @@ export {
   fetchArticleData,
   fetchArticleList,
   ArticleList,
+  getIsInit,
 };
