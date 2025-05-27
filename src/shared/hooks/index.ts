@@ -1,3 +1,4 @@
+import { useThrottle } from 'shared/hooks/useThrottle/useThrottle';
 import useModal from './useModal/useModal';
 import { useLocalStorage } from './useLocalStorage/useLocalStorage';
 import useReducerLoader from './useReducerLoader/useReducerLoader';
@@ -8,4 +9,5 @@ export {
   useLocalStorage,
   useReducerLoader,
   useIntersectionObserver,
+  useThrottle,
 };
