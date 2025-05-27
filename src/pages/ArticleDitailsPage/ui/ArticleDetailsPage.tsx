@@ -34,6 +34,8 @@ const reducerList: ReducerObject[] = [
   },
 ];
 
+const pageWrapper = document.getElementById('page-wrapper');
+
 const ArticleDetailsPage = () => {
   useReducerLoader(reducerList);
   const { t } = useTranslation('articleDetails');
@@ -82,6 +84,10 @@ const ArticleDetailsPage = () => {
 
   useEffect(() => {
     fetchArticle().then(() => setIsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    pageWrapper?.scrollTo({ top: 0 });
   }, []);
 
   if (isLoading) {
