@@ -7,9 +7,11 @@ import { KyInstance } from 'ky';
 import { UserProfileSchema } from 'features/UserProfile';
 import { ArticleSchema } from 'entities/Article';
 import { CommentSchema } from 'entities/Comment';
+import { ScrollPositionSchema } from 'features/SaveScrollPosition';
 
 export interface StateSchema {
   counter: CounterSchema,
+  scrollPosition: ScrollPositionSchema,
   authInfo?: AuthInfoSchema,
   profile?: UserProfileSchema,
   article?: ArticleSchema,

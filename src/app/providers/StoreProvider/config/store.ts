@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { counterReducer } from 'entities/Counter';
 import { createReducerManager } from 'app/providers/StoreProvider/config/reduceManager';
 import { $api } from 'shared/api/api';
+import { scrollPositionReducer } from 'features/SaveScrollPosition';
 import { ReduxStoreWithManager, StateSchema } from '../config/stateSchema';
 
 export function createReduxStore(
@@ -17,6 +18,7 @@ export function createReduxStore(
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     counter: counterReducer,
+    scrollPosition: scrollPositionReducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);
