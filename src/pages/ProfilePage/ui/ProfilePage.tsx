@@ -78,7 +78,7 @@ function ProfilePage() {
   }
 
   return (
-    <>
+    <div className="page-wrapper">
       <div className={cls.header}>
         <Text variant="h1">
           {t('title')}
@@ -114,7 +114,7 @@ function ProfilePage() {
       ) : (
         <Loader size={80} />
       )}
-    </>
+    </div>
   );
 }
 

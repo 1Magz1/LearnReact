@@ -1,19 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { Text } from 'shared/ui/Text';
 import { useSelector } from 'react-redux';
-import {
+import React, {
   useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react';
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { StateSchema, useAppDispatch } from 'app/providers/StoreProvider';
 import { Skeleton } from 'widgets/Skeleton';
 import { PageError } from 'widgets/PageError';
 import {
   useIntersectionObserver,
   useLocalStorage,
-  useReducerLoader,
+  useReducerLoader, useThrottle,
 } from 'shared/hooks';
 import {
   ArticleList,
@@ -26,6 +26,9 @@ import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { Button } from 'shared/ui/Button';
 import { ViewType } from 'entities/Article/model/schema/articleSchema';
 import { LOCAL_STORAGE_VIEW_TYPE } from 'shared/constants';
+import { getScrollPositionByName, scrollPositionActions } from 'features/SaveScrollPosition';
+import { useLocation } from 'react-router-dom';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticlesPage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -45,6 +48,9 @@ const ArticlesPage = () => {
   const articleList = useSelector(getArticleList);
   const isInit = useSelector(getIsInit);
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+  const scrollTop = useSelector((state: StateSchema) => getScrollPositionByName(state, pathname));
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   const fetchArticles = useCallback(async () => {
@@ -68,13 +74,26 @@ const ArticlesPage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollTop = scrollTop;
+    }
+  }, [wrapperRef.current]);
+
   const handleClick = () => {
     setViewType(viewType === 'CARD' ? 'FLAT' : 'CARD');
   };
 
+  const handleScroll = useThrottle((e: React.UIEvent<HTMLElement>) => {
+    dispatch(scrollPositionActions.setScrollPosition({
+      name: pathname,
+      position: e.currentTarget.scrollTop,
+    }));
+  });
+
   if (isLoading && !articleList?.length) {
     return (
-      <div className={cls[viewType.toLowerCase()]}>
+      <div className={classNames(cls[viewType.toLowerCase()], {}, ['page-wrapper'])}>
         <Skeleton className={cls['skeleton-title']} width={200} height={48} />
         <Skeleton className={cls['skeleton-btn']} width={250} height={44} />
         <div className={cls['skeleton-wrap']}>
@@ -96,7 +115,11 @@ const ArticlesPage = () => {
   }
 
   return (
-    <>
+    <section
+      ref={wrapperRef}
+      className="page-wrapper"
+      onScroll={handleScroll}
+    >
       <Text variant="h1">{t('title')}</Text>
       <div className={cls.wrap}>
         <Button onClick={handleClick}>
@@ -109,7 +132,7 @@ const ArticlesPage = () => {
         isLoading={isLoading}
       />
       <div ref={targetRef} style={{ height: '20px' }} />
-    </>
+    </section>
   );
 };
 

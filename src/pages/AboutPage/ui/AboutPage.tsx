@@ -4,7 +4,7 @@ function AboutPage() {
   const { t, i18n } = useTranslation('about');
 
   return (
-    <div>
+    <div className="page-wrapper">
       <h1>{t('title')}</h1>
     </div>
   );

@@ -92,7 +92,7 @@ const ArticleDetailsPage = () => {
 
   if (isLoading) {
     return (
-      <div className={cls.skeleton}>
+      <div className={classNames(cls.skeleton, {}, ['page-wrapper'])}>
         <Skeleton width={74} height={44} />
         <Skeleton className={cls.centered} variant="circle" width={200} height={200} />
         <Skeleton className={cls['skeleton-title']} width="50%" height={32} />
@@ -110,7 +110,7 @@ const ArticleDetailsPage = () => {
   }
 
   return (
-    <div>
+    <div className="page-wrapper">
       <Button onClick={handleClick}>
         {t('back')}
       </Button>

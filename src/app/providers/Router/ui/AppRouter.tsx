@@ -21,11 +21,9 @@ function AppRouter() {
               key={path}
               path={path}
               element={(
-                <div id="page-wrapper" className="page-wrapper">
-                  <ProtectedRoute authOnly={authOnly}>
-                    {element}
-                  </ProtectedRoute>
-                </div>
+                <ProtectedRoute authOnly={authOnly}>
+                  {element}
+                </ProtectedRoute>
               )}
             />
           ))}
