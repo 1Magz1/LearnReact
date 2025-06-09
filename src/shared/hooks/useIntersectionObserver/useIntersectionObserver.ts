@@ -5,7 +5,7 @@ export default function useIntersectionObserver(
   callback: () => void,
   options: IntersectionObserverInit = {
     root: null,
-    rootMargin: '0px',
+    rootMargin: '20px',
     threshold: 1.0,
   },
 ) {

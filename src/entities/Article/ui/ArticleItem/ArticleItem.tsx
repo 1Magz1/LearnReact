@@ -34,7 +34,7 @@ const ArticleItem = (props: ArticleItemProps) => {
   if (viewType === 'CARD') {
     return (
       <div className={cls[viewType.toLowerCase()]} onClick={handleClick}>
-        <img className={cls.img} src={data.img} alt={data.title} />
+        <img loading="lazy" className={cls.img} src={data.img} alt={data.title} />
         <Text className={cls.date} variant="span">
           {date.toLocaleDateString('ru-Ru')}
         </Text>

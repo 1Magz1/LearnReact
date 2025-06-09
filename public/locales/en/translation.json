@@ -16,6 +16,9 @@
   "send": "Send",
   "location": "Location",
   "currency": "Currency",
+  "sort_by": "Sort by",
+  "order": "Order by",
+  "search": "Search",
   "labels": {
     "login": "Login",
     "password": "Password"
@@ -25,5 +28,12 @@
   },
   "errorMessage": {
     "authError": "Authorization error"
+  },
+  "sort": {
+    "views": "Views",
+    "createdAt": "Created at",
+    "title": "Title",
+    "asc": "Ascending",
+    "desc": "Descending"
   }
 }

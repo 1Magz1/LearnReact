@@ -16,10 +16,13 @@ import {
   useReducerLoader, useThrottle,
 } from 'shared/hooks';
 import {
+  articleActions,
+  ArticleFilters,
   ArticleList,
   articleReducer,
   fetchArticleList,
   getArticleList,
+  getCurrentArticlePage,
   getIsInit,
 } from 'entities/Article';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
@@ -29,6 +32,7 @@ import { LOCAL_STORAGE_VIEW_TYPE } from 'shared/constants';
 import { getScrollPositionByName, scrollPositionActions } from 'features/SaveScrollPosition';
 import { useLocation } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { Loader } from 'widgets/Loader';
 import cls from './ArticlesPage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -47,6 +51,7 @@ const ArticlesPage = () => {
   const [viewType, setViewType] = useLocalStorage<ViewType>(LOCAL_STORAGE_VIEW_TYPE, 'CARD');
   const articleList = useSelector(getArticleList);
   const isInit = useSelector(getIsInit);
+  const currentArticlePage = useSelector(getCurrentArticlePage);
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const scrollTop = useSelector((state: StateSchema) => getScrollPositionByName(state, pathname));
@@ -62,23 +67,9 @@ const ArticlesPage = () => {
     }
   }, [dispatch]);
 
-  useIntersectionObserver(targetRef, () => {
-    if (!isLoading) {
-      fetchArticles().finally(() => setIsLoading(false));
-    }
-  });
-
-  useEffect(() => {
-    if (!isInit) {
-      fetchArticles().finally(() => setIsLoading(false));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      wrapperRef.current.scrollTop = scrollTop;
-    }
-  }, [wrapperRef.current]);
+  const handleFetchArticles = () => {
+    fetchArticles().finally(() => setIsLoading(false));
+  };
 
   const handleClick = () => {
     setViewType(viewType === 'CARD' ? 'FLAT' : 'CARD');
@@ -91,11 +82,35 @@ const ArticlesPage = () => {
     }));
   });
 
+  useIntersectionObserver(targetRef, () => {
+    if (!isLoading) {
+      dispatch(articleActions.setAddToEnd(true));
+      handleFetchArticles();
+    }
+  });
+
+  useEffect(() => {
+    if (!isInit) {
+      handleFetchArticles();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollTop = scrollTop;
+    }
+  }, [wrapperRef.current]);
+
   if (isLoading && !articleList?.length) {
     return (
       <div className={classNames(cls[viewType.toLowerCase()], {}, ['page-wrapper'])}>
         <Skeleton className={cls['skeleton-title']} width={200} height={48} />
         <Skeleton className={cls['skeleton-btn']} width={250} height={44} />
+        <div className={cls['skeleton-wrapper']}>
+          <Skeleton width="100%" height={68} />
+          <Skeleton width="100%" height={68} />
+        </div>
+        <Skeleton width="100%" height={44} />
         <div className={cls['skeleton-wrap']}>
           { new Array(6).fill(0).map((_, index) => (
             <Skeleton
@@ -126,11 +141,20 @@ const ArticlesPage = () => {
           {t('toggleView')}
         </Button>
       </div>
-      <ArticleList
-        list={articleList}
-        viewType={viewType}
-        isLoading={isLoading}
-      />
+      <ArticleFilters onValueChange={handleFetchArticles} />
+
+      {isLoading && currentArticlePage === 1 ? (
+        <div style={{ height: '65%' }}>
+          <Loader size={50} />
+        </div>
+      ) : (
+        <ArticleList
+          list={articleList}
+          viewType={viewType}
+          isLoading={isLoading}
+        />
+      )}
+
       <div ref={targetRef} style={{ height: '20px' }} />
     </section>
   );

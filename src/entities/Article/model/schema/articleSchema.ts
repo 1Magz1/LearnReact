@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export enum BookType {
   TEXT = 'TEXT',
   CODE = 'CODE',
@@ -28,6 +30,17 @@ export interface TextBlockType extends BaseBlockType {
 
 export type BlockType = CodeBlockType | ImageBlockType | TextBlockType;
 
+export enum ArticleSortField {
+  CREATED_AT = 'createdAt',
+  VIEWS = 'views',
+  TITLE = 'title',
+}
+
+export enum OrderBy {
+  DESC = 'desc',
+  ASC = 'asc',
+}
+
 export interface Article {
   id: string;
   title: string;
@@ -39,12 +52,26 @@ export interface Article {
   blocks: BlockType[]
 }
 
+export interface ArticleFilters {
+  sort: ArticleSortField,
+  order: OrderBy,
+  search: string
+}
+
 export interface ArticleSchema {
   articleData: Article | null;
   articleList: Article[] | null;
   currentArticlePage: number;
   isFinishedPage: boolean;
-  isInit: boolean
+  isInit: boolean,
+  articleFilters: ArticleFilters
+  addToEnd: boolean;
 }
 
 export type ViewType = 'CARD' | 'FLAT'
+
+export const articleFiltersSchema = z.object({
+  sort: z.nativeEnum(ArticleSortField),
+  order: z.nativeEnum(OrderBy),
+  search: z.string(),
+});
