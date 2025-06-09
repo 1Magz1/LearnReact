@@ -4,7 +4,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { ReactNode } from 'react';
 import { ArticlesPage } from 'pages/ArticlesPage';
-import { ArticleDetailsPage } from 'pages/ArticleDitailsPage';
+import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
 
 export enum appRoutes {
   MAIN = 'main',

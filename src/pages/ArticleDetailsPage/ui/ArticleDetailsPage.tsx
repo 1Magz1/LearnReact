@@ -15,7 +15,7 @@ import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AddCommentFormState } from 'entities/AddCommentForm';
-import { sendComment } from 'pages/ArticleDitailsPage/model/service/sendComment/sendComment';
+import { sendComment } from 'pages/ArticleDetailsPage/model/service/sendComment/sendComment';
 import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router';
 import { routePath } from 'shared/config/routeConfig/routeConfig';
