@@ -49,7 +49,8 @@ export interface Article {
   views: number
   createdAt: number;
   tags: string[],
-  blocks: BlockType[]
+  blocks: BlockType[],
+  userId: string
 }
 
 export interface ArticleFilters {

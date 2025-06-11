@@ -9,7 +9,7 @@ import {
 } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useReducerLoader } from 'shared/hooks';
+import { useLocalStorage, useReducerLoader } from 'shared/hooks';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
@@ -19,6 +19,8 @@ import { sendComment } from 'pages/ArticleDetailsPage/model/service/sendComment/
 import { Button } from 'shared/ui/Button';
 import { useNavigate } from 'react-router';
 import { routePath } from 'shared/config/routeConfig/routeConfig';
+import ArticleDetailsPageHeader from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { LOCAL_STORAGE_USERNAME_ID_KEY } from 'shared/constants';
 import cls from './ArticleDetailsPage.module.scss';
 import { articleCommentsReducer, getArticleComments } from '../model/slice/articleDetailsSlice';
 import { fetchArticleComments } from '../model/service/fetchArticleComments/fetchArticleComments';
@@ -40,6 +42,7 @@ const ArticleDetailsPage = () => {
   useReducerLoader(reducerList);
   const { t } = useTranslation('articleDetails');
   const { id } = useParams();
+  const [userId] = useLocalStorage(LOCAL_STORAGE_USERNAME_ID_KEY, '');
 
   const [isLoading, setIsLoading] = useState(true);
   const [isCommentSending, setIsCommentSending] = useState(false);
@@ -48,7 +51,6 @@ const ArticleDetailsPage = () => {
   const dispatch = useAppDispatch();
   const data = useSelector(getArticleData);
   const comments = useSelector(getArticleComments.selectAll);
-  const navigate = useNavigate();
 
   const fetchArticle = useCallback(async () => {
     try {
@@ -76,10 +78,6 @@ const ArticleDetailsPage = () => {
         setIsCommentSending(false);
       });
     }
-  };
-
-  const handleClick = () => {
-    navigate(routePath.articles);
   };
 
   useEffect(() => {
@@ -111,9 +109,7 @@ const ArticleDetailsPage = () => {
 
   return (
     <div className="page-wrapper">
-      <Button onClick={handleClick}>
-        {t('back')}
-      </Button>
+      <ArticleDetailsPageHeader edit={Number(data?.userId) === Number(userId)} />
       <ArticleComponent
         data={data}
         comments={comments}

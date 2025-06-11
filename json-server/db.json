@@ -150,7 +150,8 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
     },
     {
       "id": "2",
@@ -207,7 +208,8 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
     },
     {
       "id": "3",
@@ -265,7 +267,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "4",
@@ -326,7 +330,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "5",
@@ -384,7 +390,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "6",
@@ -440,7 +448,9 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "7",
@@ -497,7 +507,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "8",
@@ -555,7 +567,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "9",
@@ -616,7 +630,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "10",
@@ -674,7 +690,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "11",
@@ -730,7 +748,9 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "12",
@@ -787,7 +807,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "13",
@@ -845,7 +867,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "14",
@@ -906,7 +930,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "15",
@@ -964,7 +990,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "16",
@@ -1020,7 +1048,9 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "17",
@@ -1077,7 +1107,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "18",
@@ -1135,7 +1167,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "19",
@@ -1196,7 +1230,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "20",
@@ -1254,7 +1290,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "21",
@@ -1310,7 +1348,9 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "22",
@@ -1367,7 +1407,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "23",
@@ -1425,7 +1467,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "24",
@@ -1486,7 +1530,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "25",
@@ -1544,7 +1590,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "26",
@@ -1600,7 +1648,9 @@
           "src": "https://miro.medium.com/max/1200/1*LyZcwuLWv2FArOumCxobpA.png",
           "title": "ES2022 Features"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "27",
@@ -1657,7 +1707,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "28",
@@ -1715,7 +1767,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "29",
@@ -1776,7 +1830,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "30",
@@ -1834,7 +1890,9 @@
           "type": "CODE",
           "code": "// Расчет индекса массы тела\nfunction calculateBMI(weight, height) {\n  const bmi = weight / (height * height);\n  return bmi.toFixed(1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "31",
@@ -1947,7 +2005,9 @@
           "src": "https://www.python.org/static/img/python-logo.png",
           "title": "Python 3.10 Logo"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "33",
@@ -2005,7 +2065,9 @@
           "type": "CODE",
           "code": "// Пример обработки астрономических данных\nfunction processJWSTData(data) {\n  const calibrated = calibrate(data);\n  const analyzed = analyze(calibrated);\n  return createImage(analyzed);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     },
     {
       "id": "34",
@@ -2066,7 +2128,9 @@
           "type": "CODE",
           "code": "// Модель прогнозирования экономического роста\nfunction predictGDPGrowth(params) {\n  const { inflation, employment, energyPrices } = params;\n  return 2.5 - (inflation * 0.2) + (employment * 0.15) - (energyPrices * 0.1);\n}"
         }
-      ]
+      ],
+      "userId": 1
+
     }
   ]
 }
