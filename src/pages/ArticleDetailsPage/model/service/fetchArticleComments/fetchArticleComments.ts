@@ -8,6 +8,6 @@ export const fetchArticleComments = createAsyncThunk<Comment[], string, {extra: 
     const { extra } = thunkAPI;
     const response = await extra.api.get(`comments/?articleId=${id}&_expand=user`).json<Comment[]>();
 
-    return response;
+    return response.reverse();
   },
 );

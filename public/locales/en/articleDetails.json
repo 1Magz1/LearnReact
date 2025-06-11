@@ -1,4 +1,6 @@
 {
   "title": "Article details",
-  "error": "The requested article was not found"
+  "error": "The requested article was not found",
+  "back": "Back",
+  "edit": "Edit"
 }

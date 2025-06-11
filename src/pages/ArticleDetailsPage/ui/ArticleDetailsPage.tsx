@@ -9,11 +9,18 @@ import {
 } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useReducerLoader } from 'shared/hooks';
+import { useLocalStorage, useReducerLoader } from 'shared/hooks';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { PageError } from 'widgets/PageError';
 import { Skeleton } from 'widgets/Skeleton';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AddCommentFormState } from 'entities/AddCommentForm';
+import { sendComment } from 'pages/ArticleDetailsPage/model/service/sendComment/sendComment';
+import { Button } from 'shared/ui/Button';
+import { useNavigate } from 'react-router';
+import { routePath } from 'shared/config/routeConfig/routeConfig';
+import ArticleDetailsPageHeader from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import { LOCAL_STORAGE_USERNAME_ID_KEY } from 'shared/constants';
 import cls from './ArticleDetailsPage.module.scss';
 import { articleCommentsReducer, getArticleComments } from '../model/slice/articleDetailsSlice';
 import { fetchArticleComments } from '../model/service/fetchArticleComments/fetchArticleComments';
@@ -29,12 +36,16 @@ const reducerList: ReducerObject[] = [
   },
 ];
 
+const pageWrapper = document.getElementById('page-wrapper');
+
 const ArticleDetailsPage = () => {
   useReducerLoader(reducerList);
   const { t } = useTranslation('articleDetails');
   const { id } = useParams();
+  const [userId] = useLocalStorage(LOCAL_STORAGE_USERNAME_ID_KEY, '');
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isCommentSending, setIsCommentSending] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -56,13 +67,31 @@ const ArticleDetailsPage = () => {
     }
   }, [dispatch]);
 
+  const onCommentSend = async (data: AddCommentFormState) => {
+    setIsCommentSending(true);
+    try {
+      await dispatch(sendComment(data)).unwrap();
+    } catch (e) {
+      setIsError(true);
+    } finally {
+      fetchArticle().then(() => {
+        setIsCommentSending(false);
+      });
+    }
+  };
+
   useEffect(() => {
     fetchArticle().then(() => setIsLoading(false));
   }, []);
 
+  useEffect(() => {
+    pageWrapper?.scrollTo({ top: 0 });
+  }, []);
+
   if (isLoading) {
     return (
-      <div className={cls.skeleton}>
+      <div className={classNames(cls.skeleton, {}, ['page-wrapper'])}>
+        <Skeleton width={74} height={44} />
         <Skeleton className={cls.centered} variant="circle" width={200} height={200} />
         <Skeleton className={cls['skeleton-title']} width="50%" height={32} />
         <Skeleton className={cls['skeleton-title']} width="35%" height={24} />
@@ -79,8 +108,14 @@ const ArticleDetailsPage = () => {
   }
 
   return (
-    <div>
-      <ArticleComponent data={data} comments={comments} />
+    <div className="page-wrapper">
+      <ArticleDetailsPageHeader edit={Number(data?.userId) === Number(userId)} />
+      <ArticleComponent
+        data={data}
+        comments={comments}
+        isLoading={isCommentSending}
+        onCommentSave={onCommentSend}
+      />
     </div>
   );
 };

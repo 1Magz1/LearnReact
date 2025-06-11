@@ -4,6 +4,7 @@ import { Text } from 'shared/ui/Text';
 import EyeIcon from 'shared/assets/icons/eye.svg';
 import CalendarIcon from 'shared/assets/icons/calendar.svg';
 import { CommentList, Comment } from 'entities/Comment';
+import { AddCommentForm, AddCommentFormState } from 'entities/AddCommentForm';
 import ImageBlock from '../ImageBlock/ImageBlock';
 import CodeBlock from '../CodeBlock/CodeBlock';
 import TextBlock from '../TextBlock/TextBlock';
@@ -13,10 +14,14 @@ import cls from './ArticleComponent.module.scss';
 interface ArticleComponentProps {
   data: Article,
   comments?: Comment[],
+  onCommentSave: (data: AddCommentFormState) => void,
+  isLoading: boolean,
 }
 
 const ArticleComponent = (props: ArticleComponentProps) => {
-  const { data, comments } = props;
+  const {
+    data, comments, onCommentSave, isLoading,
+  } = props;
   const date = new Date(data.createdAt * 1000);
 
   const renderBlock = useCallback((block: BlockType) => {
@@ -56,6 +61,11 @@ const ArticleComponent = (props: ArticleComponentProps) => {
       <div className={cls.content}>
         {data.blocks.map((block) => renderBlock(block))}
       </div>
+      <AddCommentForm
+        className={cls['comment-form']}
+        isLoading={isLoading}
+        onSave={onCommentSave}
+      />
       <CommentList comments={comments} />
     </div>
   );

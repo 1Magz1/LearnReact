@@ -1,22 +1,64 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchArticleList } from 'entities/Article/model/services/fetchArticleList/fetchArticleList';
 import { fetchArticleData } from '../services/fetchArticleData/fetchArticleData';
-import { Article, ArticleSchema } from '../schema/articleSchema';
+import {
+  Article, ArticleFilters, ArticleSchema, ArticleSortField, OrderBy,
+} from '../schema/articleSchema';
 
 const initialState: ArticleSchema = {
-  data: null,
+  articleData: null,
+  articleList: null,
+  currentArticlePage: 1,
+  isFinishedPage: false,
+  isInit: false,
+  addToEnd: true,
+  articleFilters: {
+    sort: ArticleSortField.CREATED_AT,
+    order: OrderBy.DESC,
+    search: '',
+  },
 };
 
 const articleSlice = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    setArticle: (state, action: PayloadAction<Article>) => {
-      state.data = action.payload;
+    setArticleCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentArticlePage = action.payload;
+    },
+    setIsFinishedPage: (state, action: PayloadAction<boolean>) => {
+      state.isFinishedPage = action.payload;
+    },
+    setIsInit: (state, action: PayloadAction<boolean>) => {
+      state.isInit = action.payload;
+    },
+    setArticleFilters: (state, action: PayloadAction<ArticleFilters>) => {
+      state.articleFilters = action.payload;
+      state.isFinishedPage = false;
+      state.currentArticlePage = 1;
+      state.addToEnd = false;
+    },
+    setAddToEnd: (state, action: PayloadAction<boolean>) => {
+      state.addToEnd = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchArticleData.fulfilled, (state, action: PayloadAction<Article>) => {
-      state.data = action.payload;
+      state.articleData = action.payload;
+    });
+    builder.addCase(fetchArticleList.fulfilled, (state, action: PayloadAction<Article[]>) => {
+      if (!state.articleList || !state.addToEnd) {
+        state.articleList = action.payload;
+      } else {
+        state.articleList = [...state.articleList, ...action.payload];
+        state.articleList = state.articleList.filter(
+          (
+            article,
+            index,
+            arr,
+          ) => arr.findIndex((a) => a.id === article.id) === index,
+        );
+      }
     });
   },
 });

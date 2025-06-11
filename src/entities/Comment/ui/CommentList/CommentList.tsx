@@ -13,7 +13,7 @@ const CommentList = (props: CommentListProps) => {
     <div>
       {comments?.length
         ? comments?.map((comment) => (
-          <CommentCard comment={comment} />
+          <CommentCard key={comment.id} comment={comment} />
         ))
         : <Text>No comments found.</Text>}
     </div>

@@ -1,5 +1,6 @@
 import { Text } from 'shared/ui/Text';
 import Avatar from 'widgets/Avatar/ui/Avatar';
+import { AppLink } from 'shared/ui/AppLink';
 import { Comment } from '../../model/schema/commentSchema';
 import cls from './CommentCard.module.scss';
 
@@ -12,14 +13,14 @@ const CommentCard = (props: CommentCard) => {
 
   return (
     <div className={cls.card}>
-      <div className={cls.header}>
+      <AppLink to={`/profile/${comment.user.id}`} className={cls.header}>
         {comment.user.avatar?.length && (
           <Avatar src={comment.user.avatar} size={50} />
         )}
         <Text variant="span">
           {comment.user.username}
         </Text>
-      </div>
+      </AppLink>
       <Text>
         {comment.text}
       </Text>

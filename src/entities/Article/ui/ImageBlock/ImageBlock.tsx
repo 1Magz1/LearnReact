@@ -11,7 +11,15 @@ const ImageBlock = (props: ImageBlockProps) => {
   return (
     <div className={cls.block}>
       <img src={block.src} alt={block.title} className={cls.image} />
-      {block.title && <Text data-testId="image-caption" variant="span">{block.title}</Text>}
+      {block.title && (
+      <Text
+        data-testid="image-caption"
+        variant="span"
+        className={cls.text}
+      >
+        {block.title}
+      </Text>
+      )}
     </div>
   );
 };

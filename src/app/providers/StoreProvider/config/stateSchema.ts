@@ -4,14 +4,14 @@ import {
   Action, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { KyInstance } from 'ky';
-import type { To } from '@remix-run/router';
-import type { NavigateOptions } from 'react-router/dist/lib/context';
 import { UserProfileSchema } from 'features/UserProfile';
 import { ArticleSchema } from 'entities/Article';
 import { CommentSchema } from 'entities/Comment';
+import { ScrollPositionSchema } from 'features/SaveScrollPosition';
 
 export interface StateSchema {
   counter: CounterSchema,
+  scrollPosition: ScrollPositionSchema,
   authInfo?: AuthInfoSchema,
   profile?: UserProfileSchema,
   article?: ArticleSchema,
@@ -33,7 +33,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
   api: KyInstance,
-  navigate: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ReducerObject {
