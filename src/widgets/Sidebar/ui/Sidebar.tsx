@@ -13,11 +13,8 @@ import ProfileIcon from 'shared/assets/icons/profile.svg';
 import ArticleIcon from 'shared/assets/icons/article.svg';
 import { useLocalStorage } from 'shared/hooks';
 import { LOCAL_STORAGE_USERNAME_ID_KEY, LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
+import { Box } from 'shared/ui/Box';
 import cls from './Sidebar.module.scss';
-
-interface SidebarProps {
-  className?: string;
-}
 
 const BASE_PAGES = [
   {
@@ -40,7 +37,7 @@ const AUTH_PAGES = [
   },
 ];
 
-export const Sidebar = memo(({ className }: SidebarProps) => {
+export const Sidebar = memo(() => {
   const { t } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [userId] = useLocalStorage(LOCAL_STORAGE_USERNAME_ID_KEY, '');
@@ -67,9 +64,10 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   }, [userId]);
 
   return (
-    <div
+    <Box
+      variant="aside"
       data-testid="sidebar"
-      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className || ''])}
+      className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [])}
     >
       <nav>
         <ul className={cls.linkList}>
@@ -86,10 +84,10 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         </ul>
       </nav>
 
-      <div className={cls.switchers}>
+      <Box direction="row" justifyContent="space-between" className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher />
-      </div>
+      </Box>
 
       <Button
         data-testid="sidebar-toggle"
@@ -98,6 +96,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       >
         {isCollapsed ? '>' : '<'}
       </Button>
-    </div>
+    </Box>
   );
 });

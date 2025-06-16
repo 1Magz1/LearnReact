@@ -1,10 +1,8 @@
-.NotFoundPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.page {
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
 }
 
-.Title {
+.title {
   font: var(--font-l);
 }

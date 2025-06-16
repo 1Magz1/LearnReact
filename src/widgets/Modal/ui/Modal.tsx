@@ -7,6 +7,8 @@ import {
 import CloseIcon from 'shared/assets/icons/close.svg';
 import { THEME_BUTTON } from 'shared/ui/Button/ui/Button';
 import { useTranslation } from 'react-i18next';
+import { Text } from 'shared/ui/Text';
+import { Box } from 'shared/ui/Box';
 import cls from './Modal.module.scss';
 
 interface ModalProps {
@@ -53,21 +55,30 @@ export const Modal = (props: ModalProps) => {
   }, [handleKeyDown]);
 
   return (
-    <div
+    <Box
+      alignItems="center"
+      justifyContent="center"
       className={classNames(cls.overlay, { [cls.overlay_open]: isOpen })}
       onClick={onClose}
     >
       <div className={classNames(cls.modal)} onClick={handleContentClick}>
-        <div className={classNames(cls.header)}>
-          {title ? <span>{title}</span> : null}
+        <Box
+          direction="row"
+          alignItems="center"
+          className={classNames(cls.header)}
+        >
+          {title ? <Text variant="span">{title}</Text> : null}
           <Button onClick={onClose} className={cls['close-btn']}>
             <CloseIcon className={cls['close-icon']} />
           </Button>
-        </div>
+        </Box>
         <div className={classNames(cls.body)}>
           {children}
         </div>
-        <div className={classNames(cls.footer)}>
+        <Box
+          direction="row"
+          justifyContent="flex-end"
+        >
           {onConfirm ? (
             <Button
               theme={THEME_BUTTON.CONFIRM}
@@ -82,8 +93,8 @@ export const Modal = (props: ModalProps) => {
           <Button onClick={onClose}>
             {t('close')}
           </Button>
-        </div>
+        </Box>
       </div>
-    </div>
+    </Box>
   );
 };

@@ -9,12 +9,13 @@ import Avatar from 'widgets/Avatar/ui/Avatar';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import i18n from 'i18next';
+import { Box } from 'shared/ui/Box';
 import {
   Currency,
   UserProfile,
   userProfileSchema,
   ProfileFormData,
-} from '../model/schema/userProfileSchema';
+} from '../../model/schema/userProfileSchema';
 import cls from './ProfileEditForm.module.scss';
 
 interface ProfileEditFormProps {
@@ -73,20 +74,20 @@ export const ProfileEditForm = memo(({
 
   return (
     <form
-      className={classNames(cls['profile-edit-form'], {}, [className])}
+      className={classNames(cls.form, {}, [className])}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className={cls['avatar-section']}>
+      <Box className={cls.avatar} gap="1">
         <Avatar src={profile.avatar} size={200} />
         <Input
           control={control}
           name="avatar"
           placeholder={t('editForm.avatarURL')}
         />
-      </div>
+      </Box>
 
-      <div className={cls['form-fields']}>
-        <div className={cls.wrap}>
+      <Box gap="1">
+        <Box gap="1" direction="row">
           <Input
             required
             control={control}
@@ -104,8 +105,8 @@ export const ProfileEditForm = memo(({
             label={t('editForm.age')}
             error={errors.age?.message}
           />
-        </div>
-        <div className={cls.wrap}>
+        </Box>
+        <Box gap="1" direction="row">
           <Input
             required
             control={control}
@@ -122,8 +123,8 @@ export const ProfileEditForm = memo(({
             label={t('editForm.lastName')}
             error={errors.lastname?.message}
           />
-        </div>
-        <div className={cls.wrap}>
+        </Box>
+        <Box gap="1" direction="row">
           <Input
             required
             control={control}
@@ -148,9 +149,15 @@ export const ProfileEditForm = memo(({
             label={t('editForm.currency')}
             options={currencyList}
           />
-        </div>
+        </Box>
 
-        <div className={cls.actions}>
+        <Box
+          gap="1"
+          justifyContent="flex-end"
+          alignItems="flex-end"
+          direction="row"
+          className={cls.actions}
+        >
           <Button
             type="submit"
             theme={THEME_BUTTON.CONFIRM}
@@ -164,8 +171,8 @@ export const ProfileEditForm = memo(({
           >
             {t('cancel')}
           </Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </form>
   );
 });

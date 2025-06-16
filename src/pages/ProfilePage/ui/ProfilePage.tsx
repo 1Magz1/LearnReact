@@ -19,6 +19,8 @@ import { Button } from 'shared/ui/Button';
 import { ReducerObject } from 'app/providers/StoreProvider/config/stateSchema';
 import { useParams } from 'react-router-dom';
 import { LOCAL_STORAGE_USERNAME_ID_KEY, LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
+import { Box } from 'shared/ui/Box';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ProfilePage.module.scss';
 
 const reducerList: ReducerObject[] = [
@@ -79,38 +81,33 @@ function ProfilePage() {
 
   return (
     <div className="page-wrapper">
-      <div className={cls.header}>
+      <Box direction="row" justifyContent="space-between" alignItems="baseline">
         <Text variant="h1">
           {t('title')}
         </Text>
-        <div>
-          { !isLoading && !isError && id === userId && (
-            <Button onClick={toggleEditing}>
-              {!isEditing ? t('edit') : t('cancel')}
-            </Button>
-          )}
-        </div>
-      </div>
+        { !isLoading && !isError && id === userId && (
+        <Button onClick={toggleEditing}>
+          {!isEditing ? t('edit') : t('cancel')}
+        </Button>
+        )}
+      </Box>
       {!isLoading ? (
-        <div className={cls.wrapper}>
-          <div className={cls.wrap}>
-            <ProfileCard
-              profile={data}
-              className={cls.card}
-            />
-          </div>
+        <Box direction="row" justifyContent="space-between">
+          <ProfileCard
+            profile={data}
+            className={classNames(cls.card, {}, [cls.wrap])}
+          />
 
           {isEditing && data && (
-            <div className={cls.wrap}>
-              <ProfileEditForm
-                profile={data}
-                onSave={handleOnSave}
-                onCancel={() => setIsEditing(false)}
-                isLoading={isLoading}
-              />
-            </div>
+            <ProfileEditForm
+              className={cls.wrap}
+              profile={data}
+              onSave={handleOnSave}
+              onCancel={() => setIsEditing(false)}
+              isLoading={isLoading}
+            />
           )}
-        </div>
+        </Box>
       ) : (
         <Loader size={80} />
       )}

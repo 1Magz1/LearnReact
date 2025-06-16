@@ -2,7 +2,7 @@ import './styles/index.scss';
 import { Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppRouter } from 'app/providers/Router';
-import { Navbar } from 'widgets/Navbar';
+import { Header } from 'widgets/Header';
 
 import 'shared/config/i18n/i18n';
 import { Loader } from 'widgets/Loader';
@@ -16,7 +16,7 @@ function App() {
         </div>
       )}
       >
-        <Navbar />
+        <Header />
         <AppRouter />
       </Suspense>
     </div>

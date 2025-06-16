@@ -3,6 +3,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import Avatar from 'widgets/Avatar/ui/Avatar';
 import { UserProfile } from 'features/UserProfile';
+import { Box } from 'shared/ui/Box';
+import { Text } from 'shared/ui/Text';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -14,58 +16,79 @@ const ProfileCard = memo(({ profile, className }: ProfileCardProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className={classNames(cls['profile-card'], {}, [className || ''])}>
+    <Box
+      alignItems="center"
+      direction="column"
+      gap="1"
+      className={classNames(cls['profile-card'], {}, [className || ''])}
+    >
       {profile ? (
         <>
-          <div className={cls['avatar-wrapper']}>
-            <Avatar src={profile.avatar} />
-          </div>
+          <Avatar src={profile.avatar} />
 
-          <div className={cls['profile-card__info']}>
-            <h2 className={cls['profile-card__name']}>
+          <Box alignItems="center">
+            <Text variant="h2">
               {profile.firstname}
               {' '}
               {profile.lastname}
-            </h2>
-            <div className={cls['profile-card__username']}>
+            </Text>
+            <Text variant="span" className={cls['profile-card__username']}>
               @
               {profile.username}
-            </div>
+            </Text>
 
-            <div className={cls['profile-card__details']}>
-              <div className={cls['profile-card__detail']}>
-                <span className={cls['profile-card__label']}>
+            <Box alignItems="center">
+              <Box
+                direction="row"
+                justifyContent="center"
+              >
+                <Text
+                  variant="span"
+                  className={cls['profile-card__label']}
+                >
                   {t('age')}
                   :
-                </span>
-                <span>{profile.age}</span>
-              </div>
-              <div className={cls['profile-card__detail']}>
-                <span className={cls['profile-card__label']}>
+                </Text>
+                <Text variant="span">{profile.age}</Text>
+              </Box>
+              <Box
+                direction="row"
+                justifyContent="center"
+              >
+                <Text
+                  variant="span"
+                  className={cls['profile-card__label']}
+                >
                   {t('location')}
                   :
-                </span>
-                <span>
+                </Text>
+                <Text variant="span">
                   {profile.city}
                   ,
                   {' '}
                   {profile.country}
-                </span>
-              </div>
-              <div className={cls['profile-card__detail']}>
-                <span className={cls['profile-card__label']}>
+                </Text>
+              </Box>
+              <Box
+                direction="row"
+                justifyContent="center"
+              >
+                <Text
+                  variant="span"
+                  className={cls['profile-card__label']}
+                >
                   {t('currency')}
                   :
-                </span>
-                <span>{profile.currency}</span>
-              </div>
-            </div>
-          </div>
+                </Text>
+                <Text variant="span">{profile.currency}</Text>
+              </Box>
+            </Box>
+          </Box>
         </>
       ) : (
         null
       )}
-    </div>
+    </Box>
 
   );
 });

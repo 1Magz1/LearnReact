@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { AuthModal } from 'features/AuthByUsername/ui/AuthModal';
 import { Button } from 'shared/ui/Button';
@@ -11,13 +10,11 @@ import {
 } from 'react';
 import { Portal } from 'widgets/Portal';
 import { LOCAL_STORAGE_USERNAME_KEY } from 'shared/constants';
-import cls from './Navbar.module.scss';
+import { Box } from 'shared/ui/Box';
+import { Text } from 'shared/ui/Text';
+import cls from './Header.module.scss';
 
-interface NavbarProps {
-  className?: string;
-}
-
-const Navbar = ({ className }: NavbarProps) => {
+const Header = () => {
   const { t } = useTranslation();
   const { isOpen, handleModalOpen, handleModalClose } = useModal();
   const dispatch = useAppDispatch();
@@ -40,10 +37,16 @@ const Navbar = ({ className }: NavbarProps) => {
   };
 
   return (
-    <div data-testid="navbar" className={classNames(cls.navbar, {}, [className || ''])}>
-      <div>
+    <Box
+      variant="header"
+      direction="row"
+      data-testid="header"
+      justifyContent="space-between"
+      className={cls.navbar}
+    >
+      <Text variant="span">
         Learn React
-      </div>
+      </Text>
       <Button onClick={handleClick} theme={THEME_BUTTON.CLEAR}>
         {userName.length ? t('exit') : t('login')}
       </Button>
@@ -54,8 +57,8 @@ const Navbar = ({ className }: NavbarProps) => {
           </Portal>
         )}
       </Suspense>
-    </div>
+    </Box>
   );
 };
 
-export default Navbar;
+export default Header;
