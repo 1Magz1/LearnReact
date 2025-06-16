@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import AuthModal from './AuthModal';
 
 const meta = {
-  title: 'entities/AuthModal',
+  title: 'features/AuthModal',
   component: AuthModal,
 } satisfies Meta<typeof AuthModal>;
 
